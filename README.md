@@ -74,31 +74,50 @@ Seasoned IT Specialist with 10+ years of experience. I combine creativity and op
 
 ### 🎓 Education
 
-<div style="display: flex; align-items: center; margin-bottom: 12px;">
-    <img src="https://cdn.simpleicons.org/university/000000" height="32" alt="University" />
-  <div>
-    <strong>B.S. Information Technology</strong><br>
-    University of Phoenix
-  </div>
-</div>
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/university/000000" height="32" alt="University" /><br>
+      <strong>B.S. Information Technology</strong><br>
+      University of Phoenix
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/university/000000" height="32" alt="University" /><br>
+      <strong>A.S. Network Security</strong><br>
+      University of Advancing Technology
+    </td>
+  </tr>
+</table>
 
-<div style="display: flex; align-items: center;">
-  <img src="https://cdn.simpleicons.org/university/000000" height="32" alt="University" style="margin-right: 12px;" />
-  <div>
-    <strong>A.S. Network Security</strong><br>
-    University of Advancing Technology
-  </div>
-</div>
+---
 
 ### 🏆 Certifications
 
+<table>
+  <tr>
+    <td align="center">
+      <strong>Nucamp Coding Bootcamp</strong>
+    </td>
+    <td align="center">
+      <strong>CyberSecurity Certification</strong>
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/cisco/1BA0E2" height="40" alt="Cisco CCNA" /><br>
+      CCNA (2019–2022)
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/comptia/0079C1" height="40" alt="CompTIA" /><br>
+      CompTIA A+ & Network+
+    </td>
+  </tr>
+</table>
+
+
 <div style="display: flex; align-items: center; margin-bottom: 12px;">
-  <img src="https://cdn.simpleicons.org/education/000000" height="32" alt="Education" />
   <div>Nucamp Coding Bootcamp</div>
 </div>
 
 <div style="display: flex; align-items: center; margin-bottom: 12px;">
-  <img src="https://cdn.simpleicons.org/shield" height="36" alt="Cybersecurity" style="margin-right: 12px;" />
   <div>CyberSecurity Certification</div>
 </div>
 
@@ -124,7 +143,7 @@ I actively participate in these professional and learning communities to stay sh
       Various dev & cybersecurity servers
     </td>
     <td align="center">
-      <img src="https://cdn.simpleicons.org/shieldsquare/000000" height="48" alt="Offensive Security" /><br>
+      <img src="assets/PEN-200-desktop.png" height="48" alt="Offensive Security" /><br>
       <strong>Offensive Security</strong><br>
       Certified Professional community
     </td>
