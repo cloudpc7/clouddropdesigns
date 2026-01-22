@@ -203,29 +203,30 @@ I actively participate in these professional and learning communities to stay sh
 
 <p align="center">
   <a href="https://linkedin.com/in/paul-cloud-760358338" target="_blank">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg?color=0A66C2" height="30" alt="LinkedIn"/>
+    <img src="https://cdn.simpleicons.org/linkedin/0A66C2" height="30" alt="LinkedIn"/>
   </a>
   &nbsp;&nbsp;
   <a href="https://x.com/Paul211391" target="_blank">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg?color=1DA1F2" height="30" alt="X"/>
+    <img src="https://cdn.simpleicons.org/x/1DA1F2" height="30" alt="X"/>
   </a>
   &nbsp;&nbsp;
   <a href="https://www.facebook.com/" target="_blank">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg?color=1877F2" height="30" alt="Facebook"/>
+    <img src="https://cdn.simpleicons.org/facebook/1877F2" height="30" alt="Facebook"/>
   </a>
   &nbsp;&nbsp;
   <a href="https://www.instagram.com/" target="_blank">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg?color=E4405F" height="30" alt="Instagram"/>
+    <img src="https://cdn.simpleicons.org/instagram/E4405F" height="30" alt="Instagram"/>
   </a>
   &nbsp;&nbsp;
   <a href="https://discord.gg/" target="_blank">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg?color=5865F2" height="30" alt="Discord"/>
+    <img src="https://cdn.simpleicons.org/discord/5865F2" height="30" alt="Discord"/>
   </a>
   &nbsp;&nbsp;
   <a href="https://www.twitch.tv/" target="_blank">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg?color=9146FF" height="30" alt="Twitch"/>
+    <img src="https://cdn.simpleicons.org/twitch/9146FF" height="30" alt="Twitch"/>
   </a>
 </p>
+
 
 
  
