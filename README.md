@@ -55,7 +55,7 @@ Features include:
 - Secure Backend: Firebase integration for real-time data, and hosting—managed via Google Cloud Console for reliability and scalability
 
 <h2 align="center">Med Alliance</h2>
-<img src="assets/medAlliance.png" height="200" width="200"/>
+<img src="assets/medalliance.png" height="200" width="200"/>
 A dedicated mobile application connecting medical students and professors for collaboration, mentorship, and professional growth in the healthcare field. 
 
 Features include:
