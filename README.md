@@ -1,7 +1,7 @@
 <h1 align="center">CloudDropDesigns</h1>
 <h2 align="center">Drop the Code and Elevate your Web!</h2>
 
-### Hello, I'm Paul and welcome to CloudDropdesigns! I provide Web and Mobile Application solutions.
+<h4 align="center">Hello, I'm Paul and welcome to CloudDropdesigns!</h4>
 
 ### Services Offered
 
