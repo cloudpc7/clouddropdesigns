@@ -1,6 +1,7 @@
 <h1 align="center">CloudDropDesigns</h1>
 <h2 align="center">Drop the Code and Elevate your Web!</h2>
-## Hello, I'm Paul and welcome to CloudDropdesigns! I provide Web and Mobile Application solutions.
+
+### Hello, I'm Paul and welcome to CloudDropdesigns! I provide Web and Mobile Application solutions.
 
 ### Services offered
 
@@ -16,9 +17,7 @@
 - Accessibility
 
 ### Tech Stack
-<p align="left>
-    <img src="https://skillicons.dev/icons?i=html,css,bootstrap,sass,js,python,react,firebase,gcp,git,github,vscode" />
-</p>
+![Tech Stack](https://skillicons.dev/icons?i=html,css,bootstrap,sass,js,python,react,firebase,gcp,git,github,vscode)
 
 - Frontend: HTML, CSS, Javascript, React
 - Backend: Python, Firebase Functions
@@ -28,7 +27,8 @@
 ### Featured Projects
 
 [Hemet Valley Tool & Supply](https://https://hemetvalleytools.web.app/)
-A e-commerce website for a power tool rental and sales business based in San Jacinto, CA.
+
+An e-commerce website for a power tool rental and sales business based in San Jacinto, CA.
 This work-in-progress React application streamlines tool rentals, repairs, and purchases with features like:
 
 - User account creation and secure sign-in
@@ -55,7 +55,7 @@ Features include:
 - Secure Backend: Firebase integration for real-time data, and hosting—managed via Google Cloud Console for reliability and scalability
 
 <h2 align="center">Med Alliance</h2>
-<img src=""/>
+<img src="assets/medAlliance.jpg"/>
 A dedicated mobile application connecting medical students and professors for collaboration, mentorship, and professional growth in the healthcare field. 
 
 Features include:
@@ -75,7 +75,7 @@ Seasoned IT Specialist with 10+ years of experience. I combine creativity and op
 ### 🎓 Education
 
 <div style="display: flex; align-items: center; margin-bottom: 12px;">
-  <img src="https://cdn.simpleicons.org/university" height="32" alt="University" style="margin-right: 12px;" />
+    <img src="https://cdn.simpleicons.org/university/000000" height="32" alt="University" />
   <div>
     <strong>B.S. Information Technology</strong><br>
     University of Phoenix
@@ -83,7 +83,7 @@ Seasoned IT Specialist with 10+ years of experience. I combine creativity and op
 </div>
 
 <div style="display: flex; align-items: center;">
-  <img src="https://cdn.simpleicons.org/university" height="32" alt="University" style="margin-right: 12px;" />
+  <img src="https://cdn.simpleicons.org/university/000000" height="32" alt="University" style="margin-right: 12px;" />
   <div>
     <strong>A.S. Network Security</strong><br>
     University of Advancing Technology
@@ -93,7 +93,7 @@ Seasoned IT Specialist with 10+ years of experience. I combine creativity and op
 ### 🏆 Certifications
 
 <div style="display: flex; align-items: center; margin-bottom: 12px;">
-  <img src="https://skillicons.dev/icons?i=nucamp" height="40" alt="Nucamp" style="margin-right: 12px;" />
+  <img src="https://cdn.simpleicons.org/education/000000" height="32" alt="Education" />
   <div>Nucamp Coding Bootcamp</div>
 </div>
 
@@ -126,11 +126,11 @@ I actively participate in these professional and learning communities to stay sh
     </div>
   </div>
 
-  <div style="display: flex; flex-direction: column; align-items: center; min-width: 100px;">
-    <img src="https://cdn.simpleicons.org/offensive-security" height="48" alt="Offensive Security" />
-    <div style="margin-top: 8px; font-size: 14px; text-align: center;">
-      <strong>Offensive Security</strong><br>
-      Certified Professional community
+  <div align="center">
+    <img src="https://cdn.simpleicons.org/shieldsquare/000000" height="48" alt="Offensive Security" />
+    <div>
+    <strong>Offensive Security</strong><br>
+    Certified Professional community
     </div>
   </div>
 
@@ -197,35 +197,36 @@ I actively participate in these professional and learning communities to stay sh
 
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=cloudpc7&layout=compact&theme=github_dark)
 
-![GitHub Streak](https://streak-stats.demolab.com?user=cloudpc7&theme=github-dark)
+[![GitHub Streak](https://github-readme-streak-stats-eight.vercel.app/?user=cloudpc7&theme=github-dark)](https://github.com/DenverCoder1/github-readme-streak-stats)
 
 ### Contact Me
 
-<p align="left">
+<p align="center">
   <a href="https://linkedin.com/in/paul-cloud-760358338" target="_blank">
-    <img src="https://cdn.simpleicons.org/linkedin/0A66C2" height="30" alt="LinkedIn"/>
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" height="30" alt="LinkedIn"/>
   </a>
   &nbsp;&nbsp;
   <a href="https://x.com/Paul211391" target="_blank">
-    <img src="https://cdn.simpleicons.org/x/000000" height="30" alt="X"/>
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" height="30" alt="X"/>
   </a>
   &nbsp;&nbsp;
   <a href="https://www.facebook.com/" target="_blank">
-    <img src="https://cdn.simpleicons.org/facebook/1877F2" height="30" alt="Facebook"/>
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" height="30" alt="Facebook"/>
   </a>
   &nbsp;&nbsp;
   <a href="https://www.instagram.com/" target="_blank">
-    <img src="https://cdn.simpleicons.org/instagram/E4405F" height="30" alt="Instagram"/>
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" height="30" alt="Instagram"/>
   </a>
   &nbsp;&nbsp;
   <a href="https://discord.gg/" target="_blank">
-    <img src="https://cdn.simpleicons.org/discord/5865F2" height="30" alt="Discord"/>
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/discord.svg" height="30" alt="Discord"/>
   </a>
   &nbsp;&nbsp;
   <a href="https://www.twitch.tv/" target="_blank">
-    <img src="https://cdn.simpleicons.org/twitch/9146FF" height="30" alt="Twitch"/>
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg" height="30" alt="Twitch"/>
   </a>
 </p>
+
  
 
 
