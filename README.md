@@ -116,6 +116,63 @@ Seasoned IT Specialist with 10+ years of experience. I combine creativity and op
 
 I actively participate in these professional and learning communities to stay sharp, collaborate, and contribute:
 
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/discord/5865F2" height="48" alt="Discord" /><br>
+      <strong>Discord Communities</strong><br>
+      Various dev & cybersecurity servers
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/shieldsquare/000000" height="48" alt="Offensive Security" /><br>
+      <strong>Offensive Security</strong><br>
+      Certified Professional community
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/cisco/1BA0E2" height="48" alt="Cisco CCNA" /><br>
+      <strong>Cisco Learning Network</strong><br>
+      CCNA community & forums
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/figma/F24E1E" height="48" alt="Figma" /><br>
+      <strong>Figma Community</strong><br>
+      Plugins, files & discussions
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/react/61DAFB" height="48" alt="Frontend" /><br>
+      <strong>Frontend Developer</strong><br>
+      Reddit, Slack & forums
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/codecademy/000000" height="48" alt="Codecademy" /><br>
+      <strong>Codecademy</strong><br>
+      Learner forums & projects
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/hackerrank/2EC866" height="48" alt="HackerRank" /><br>
+      <strong>HackerRank</strong><br>
+      Competitive programming & challenges
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/codewars/B1361E" height="48" alt="Codewars" /><br>
+      <strong>Codewars</strong><br>
+      Kata challenges & rankings
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/leetcode/F79F1F" height="48" alt="LeetCode" /><br>
+      <strong>LeetCode</strong><br>
+      Algorithm practice & discussions
+    </td>
+  </tr>
+</table>
+
+
+I actively participate in these professional and learning communities to stay sharp, collaborate, and contribute:
+
 <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-top: 16px;">
 
   <div style="display: flex; flex-direction: column; align-items: center; min-width: 100px;">
@@ -188,7 +245,6 @@ I actively participate in these professional and learning communities to stay sh
       Algorithm practice & discussions
     </div>
   </div>
-
 </div>
 
 ## 📊 GitHub Stats
@@ -205,23 +261,23 @@ I actively participate in these professional and learning communities to stay sh
   <a href="https://linkedin.com/in/paul-cloud-760358338" target="_blank">
     <img src="https://cdn.simpleicons.org/linkedin/0A66C2" height="30" alt="LinkedIn"/>
   </a>
-  &nbsp;&nbsp;
+
   <a href="https://x.com/Paul211391" target="_blank">
     <img src="https://cdn.simpleicons.org/x/1DA1F2" height="30" alt="X"/>
   </a>
-  &nbsp;&nbsp;
+
   <a href="https://www.facebook.com/" target="_blank">
     <img src="https://cdn.simpleicons.org/facebook/1877F2" height="30" alt="Facebook"/>
   </a>
-  &nbsp;&nbsp;
+
   <a href="https://www.instagram.com/" target="_blank">
     <img src="https://cdn.simpleicons.org/instagram/E4405F" height="30" alt="Instagram"/>
   </a>
-  &nbsp;&nbsp;
+
   <a href="https://discord.gg/" target="_blank">
     <img src="https://cdn.simpleicons.org/discord/5865F2" height="30" alt="Discord"/>
   </a>
-  &nbsp;&nbsp;
+
   <a href="https://www.twitch.tv/" target="_blank">
     <img src="https://cdn.simpleicons.org/twitch/9146FF" height="30" alt="Twitch"/>
   </a>
