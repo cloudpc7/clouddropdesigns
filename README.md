@@ -55,7 +55,7 @@ Features include:
 - Secure Backend: Firebase integration for real-time data, and hosting—managed via Google Cloud Console for reliability and scalability
 
 <h2 align="center">Med Alliance</h2>
-<img src="assets/medAlliance.jpg"/>
+<img src="assets/medAlliance.jpg" height="200" width="200"/>
 A dedicated mobile application connecting medical students and professors for collaboration, mentorship, and professional growth in the healthcare field. 
 
 Features include:
@@ -143,7 +143,6 @@ I actively participate in these professional and learning communities to stay sh
       Various dev & cybersecurity servers
     </td>
     <td align="center">
-      <img src="assets/PEN-200-desktop.png" height="48" alt="Offensive Security" /><br>
       <strong>Offensive Security</strong><br>
       Certified Professional community
     </td>
@@ -157,8 +156,6 @@ I actively participate in these professional and learning communities to stay sh
       <strong>Figma Community</strong><br>
       Plugins, files & discussions
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <img src="https://cdn.simpleicons.org/react/61DAFB" height="48" alt="Frontend" /><br>
       <strong>Frontend Developer</strong><br>
@@ -179,8 +176,6 @@ I actively participate in these professional and learning communities to stay sh
       <strong>Codewars</strong><br>
       Kata challenges & rankings
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <img src="https://cdn.simpleicons.org/leetcode/F79F1F" height="48" alt="LeetCode" /><br>
       <strong>LeetCode</strong><br>
@@ -188,6 +183,7 @@ I actively participate in these professional and learning communities to stay sh
     </td>
   </tr>
 </table>
+
 
 
 I actively participate in these professional and learning communities to stay sharp, collaborate, and contribute:
