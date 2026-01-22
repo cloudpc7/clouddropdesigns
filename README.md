@@ -3,18 +3,18 @@
 
 ### Hello, I'm Paul and welcome to CloudDropdesigns! I provide Web and Mobile Application solutions.
 
-### Services offered
+### Services Offered
 
-- Website Design & Development
-- Mobile application: Cross-platform apps for ios and Android
-- Search Engine Optimization
-- Google Analytics and Ad marketing
-- Responsive Web Design
-- Consulting
-- Maintenance and updates
-- Website Redesign
-- Legal Page Setup
-- Accessibility
+- 💻 Website Design & Development
+- 📱 Mobile Application: Cross-platform apps for iOS and Android
+- 🔍 Search Engine Optimization
+- 📊 Google Analytics & Ad Marketing
+- 🖥️ Responsive Web Design
+- 🛠️ Consulting
+- 🔄 Maintenance and Updates
+- 🔄 Website Redesign
+- ⚖️ Legal Page Setup
+- ♿ Accessibility
 
 ### Tech Stack
 ![Tech Stack](https://skillicons.dev/icons?i=html,css,bootstrap,sass,js,python,react,firebase,gcp,git,github,vscode)
