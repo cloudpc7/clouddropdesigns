@@ -1,0 +1,18 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls",
+                 "delegate_permission/common.get_login_creds"
+                ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.clouddropdesigns.medjourney",
+      "sha256_cert_fingerprints":
+        ["0E:5A:56:85:E4:B1:57:66:E8:FE:AB:93:2C:DF:30:10:34:8B:2C:2B:10:44:A8:B3:EC:01:93:20:27:08:8D:0B",
+         "34:16:D4:A1:48:3D:60:F7:B0:2C:76:89:12:36:B5:B3:1C:28:D7:8B:05:4B:40:1C:74:9A:BB:A9:8C:9A:CB:C6",
+         "5a:55:4c:93:74:7c:80:e4:3b:f8:49:b6:65:c5:f6:6a:8c:55:72:44:52:2f:55:86:c1:0f:36:5a:52:9b:51:34",
+         "fa:c6:17:45:dc:09:03:78:6f:b9:ed:e6:2a:96:2b:39:9f:73:48:f0:bb:6f:89:9b:83:32:66:75:91:03:3b:9c",
+         "08:93:4b:2d:90:f0:0b:f7:c8:b7:10:49:cc:e8:34:1a:f0:43:13:0d:a8:bc:68:c6:ef:03:8d:53:93:e0:7f:d1"
+        ]
+    }
+  }
+]
