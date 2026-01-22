@@ -194,9 +194,9 @@ I actively participate in these professional and learning communities to stay sh
 
 <p align="center">
   <a href="https://linkedin.com/in/paul-cloud-760358338" target="_blank">
-    <img src="https://icons.iconarchive.com/icons/icons8/windows-8/64/Social-Networks-Linkedin-icon.png" alt="LinkedIn" width="32" height="32"/>
+  <img src="https://img.icons8.com/ios-filled/50/0A66C2/linkedin.png" alt="LinkedIn" width="32" height="32"/>
+    </a>
 
-  </a>
 
   <a href="https://x.com/Paul211391" target="_blank">
     <img src="https://cdn.simpleicons.org/x/1DA1F2" height="30" alt="X"/>
