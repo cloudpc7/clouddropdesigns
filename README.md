@@ -77,12 +77,10 @@ Seasoned IT Specialist with 10+ years of experience. I combine creativity and op
 <table>
   <tr>
     <td align="center">
-      <img src="https://cdn.simpleicons.org/university/000000" height="32" alt="University" /><br>
       <strong>B.S. Information Technology</strong><br>
       University of Phoenix
     </td>
     <td align="center">
-      <img src="https://cdn.simpleicons.org/university/000000" height="32" alt="University" /><br>
       <strong>A.S. Network Security</strong><br>
       University of Advancing Technology
     </td>
