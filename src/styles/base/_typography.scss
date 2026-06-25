@@ -1,0 +1,19 @@
+@use '../abstract/fonts' as *;
+@use '../abstract/colors' as *;
+
+h1 {
+  @include font-theme(h1);
+}
+
+h2, h3, h4, h5, h6 {
+  @include font-theme(h2); 
+}
+
+body {
+  @include font-theme(body);
+}
+
+// Utility Classes for React
+.text-h1      { @include font-theme(h1); }
+.text-body    { @include font-theme(body); }
+.btn-text     { @include font-theme(action); }

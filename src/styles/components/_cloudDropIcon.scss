@@ -1,0 +1,137 @@
+.cloud-drop-icon {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cloud-drop-icon__interactive {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.cloud-drop-icon__stage {
+  position: relative;
+  cursor: default;
+}
+
+.cloud-drop-icon__cloud-zone {
+  position: relative;
+  cursor: pointer;
+}
+
+.cloud-drop-icon__cloud {
+  position: relative;
+  z-index: 2;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.cloud-drop-icon__interactive:hover .cloud-drop-icon__cloud,
+.cloud-drop-icon__interactive:focus-within .cloud-drop-icon__cloud {
+  transform: translateY(-4px) scale(1.015);
+}
+
+.cloud-drop-icon__orbit {
+  position: absolute;
+  left: 50%;
+  top: calc(100% - 0.35rem);
+  width: 0;
+  height: 0;
+  z-index: 4;
+}
+
+.cloud-drop-icon__orbit-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+}
+
+.cloud-drop-icon__phase {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.12rem;
+  border: 0;
+  padding: 0.42rem 0.72rem;
+  border-radius: 999px;
+  font-family: 'Montserrat', sans-serif;
+  color: #2f2f2f;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.25s ease;
+  white-space: nowrap;
+}
+
+.cloud-drop-icon__phase-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cloud-drop-icon__phase-time {
+  font-size: 0.56rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  opacity: 0.82;
+}
+
+.cloud-drop-icon__phase:hover,
+.cloud-drop-icon__phase.is-preview {
+  transform: scale(1.06);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.cloud-drop-icon__phase.is-active,
+.cloud-drop-icon__phase.is-live-match {
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.cloud-drop-icon__phase.is-active .cloud-drop-icon__phase-time,
+.cloud-drop-icon__phase.is-live-match .cloud-drop-icon__phase-time {
+  opacity: 0.92;
+}
+
+.cloud-drop-icon__live {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 0.55rem);
+}
+
+.cloud-drop-icon__hint {
+  position: absolute;
+  left: 50%;
+  bottom: -0.15rem;
+  transform: translate(-50%, 100%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7a7a7a;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.cloud-drop-icon__caption {
+  margin: 1rem 0 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5a5a5a;
+}
+
+.cloud-drop-icon__caption strong {
+  font-weight: 600;
+  color: #2d2d2d;
+}

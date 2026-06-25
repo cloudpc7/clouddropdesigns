@@ -1,0 +1,52 @@
+// Element	Hex Code	Description
+// Deep Twilight	#191970	Midnight Blue (top of the sky)
+// Clear Sky Blue	#87CEEB	Sky Blue (mid-day or high altitude)
+// Horizon Teal	#B0E0E6	Powder Blue (where the sky meets the glow)
+
+// Element	Hex Code	Description
+// Solar Core	#FFFACD	Lemon Chiffon (the brightest part of the sun)
+// Golden Hour	#FFD700	Bright Gold
+// Deep Ember	#FF8C00	Dark Orange (near the horizon)
+
+// High Albedo	#FDF5E6	Old Lace (bright white-orange highlights)
+// Cotton Candy	#FFB6C1	Light Pink (underside of clouds)
+// Stormy Shadow	#708090	Slate Gray (darker, unlit parts of the cloud)
+
+// Dusk Pink	#DB7093	Pale Violet Red
+// Lavender Mist	#E6E6FA	Soft Purple (where blue meets pink)
+// Coral Reef	#FF7F50	Vibrant Coral
+
+// Star Type	Color	Hex Code	Visual Vibe
+// Class O (Hottest)	Electric Blue	#9BB0FF	High energy, sharp, modern
+// Class B	Light Blue	#AABFFF	Crisp and clean
+// Class A	White/Cyan	#CAD7FF	The "Pure" star look
+// Class F	Pale Yellow	#F8F7FF	Soft, creamy, warm white
+// Class G (Sun-like)	Yellow	#FFF4EA	Natural and inviting
+// Class K	Orange	#FFD2A1	Earthy, golden hour transition
+// Class M (Coolest)	Deep Red/Orange	#FFCC6F	Ember-like, glowing warmth
+
+@use 'sass:math';
+
+$color-theme: (
+    midnight-blue: #191970,
+    sky-blue: #87CEEB,
+    powder-blue: #B0E0E6,
+    lemon-chiffon: #FFFACD,
+    bright-gold: #FFD700,
+    dark-orange: #FF8C00,
+    old-lace: #FDF5E6,
+    light-pink: #FFB6C1,
+    slate-gray: #708090,
+    pale-red: #DB7093,
+    soft-purple: #E6E6FA,
+    vibrant-corla: #FF7F50,
+    electric-blue: #9BB0FF,
+    light-blue: #AABFFF,
+    pure-white: #CAD7FF,
+    pale-yellow: #F8F7FF,
+    yellow: #FFF4EA,
+    orange: #FFD2A1,
+    deep-orange: #FFCC6F,
+    black: #0D0D0D,
+    white: #FFF,
+)

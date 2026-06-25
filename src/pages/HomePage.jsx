@@ -1,13 +1,7 @@
-// --- Core React Modules ---
-import { useState, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
+import Hero from '../components/Hero';
 
 const HomePage = () => {
-    return(
-        <Container>
-            <h1>Welcome To CloudDropDesigns</h1>
-        </Container>
-    )
-}
+  return <Hero />;
+};
 
 export default HomePage;

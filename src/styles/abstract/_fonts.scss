@@ -1,0 +1,53 @@
+@use 'sass:map';
+@use 'utils' as *;
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+$heading: "Bodoni Moda", serif;
+$paragraph: "Montserrat", sans-serif;
+
+$font-themes: (
+  h1: (
+    font-family: $heading,
+    base: ( size: 2.5rem, line: 1.1, letter: -0.02em, margin: space('md') ),
+    md:   ( size: 3.5rem, line: 1.1, letter: -0.01em, margin: space('lg') ),
+    lg:   ( size: 5rem,   line: 1.2, letter: -0.01em, margin: space('xl') )
+  ),
+  h2: (
+    font-family: $heading,
+    base: ( size: 2rem,   line: 1.2, letter: -0.01em, margin: space('md') ),
+    lg:   ( size: 3rem,   line: 1.2, letter: normal,  margin: space('lg') )
+  ),
+  body: (
+    font-family: $paragraph,
+    base: ( size: 1rem,    line: 1.5, letter: normal, margin: space('sm') ),
+    lg:   ( size: 1.125rem, line: 1.6, letter: 0.01em, margin: space('md') )
+  ),
+  action: (
+    font-family: $paragraph,
+    base: ( size: 0.75rem, line: 1.0, letter: 0.15em, margin: 0 ),
+    lg:   ( size: 0.85rem, line: 1.0, letter: 0.20em, margin: 0 )
+  )
+);
+
+@mixin font-theme($name) {
+  // Use map.get instead of map-get
+  $theme: map.get($font-themes, $name);
+  font-family: map.get($theme, font-family);
+
+  @each $bp, $specs in $theme {
+    @if $bp == base {
+      font-size:      map.get($specs, size);
+      line-height:    map.get($specs, line);
+      letter-spacing: map.get($specs, letter);
+      margin-bottom:  map.get($specs, margin);
+    } @else if $bp != font-family {
+      @include respond-to($bp) {
+        font-size:      map.get($specs, size);
+        line-height:    map.get($specs, line);
+        letter-spacing: map.get($specs, letter);
+        margin-bottom:  map.get($specs, margin);
+      }
+    }
+  }
+}

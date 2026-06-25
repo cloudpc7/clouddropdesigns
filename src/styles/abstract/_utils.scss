@@ -1,0 +1,37 @@
+$breakpoints: (
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px
+);
+
+@mixin respond-to($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+  @if $value {
+    @media (min-width: $value) { @content; }
+  }
+};
+
+$spacers: (
+    'none': 0,
+    'xs': 0.25rem,
+    'sm': 0.5rem,
+    'md': 2rem,
+    'lg': 2rem,
+    'xl': 4rem,
+    'xxl': 8rem,
+);
+
+@function space($size) {
+  @return map-get($spacers, $size);
+};
+
+@mixin section-padding {
+  padding-top: space('lg');
+  padding-bottom: space('lg');
+
+  @include respond-to('md') {
+    padding-top: space('xl');
+    padding-bottom: space('xl');
+  }
+}
