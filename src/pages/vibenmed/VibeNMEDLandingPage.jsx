@@ -11,8 +11,9 @@ import VibeNMEDLayout from '../../components/vibenmed/VibeNMEDLayout';
 import icon from '../../assets/vibenmed/play_store_512.png';
 import loginScreen from '../../assets/vibenmed/loginscreen.png';
 import matchingProfile from '../../assets/vibenmed/matching-profile.png';
-import medJourney from '../../assets/vibenmed/medjourneyscreen.png';
 import extendedProfile from '../../assets/vibenmed/extended-profile.png';
+import messaging from '../../assets/vibenmed/messaging.png';
+import calendar from '../../assets/vibenmed/calendar.png';
 import '../../styles/pages/_vibenmed.scss';
 
 const features = [
@@ -52,7 +53,8 @@ const showcase = [
   { src: loginScreen, label: 'Secure sign-in' },
   { src: matchingProfile, label: 'Profile matching' },
   { src: extendedProfile, label: 'Rich profiles' },
-  { src: medJourney, label: 'Med journey' },
+  { src: messaging, label: 'Secure messaging' },
+  { src: calendar, label: 'Clinical calendar' },
 ];
 
 const VibeNMEDLandingPage = () => {
