@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import icon from '../../assets/vibenmed/icon.png';
+import icon from '../../assets/vibenmed/play_store_512.png';
 import '../../styles/components/_vibenmedLayout.scss';
 
 const VibeNMEDLayout = ({ children }) => {

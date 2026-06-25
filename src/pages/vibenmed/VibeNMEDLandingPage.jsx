@@ -8,7 +8,7 @@ import {
   faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 import VibeNMEDLayout from '../../components/vibenmed/VibeNMEDLayout';
-import icon from '../../assets/vibenmed/icon.png';
+import icon from '../../assets/vibenmed/play_store_512.png';
 import loginScreen from '../../assets/vibenmed/loginscreen.png';
 import matchingProfile from '../../assets/vibenmed/matching-profile.png';
 import medJourney from '../../assets/vibenmed/medjourneyscreen.png';
