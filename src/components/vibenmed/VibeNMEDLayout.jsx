@@ -40,7 +40,7 @@ const VibeNMEDLayout = ({ children }) => {
           </div>
 
           <p className="vibenmed-footer__legal">
-            © {new Date().getFullYear()} Cloud Drop Designs LLC. All rights reserved.
+            © {new Date().getFullYear()} CloudDropDesigns LLC. All rights reserved.
           </p>
         </div>
       </footer>

@@ -64,7 +64,7 @@ const VibeNMEDLandingPage = () => {
         <div className="vibenmed-hero__glow" aria-hidden="true" />
         <div className="vibenmed-hero__inner">
           <div className="vibenmed-hero__copy">
-            <p className="vibenmed-hero__eyebrow">Mobile application by Cloud Drop Designs LLC</p>
+            <p className="vibenmed-hero__eyebrow">Mobile application by CloudDropDesigns LLC</p>
             <h1>VibeNMED</h1>
             <p className="vibenmed-hero__tagline">
               Connect. Collaborate. Grow in healthcare.
@@ -162,7 +162,7 @@ const VibeNMEDLandingPage = () => {
           <p className="vibenmed-about__label">About VibeNMED</p>
           <h2>Secure healthcare networking, purpose-built for your career</h2>
           <p>
-            VibeNMED is a secure and professional mobile application developed by Cloud Drop Designs LLC.
+            VibeNMED is a secure and professional mobile application developed by CloudDropDesigns LLC.
             It is designed to connect matched healthcare students and professionals, facilitating secure
             peer support, professional networking, and clinical collaboration.
           </p>
