@@ -127,6 +127,7 @@ $vibenmed-white: #ffffff;
   &__cta {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 0.85rem;
     margin-top: 1.75rem;
   }
@@ -377,8 +378,23 @@ $vibenmed-white: #ffffff;
     max-width: 34rem;
   }
 
-  .vibenmed-btn {
+  &__actions {
     margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
+
+  &__contact {
+    color: $vibenmed-teal-dark;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.92rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -406,8 +422,9 @@ $vibenmed-white: #ffffff;
     grid-template-columns: 1fr;
   }
 
-  .vibenmed-download .vibenmed-btn {
+  .vibenmed-download__actions {
     margin-left: 0;
     width: 100%;
+    align-items: flex-start;
   }
 }
