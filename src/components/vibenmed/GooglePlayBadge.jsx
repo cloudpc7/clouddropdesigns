@@ -1,6 +1,6 @@
 import googlePlayBadge from '../../assets/vibenmed/GetItOnGooglePlay_Badge_Web_color_English.png';
 import { VIBENMED_GOOGLE_PLAY_URL } from '../../config/vibenmedStoreLinks';
-import '../../styles/components/_googlePlayBadge.scss';
+import '../../styles/components/_storeBadges.scss';
 
 /**
  * Official “Get it on Google Play” badge per Google Play Badge guidelines.
@@ -10,7 +10,7 @@ const GooglePlayBadge = ({ className = '' }) => {
   return (
     <a
       href={VIBENMED_GOOGLE_PLAY_URL}
-      className={`google-play-badge ${className}`.trim()}
+      className={`store-badge store-badge--google ${className}`.trim()}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Get it on Google Play"

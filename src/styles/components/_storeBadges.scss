@@ -1,8 +1,15 @@
-// Google Play badge — keep asset unmodified; size via height only (aspect ratio preserved).
-.google-play-badge {
+// Official store badges — unmodified assets; scale by height only.
+.store-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.store-badge {
   display: inline-block;
   line-height: 0;
-  padding: 4px; // clear space around badge per guidelines
+  padding: 4px;
   transition: opacity 0.2s ease;
 
   &:hover {
@@ -17,14 +24,22 @@
 
   img {
     display: block;
-    height: 60px;
     width: auto;
     max-width: 100%;
+  }
+
+  &--apple img {
+    height: 60px;
+  }
+
+  &--google img {
+    height: 60px;
   }
 }
 
 @media (min-width: 768px) {
-  .google-play-badge img {
+  .store-badge--apple img,
+  .store-badge--google img {
     height: 80px;
   }
 }

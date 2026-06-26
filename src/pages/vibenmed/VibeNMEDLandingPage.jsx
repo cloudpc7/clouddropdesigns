@@ -8,7 +8,7 @@ import {
   faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 import VibeNMEDLayout from '../../components/vibenmed/VibeNMEDLayout';
-import GooglePlayBadge from '../../components/vibenmed/GooglePlayBadge';
+import StoreDownloadBadges from '../../components/vibenmed/StoreDownloadBadges';
 import icon from '../../assets/vibenmed/play_store_512.png';
 import loginScreen from '../../assets/vibenmed/loginscreen.png';
 import matchingProfile from '../../assets/vibenmed/matching-profile.png';
@@ -75,7 +75,7 @@ const VibeNMEDLandingPage = () => {
               built for peer support, networking, and clinical collaboration.
             </p>
             <div className="vibenmed-hero__cta">
-              <GooglePlayBadge />
+              <StoreDownloadBadges />
               <a href="#about" className="vibenmed-btn vibenmed-btn--primary">
                 Learn more
               </a>
@@ -183,7 +183,7 @@ const VibeNMEDLandingPage = () => {
             <p>Download VibeNMED on your device or reach out for partnership and support inquiries.</p>
           </div>
           <div className="vibenmed-download__actions">
-            <GooglePlayBadge />
+            <StoreDownloadBadges />
             <a href="mailto:cloud@clouddropdesigns.com" className="vibenmed-download__contact">
               Questions? Contact us
             </a>
