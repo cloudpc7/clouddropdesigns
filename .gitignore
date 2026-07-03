@@ -29,18 +29,16 @@ lerna-debug.log*
 *.sln
 *.sw?
 
-# Firebase & backend (local only — not part of development branch)
+# Firebase local cache only (config + functions-api ARE tracked for deploy)
 .firebase/
-.firebaserc
-firebase.json
+
+# Backend kept local only (not needed for hosting + api deploy)
+database/
+functions/
 firestore.rules
 firestore.indexes.json
 database.rules.json
-database/
-functions/
-functions-api/
 apphosting.yaml
-.github/
 
 # Tooling scripts (local only)
 scripts/
