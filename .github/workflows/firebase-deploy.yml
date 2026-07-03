@@ -48,6 +48,6 @@ jobs:
       - name: Deploy Hosting and content API
         run: >
           firebase deploy
-          --only hosting,functions:api
+          --only "hosting,functions:api"
           --project ${{ env.FIREBASE_PROJECT }}
           --non-interactive
