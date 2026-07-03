@@ -22,7 +22,7 @@ export const CODE_DROPS_PROJECTS = [
     name: 'Hemet Valley Tools',
     tagline: 'Power tool rentals, repairs, and supply for contractors and DIY',
     category: 'Web Application',
-    image: hemetvalleyLogo,
+    image: hemetvalleyMobile,
     thumb: hemetvalleyLogo,
     mobileImage: hemetvalleyMobile,
     href: 'https://hemetvalleytools.web.app',
@@ -62,5 +62,7 @@ export const CODE_DROPS_PROJECTS = [
     href: null,
     accent: '#7c3aed',
     inProgress: true,
+    screenshotPresentation: true,
+    imagePosition: 'top center',
   },
 ];

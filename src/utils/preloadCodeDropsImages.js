@@ -1,3 +1,5 @@
+export const getProjectShowcaseImage = (project) => project.mobileImage ?? project.image;
+
 export const getProjectDeckImage = (project) => project.mobileImage ?? project.image;
 
 const loaded = new Set();

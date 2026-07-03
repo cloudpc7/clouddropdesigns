@@ -169,37 +169,30 @@ const DropElevateEmbedContent = ({ services, toProjectType }) => {
 
   return (
     <div className="de-embed de-embed--grid">
-      <p className="de-embed__lead">
-        Choose a service to view details and complete the project inquiry form.
-      </p>
+      <p className="de-embed__lead">Select a service to open the inquiry form.</p>
 
       <ul className="de-embed__grid" aria-label="Services offered">
         {services.map((item) => (
           <li key={item.id} className="de-embed__grid-item">
-            <div className="de-embed__tile">
+            <button
+              type="button"
+              className="de-embed__tile"
+              onClick={() => openInquiry(item.id)}
+              aria-label={`${item.title} — ${item.actionLabel}`}
+            >
               <span className="de-embed__tile-corner de-embed__tile-corner--tl" aria-hidden="true" />
               <span className="de-embed__tile-corner de-embed__tile-corner--br" aria-hidden="true" />
               <div className="de-embed__tile-main">
                 <h3 className="de-embed__tile-title">{item.title}</h3>
                 <p className="de-embed__tile-desc">{item.description}</p>
               </div>
-              <div className="de-embed__tile-hover">
-                <button
-                  type="button"
-                  className="de-embed__tile-cta"
-                  onClick={() => openInquiry(item.id)}
-                >
-                  {item.actionLabel}
-                </button>
+              <div className="de-embed__tile-hover" aria-hidden="true">
+                <span className="de-embed__tile-cta">{item.actionLabel}</span>
               </div>
-            </div>
+            </button>
           </li>
         ))}
       </ul>
-
-      <Link to="/studio/drop-and-elevate" className="de-embed__full-link">
-        View full services page &rarr;
-      </Link>
     </div>
   );
 };

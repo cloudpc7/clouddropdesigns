@@ -557,13 +557,22 @@ $card-matte-soft: #1c1c1c;
   color: inherit;
   text-align: center;
   overflow: hidden;
+  cursor: pointer;
+  font: inherit;
+  appearance: none;
+  -webkit-appearance: none;
   transition:
     border-color 0.25s ease,
     background-color 0.25s ease,
     transform 0.25s ease,
     box-shadow 0.25s ease;
 
-  @media (hover: hover) {
+  &:focus-visible {
+    outline: 2px solid rgba(126, 184, 212, 0.65);
+    outline-offset: 2px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
     &:hover {
       border-color: rgba(126, 184, 212, 0.48);
       background: rgba(126, 184, 212, 0.08);
@@ -577,7 +586,6 @@ $card-matte-soft: #1c1c1c;
       .de-embed__tile-hover {
         opacity: 1;
         visibility: visible;
-        pointer-events: auto;
       }
     }
   }
@@ -655,6 +663,18 @@ $card-matte-soft: #1c1c1c;
     visibility 0.25s ease;
 }
 
+@media (hover: none), (pointer: coarse) {
+  .de-embed__tile-hover {
+    position: static;
+    inset: auto;
+    margin-top: 0.55rem;
+    padding: 0;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .de-embed__tile-cta {
   display: inline-flex;
   align-items: center;
@@ -675,40 +695,6 @@ $card-matte-soft: #1c1c1c;
   line-height: 1.35;
   text-align: center;
   color: #f4f8fb;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-
-  &:hover,
-  &:focus-visible {
-    outline: none;
-    border-color: $accent;
-    box-shadow: 0 8px 22px rgba(126, 184, 212, 0.28);
-    transform: translateY(-1px);
-  }
-}
-
-.de-embed__full-link {
-  display: inline-flex;
-  margin-top: 1rem;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: $accent;
-  border-bottom: 1px solid rgba(126, 184, 212, 0.35);
-  padding-bottom: 0.1rem;
-  transition: color 0.2s ease;
-
-  &:hover,
-  &:focus-visible {
-    outline: none;
-    color: color-mix(in srgb, $accent 80%, white);
-  }
 }
 
 .de-embed__back {
@@ -803,11 +789,6 @@ $card-matte-soft: #1c1c1c;
 
 [data-theme='light'] .de-embed__back {
   color: rgba(20, 20, 20, 0.62);
-}
-
-[data-theme='light'] .de-embed__full-link {
-  color: #2f7089;
-  border-bottom-color: rgba(47, 112, 137, 0.35);
 }
 
 @media (max-width: 640px) {

@@ -1,3 +1,14 @@
+# Dependencies & build
+node_modules
+dist
+dist-ssr
+
+# Environment
+.env
+.env.*
+*.local
+env
+
 # Logs
 logs
 *.log
@@ -7,12 +18,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-.env
-# Editor directories and files
+# Editor / OS
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,6 +28,35 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-*.env
-.env
-env
+
+# Firebase & backend (local only — not part of development branch)
+.firebase/
+.firebaserc
+firebase.json
+firestore.rules
+firestore.indexes.json
+database.rules.json
+database/
+functions/
+functions-api/
+apphosting.yaml
+.github/
+
+# Tooling scripts (local only)
+scripts/
+
+# AI / agent tooling (local only)
+agent-tools/
+terminals/
+mcps/
+figma-screenshot.json
+**/grok-image-*
+
+# Documentation (README.md is tracked)
+docs/
+*.md
+!README.md
+
+# Python cache
+**/__pycache__/
+*.pyc

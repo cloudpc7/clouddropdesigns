@@ -7,6 +7,7 @@ import FlipPrompt from '../components/FlipPrompt';
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 import HomeStudio from '../components/HomeStudio';
+import HomeTrustAnchor from '../components/HomeTrustAnchor';
 import StudioWebsiteLayout from '../components/studio/StudioWebsiteLayout';
 import ProjectShowcaseTile from '../components/codeDrops/ProjectShowcaseTile';
 import HeroCloudAddition from '../components/HeroCloudAddition';
@@ -23,33 +24,25 @@ const PORTAL_SECTIONS = [
     id: 'code-drops',
     label: 'Code Drops',
     path: '/studio/code-drops',
-    desc: 'Explore our curated collection of live software applications, responsive web products, and creative systems.',
-    action: 'Explore Portfolio →',
-    stat: '4 Live Drops',
+    action: 'See live work',
   },
   {
     id: 'drop-and-elevate',
     label: 'Drop & Elevate',
     path: '/studio/drop-and-elevate',
-    desc: 'Premium custom design, development, and cloud integration services. Select your solution and get started.',
-    action: 'Inquire Now →',
-    stat: 'Full Services',
+    action: 'Start an inquiry',
   },
   {
     id: 'get-professional',
     label: 'Get Professional',
     path: '/studio/get-professional',
-    desc: '10+ years of specialized systems, security, and developer experience. Meet the founder.',
-    action: 'View Profile →',
-    stat: '10+ Yrs Exp',
+    action: 'Meet the founder',
   },
   {
     id: 'skilled-by-design',
     label: 'Skilled By Design',
     path: '/studio/skilled-by-design',
-    desc: 'A deep-dive into our core technologies, developer toolkit, cloud architecture, and styling philosophy.',
-    action: 'See Toolkit →',
-    stat: 'Our Stack',
+    action: 'See the toolkit',
   },
 ];
 
@@ -85,33 +78,15 @@ const PortalListCard = ({ sections, onSelectOption, activeId }) => {
                   }}
                   aria-label={`Open ${section.label}`}
                 >
-                  <span
-                    className="portal-list-option__corner portal-list-option__corner--tl"
-                    aria-hidden="true"
-                  />
-                  <span
-                    className="portal-list-option__corner portal-list-option__corner--br"
-                    aria-hidden="true"
-                  />
                   <div className="portal-list-option__indicator" />
                   
                   <div className="portal-list-option__main">
                     <h4 className="portal-list-option__label">{section.label}</h4>
-                    <p className="portal-list-option__desc">{section.desc}</p>
+                    <p className="portal-list-option__hint">{section.action}</p>
                   </div>
-                  
-                  <div className="portal-list-option__action">
-                    <Link
-                      to={section.path}
-                      className="portal-list-option__cta"
-                      onClick={(event) => event.stopPropagation()}
-                    >
-                      {section.action}
-                    </Link>
-                    <span className="portal-list-option__arrow" aria-hidden="true">
-                      &rarr;
-                    </span>
-                  </div>
+                  <span className="portal-list-option__arrow" aria-hidden="true">
+                    &rarr;
+                  </span>
                 </div>
               );
             })}
@@ -218,11 +193,11 @@ const HomePage = () => {
 
   const cardTransitions = useTransition(currentDetailSection, {
     key: (item) => item?.id,
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
+    from: { opacity: 0, pointerEvents: 'none' },
+    enter: { opacity: 1, pointerEvents: 'auto' },
+    leave: { opacity: 0, pointerEvents: 'none' },
     config: { duration: 280, easing: OFFCANVAS_EASE },
-    exitBeforeEnter: false,
+    exitBeforeEnter: true,
   });
 
   const backdropSpring = useSpring({
@@ -302,14 +277,19 @@ const HomePage = () => {
           }
         >
           <div className="home-wide__hub">
+            <HomeTrustAnchor />
+
             <section
               className="studio-website__section home-wide__portal-section"
               aria-labelledby="home-portal-heading"
             >
               <div className="studio-website__section-head">
-                <h2 id="home-portal-heading" className="studio-website__section-title">
-                  Studio Portal
-                </h2>
+                <div className="home-wide__section-copy">
+                  <h2 id="home-portal-heading" className="studio-website__section-title">
+                    Studio Portal
+                  </h2>
+                  <p className="home-wide__section-lead">Tap a section to preview.</p>
+                </div>
                 <span className="studio-website__section-rule" aria-hidden="true" />
               </div>
 
@@ -405,15 +385,6 @@ const HomePage = () => {
                           &larr; Back to home
                         </button>
                         <h2 className="portal-offcanvas__title">{item.label}</h2>
-                      </div>
-                      <div className="portal-offcanvas__header-right">
-                        <Link
-                          to={item.path}
-                          className="portal-offcanvas__full-view-btn"
-                          onClick={() => setActiveDetailId(null)}
-                        >
-                          Open Full Page &rarr;
-                        </Link>
                       </div>
                     </header>
 

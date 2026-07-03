@@ -1,7 +1,0 @@
----
-pid: 33812
-cwd: "C:\Users\cloud\projects\clouddrop"
-command: "$path = \"C:\\Users\\cloud\\.grok\\sessions\\C%3A%5CUsers%5Ccloud%5C.grok%5Cworktrees%5Cprojects-clouddrop%5Cclouddrop\\019ee7b4-ec4e-7d61-80d5-9179ead9f174\\updates.jsonl\"; $lines = Get-Content $path; foreach ($n in 175..190) { if ($lines[$n-1] -match 'architecture plan|Architecture vs') { Write-Output \"LINE $n\"; $obj = $lines[$n-1] | ConvertFrom-Json; $text = $obj.params.update.content.text; if (-not $text) { $text = $obj.params.update.content[0].content.text }; Write-Output ($text.Substring(0, [Math]::Min(8000, $text.Length))) } }"
-started_at: 2026-07-03T15:37:41.867Z
-running_for_ms: 55004    
----

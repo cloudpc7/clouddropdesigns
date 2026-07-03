@@ -65,7 +65,6 @@ const StudioWebsiteLayout = ({
                 <p className="studio-website__eyebrow">Design &amp; Development Studio</p>
                 <h1 className="studio-website__title">{meta.title}</h1>
                 <p className="studio-website__slogan">{siteSlogan}</p>
-                <p className="studio-website__subtitle">{meta.subtitle}</p>
                 {heroAction}
               </div>
             </>

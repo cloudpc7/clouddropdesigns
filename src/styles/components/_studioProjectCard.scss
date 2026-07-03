@@ -68,6 +68,13 @@ $accent: #7eb8d4;
   opacity: 0.55;
 }
 
+.studio-project-card--soon.studio-project-card--screenshot .studio-project-card__thumb img {
+  object-fit: cover;
+  object-position: var(--project-image-position, top center);
+  padding: 0;
+  opacity: 1;
+}
+
 .studio-project-card--brand .studio-project-card__thumb img {
   object-fit: contain;
   padding: 0.3rem;

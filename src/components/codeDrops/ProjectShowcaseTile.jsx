@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
+import { getProjectShowcaseImage } from '../../utils/preloadCodeDropsImages';
 import '../../styles/components/_projectShowcaseTile.scss';
 
 const ProjectShowcaseTile = ({ project }) => {
   const isExternal = project.href?.startsWith('http');
   const isComingSoon = project.comingSoon || project.inProgress;
+  const showcaseImage = getProjectShowcaseImage(project);
 
   const content = (
     <>
       <div className="project-showcase-tile__media">
-        <img src={project.image} alt="" loading="lazy" decoding="async" />
+        <img src={showcaseImage} alt="" loading="lazy" decoding="async" />
         <span
           className="project-showcase-tile__accent"
           style={{ '--project-accent': project.accent }}

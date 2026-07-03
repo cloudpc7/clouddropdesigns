@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
+import { getProjectShowcaseImage } from '../../utils/preloadCodeDropsImages';
 import '../../styles/components/_studioProjectCard.scss';
 
 const StudioProjectCard = ({ project, onNavigate }) => {
   const isComingSoon = project.comingSoon || project.inProgress;
   const isExternal = project.href?.startsWith('http');
+  const showcaseImage = getProjectShowcaseImage(project);
   const CardWrapper = project.href && !isComingSoon ? (isExternal ? 'a' : Link) : 'article';
   const wrapperProps =
     project.href && !isComingSoon
@@ -17,8 +19,10 @@ const StudioProjectCard = ({ project, onNavigate }) => {
       className={[
         'studio-project-card',
         isComingSoon ? 'studio-project-card--soon' : '',
-        project.brandPresentation ? 'studio-project-card--brand' : '',
-        project.screenshotPresentation ? 'studio-project-card--screenshot' : '',
+        project.brandPresentation && !project.mobileImage ? 'studio-project-card--brand' : '',
+        project.screenshotPresentation || (isComingSoon && !project.brandPresentation)
+          ? 'studio-project-card--screenshot'
+          : '',
       ]
         .filter(Boolean)
         .join(' ')}
@@ -34,7 +38,7 @@ const StudioProjectCard = ({ project, onNavigate }) => {
       {...wrapperProps}
     >
       <div className="studio-project-card__thumb">
-        <img src={project.thumb ?? project.image} alt="" />
+        <img src={showcaseImage} alt="" loading="lazy" decoding="async" />
       </div>
       <div className="studio-project-card__body">
         <p className="studio-project-card__category">{project.category}</p>

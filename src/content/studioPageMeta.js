@@ -1,7 +1,7 @@
 export const STUDIO_PAGE_META = {
   'home': {
     title: 'CloudDropDesigns',
-    subtitle: 'We craft digital experiences that feel as considered as print. Polished web and mobile products built for teams who care about clarity, craft, and long-term quality.',
+    subtitle: 'Polished web and mobile products for teams who care about quality.',
   },
   'code-drops': {
     title: 'Code Drops',
