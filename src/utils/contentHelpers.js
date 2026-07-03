@@ -1,5 +1,10 @@
 import { GET_PROFESSIONAL_PROFILE } from '../content/getProfessionalContent';
+import { SKILLED_TOOL_GROUPS } from '../content/skilledByDesignContent';
 import { resolveAssetUrl } from './resolveAssetUrl';
+
+const SKILLED_TOOLS_BY_ID = new Map(
+  SKILLED_TOOL_GROUPS.flatMap((group) => group.tools.map((tool) => [tool.id, tool])),
+);
 
 const DEFAULT_SITE_URL = 'https://clouddropdesigns.com';
 const DEFAULT_SITE_NAME = 'CloudDropDesigns';
@@ -62,10 +67,16 @@ export const resolveSocialLink = (link) => ({
   icon: resolveAssetUrl(link.icon),
 });
 
-export const resolveSkilledTool = (tool) => ({
-  ...tool,
-  icon: resolveAssetUrl(tool.icon),
-});
+export const resolveSkilledTool = (tool) => {
+  const fallback = SKILLED_TOOLS_BY_ID.get(tool.id);
+
+  return {
+    ...fallback,
+    ...tool,
+    icon: resolveAssetUrl(tool.icon ?? fallback?.icon),
+    href: tool.href ?? fallback?.href,
+  };
+};
 
 export const resolveGetProfessionalProfile = (profile) =>
   profile

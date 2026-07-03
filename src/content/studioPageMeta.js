@@ -17,7 +17,7 @@ export const STUDIO_PAGE_META = {
   },
   'skilled-by-design': {
     title: 'Skilled By Design',
-    subtitle: 'The stack, tools, and craft behind every CloudDrop build.',
+    subtitle: 'The production stack behind shipped web and mobile work.',
   },
   sitemap: {
     title: 'Site Map',

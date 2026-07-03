@@ -1,5 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit';
 import {
+  SKILLED_MANTRA,
+  SKILLED_NARRATIVE,
+  SKILLED_PROOF_CTA,
+  SKILLED_TOOL_GROUPS,
+} from '../../content/skilledByDesignContent';
+import {
   getSeoForPath,
   resolveCodeDropProject,
   resolveGetProfessionalProfile,
@@ -72,14 +78,31 @@ export const selectGetProfessionalLinks = createSelector(
 );
 
 export const selectSkilledByDesign = (state) => selectSections(state).skilledByDesign ?? {};
-export const selectSkilledMantra = (state) => selectSkilledByDesign(state).mantra ?? [];
+export const selectSkilledMantra = (state) => selectSkilledByDesign(state).mantra ?? SKILLED_MANTRA;
+export const selectSkilledNarrative = (state) =>
+  selectSkilledByDesign(state).narrative ?? SKILLED_NARRATIVE;
+export const selectSkilledProofCta = (state) => ({
+  ...SKILLED_PROOF_CTA,
+  ...(selectSkilledByDesign(state).proofCta ?? {}),
+});
 export const selectSkilledToolGroups = createSelector(
   [(state) => selectSkilledByDesign(state).toolGroups],
-  (groups) =>
-    (groups ?? []).map((group) => ({
-      ...group,
-      tools: (group.tools ?? []).map(resolveSkilledTool),
-    })),
+  (apiGroups) => {
+    const apiById = new Map((apiGroups ?? []).map((group) => [group.id, group]));
+
+    return SKILLED_TOOL_GROUPS.map((group) => {
+      const apiGroup = apiById.get(group.id);
+      const apiToolsById = new Map((apiGroup?.tools ?? []).map((tool) => [tool.id, tool]));
+
+      return {
+        ...group,
+        label: apiGroup?.label ?? group.label,
+        tools: group.tools.map((tool) =>
+          resolveSkilledTool({ ...tool, ...apiToolsById.get(tool.id) }),
+        ),
+      };
+    });
+  },
 );
 
 export const selectSiteSeo = (state) => selectSections(state).siteSeo;

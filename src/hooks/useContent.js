@@ -27,6 +27,8 @@ import {
   selectSiteSlogan,
   selectSiteTagline,
   selectSkilledMantra,
+  selectSkilledNarrative,
+  selectSkilledProofCta,
   selectSkilledToolGroups,
   selectStudioNavItemById,
   selectStudioNavItems,
@@ -74,6 +76,8 @@ export const useGetProfessional = () => ({
 
 export const useSkilledByDesign = () => ({
   mantra: useSelector(selectSkilledMantra),
+  narrative: useSelector(selectSkilledNarrative),
+  proofCta: useSelector(selectSkilledProofCta),
   toolGroups: useSelector(selectSkilledToolGroups),
 });
 

@@ -106,8 +106,58 @@ $card-matte: #141414;
   color: color-mix(in srgb, $accent 16%, #b8c5ce);
 }
 
+.skilled-page__narrative {
+  margin: 0 0.55rem 0.9rem;
+  padding: 0 0.65rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 400;
+  line-height: 1.6;
+  text-wrap: pretty;
+  text-align: center;
+  color: color-mix(in srgb, $accent 16%, #b8c5ce);
+}
+
+.skilled-page__proof {
+  padding: 0 0.5rem 1rem;
+  text-align: center;
+}
+
+.skilled-page__proof-link {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $accent;
+  border-bottom: 1px solid rgba(126, 184, 212, 0.45);
+  padding-bottom: 0.08rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    outline: none;
+    color: color-mix(in srgb, $accent 72%, white);
+    border-color: rgba(126, 184, 212, 0.75);
+  }
+}
+
+.skilled-page__tool-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.42rem;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+
 .skilled-page__mantra-band {
-  margin: 0 0.35rem 0.9rem;
+  margin: 0 0.35rem 0.75rem;
   padding: 0.55rem 0.65rem;
   border: 1px solid rgba(126, 184, 212, 0.2);
   border-radius: 999px;
@@ -351,6 +401,17 @@ $card-matte: #141414;
   .skilled-page__tool-tile {
     aspect-ratio: 1.45;
   }
+
+  .skilled-page__narrative {
+    text-align: left;
+    padding: 0 0.1rem;
+    max-width: 34rem;
+  }
+
+  .skilled-page__proof {
+    text-align: left;
+    padding: 0 0.1rem 1rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -413,5 +474,9 @@ $card-matte: #141414;
 
 [data-theme='light'] .skilled-page__tool-name {
   color: color-mix(in srgb, var(--cd-surface-text) 82%, var(--cd-accent));
+}
+
+[data-theme='light'] .skilled-page__narrative {
+  color: color-mix(in srgb, var(--cd-accent) 20%, #4a5963);
 }
 
