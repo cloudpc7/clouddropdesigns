@@ -1,0 +1,62 @@
+.off-canvas {
+  pointer-events: none;
+
+  &.is-open {
+    pointer-events: auto;
+  }
+}
+
+.off-canvas__backdrop {
+  position: fixed;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.24);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  cursor: pointer;
+}
+
+.off-canvas.is-open .off-canvas__backdrop {
+  opacity: 1;
+}
+
+.off-canvas__panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(18rem, 84vw);
+  height: 100%;
+  padding: 3.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: #fff;
+  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.08);
+  transform: translateX(100%);
+  transition: transform 0.28s ease;
+
+  a {
+    font-family: 'DM Sans', 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+.off-canvas.is-open .off-canvas__panel {
+  transform: translateX(0);
+}
+
+.off-canvas__close {
+  position: absolute;
+  top: 0.85rem;
+  right: 1rem;
+  border: 0;
+  background: transparent;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: #000;
+  cursor: pointer;
+}

@@ -1,0 +1,156 @@
+$accent: #7eb8d4;
+
+.studio-rail {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .studio-rail {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding: 0.35rem 0 1rem;
+    position: sticky;
+    top: calc(2rem + env(safe-area-inset-top, 0px));
+  }
+
+  .studio-rail__brand-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .studio-rail__brand {
+    font-family: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: #141414;
+    transition: color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: $accent;
+      outline: none;
+    }
+  }
+
+  .studio-rail__eyebrow {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: $accent;
+  }
+
+  .studio-rail__current {
+    padding: 0.85rem 0 0.25rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .studio-rail__current-label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(20, 20, 20, 0.42);
+  }
+
+  .studio-rail__current-title {
+    margin: 0;
+    font-family: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.1;
+    color: #141414;
+  }
+
+  .studio-rail__nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .studio-rail__nav-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.15rem 0;
+    font-family: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+    font-size: 1.02rem;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    color: rgba(20, 20, 20, 0.58);
+    transition: color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: $accent;
+      outline: none;
+    }
+
+    &.is-active {
+      color: #141414;
+      font-style: normal;
+      font-weight: 600;
+    }
+  }
+
+  .studio-rail__return {
+    margin-top: auto;
+    align-self: flex-start;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: $accent;
+    border-bottom: 1px solid rgba(126, 184, 212, 0.45);
+    padding-bottom: 0.1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .studio-rail__brand {
+    font-size: 1.35rem;
+  }
+
+  .studio-rail__current-title {
+    font-size: 1.55rem;
+  }
+}
+
+[data-theme='dark'] .studio-rail__brand,
+[data-theme='dark'] .studio-rail__current-title,
+[data-theme='dark'] .studio-rail__nav-link.is-active {
+  color: #f4f2ee;
+}
+
+[data-theme='dark'] .studio-rail__nav-link {
+  color: rgba(244, 242, 238, 0.58);
+
+  &:hover,
+  &:focus-visible {
+    color: $accent;
+  }
+}
+
+[data-theme='dark'] .studio-rail__current {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .studio-rail__current-label {
+  color: rgba(244, 242, 238, 0.42);
+}

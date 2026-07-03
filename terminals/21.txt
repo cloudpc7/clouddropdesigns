@@ -1,0 +1,40 @@
+---
+pid: 19268
+cwd: "C:\Users\cloud\projects\clouddrop"
+command: "Set-Location \"C:\\Users\\cloud\\projects\\clouddrop\"; firebase deploy --only \"functions:api\" --project clouddropdesigns --force --non-interactive"
+started_at: 2026-07-03T17:08:12.229Z
+running_for_ms: 435001   
+---
+
+=== Deploying to 'clouddropdesigns'...
+
+i  deploying functions
+Running command: npm --prefix "$RESOURCE_DIR" install
+
+up to date, audited 270 packages in 1s
+
+51 packages are looking for funding
+  run `npm fund` for details
+
+8 moderate severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
++  functions: Finished running predeploy script.
+i  functions: preparing codebase api for deployment
+i  functions: ensuring required API cloudfunctions.googleapis.com is enabled...
+i  functions: ensuring required API cloudbuild.googleapis.com is enabled...
+i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled...
+!  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory.
+!  functions: Please note that there will be breaking changes when you upgrade.
+i  functions: Loading and analyzing source code for codebase api to determine what to deploy
+Serving at port 8378
+
+i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled...
+i  functions: preparing functions-api directory for uploading...
+i  functions: packaged C:\Users\cloud\projects\clouddrop\functions-api (36.75 KB) for uploading
++  functions: functions-api source uploaded successfully
+
+Error: [api:api(us-central1)] Functions cannot be downgraded from GCFv2 to GCFv1

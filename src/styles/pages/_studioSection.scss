@@ -1,0 +1,66 @@
+$accent: #7eb8d4;
+$card-matte: #141414;
+$card-matte-soft: #1c1c1c;
+
+.studio-section-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:
+    calc(1.25rem + env(safe-area-inset-top, 0px))
+    calc(1rem + env(safe-area-inset-right, 0px))
+    calc(1.25rem + env(safe-area-inset-bottom, 0px))
+    calc(1rem + env(safe-area-inset-left, 0px));
+  background: $card-matte;
+  color: #f4f2ee;
+}
+
+.studio-section-page__card {
+  width: min(100%, 24rem);
+  padding: clamp(1.5rem, 5vw, 2rem);
+  border: 1px solid rgba(126, 184, 212, 0.28);
+  background: linear-gradient(168deg, $card-matte-soft 0%, $card-matte 100%);
+  text-align: center;
+}
+
+.studio-section-page__eyebrow {
+  margin: 0 0 0.85rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: $accent;
+}
+
+.studio-section-page__title {
+  margin: 0 0 0.75rem;
+  font-family: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.45rem, 6vw, 2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: #f4f2ee;
+}
+
+.studio-section-page__copy {
+  margin: 0 0 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(244, 242, 238, 0.62);
+}
+
+.studio-section-page__back {
+  display: inline-flex;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $accent;
+  border-bottom: 1px solid rgba(126, 184, 212, 0.45);
+  padding-bottom: 0.1rem;
+}

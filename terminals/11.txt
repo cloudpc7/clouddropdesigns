@@ -1,0 +1,24 @@
+---
+pid: 31248
+cwd: "C:\Users\cloud\projects\clouddrop"
+command: "cd \"C:\\Users\\cloud\\projects\\clouddrop\"; firebase deploy --only hosting"
+started_at: 2026-06-30T22:03:27.422Z
+running_for_ms: 235013   
+---
+
+=== Deploying to 'clouddropdesigns'...
+
+i  deploying hosting
+i  hosting[clouddropdesigns]: beginning deploy...
+i  hosting[clouddropdesigns]: found 22 files in dist
+i  hosting: upload complete
++  hosting[clouddropdesigns]: file upload complete
+i  hosting[clouddropdesigns]: finalizing version...
++  hosting[clouddropdesigns]: version finalized
+i  hosting[clouddropdesigns]: releasing new version...
++  hosting[clouddropdesigns]: release complete
+
++  Deploy complete!
+
+Project Console: https://console.firebase.google.com/project/clouddropdesigns/overview
+Hosting URL: https://clouddropdesigns.web.app

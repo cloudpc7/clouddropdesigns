@@ -1,0 +1,118 @@
+.sitemap-page__intro {
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.sitemap-page__intro-title {
+  margin: 0 0 0.5rem;
+  font-family: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+  color: #141414;
+}
+
+.sitemap-page__intro-copy {
+  margin: 0;
+  max-width: 62ch;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: rgba(20, 20, 20, 0.68);
+}
+
+.sitemap-page__xml-link {
+  color: #2f7089;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+
+  &:hover,
+  &:focus-visible {
+    color: #7eb8d4;
+    outline: none;
+  }
+}
+
+.sitemap-page__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.sitemap-page__section {
+  padding: 1.1rem 1rem 1rem;
+}
+
+.sitemap-page__section-title {
+  margin: 0 0 0.85rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #2f7089;
+}
+
+.sitemap-page__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sitemap-page__item + .sitemap-page__item {
+  margin-top: 0.45rem;
+}
+
+.sitemap-page__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #141414;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(47, 112, 137, 0.22);
+  padding-bottom: 0.05rem;
+
+  &:hover,
+  &:focus-visible {
+    color: #2f7089;
+    border-color: rgba(126, 184, 212, 0.55);
+    outline: none;
+  }
+}
+
+.sitemap-page__badge {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(20, 20, 20, 0.45);
+}
+
+.sitemap-page__external-note {
+  font-size: 0.72rem;
+  color: rgba(20, 20, 20, 0.45);
+}
+
+@media (max-width: 767px) {
+  .sitemap-page__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+[data-theme='dark'] .sitemap-page__intro-title,
+[data-theme='dark'] .sitemap-page__link {
+  color: #f4f2ee;
+}
+
+[data-theme='dark'] .sitemap-page__intro-copy,
+[data-theme='dark'] .sitemap-page__external-note,
+[data-theme='dark'] .sitemap-page__badge {
+  color: rgba(244, 242, 238, 0.62);
+}
+
+[data-theme='dark'] .sitemap-page__section-title,
+[data-theme='dark'] .sitemap-page__xml-link {
+  color: #7eb8d4;
+}

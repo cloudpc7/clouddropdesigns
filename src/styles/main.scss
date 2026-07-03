@@ -1,6 +1,7 @@
 @use './abstract/colors' as *;
 @use './abstract/fonts' as *;
 @use './abstract/utils' as *;
+@use './abstract/theme' as *;
 
 @use './base/reset' as *; 
 @use './base/typography' as *;
@@ -9,8 +10,11 @@
 @use './layout/nav' as *;
 @use './layout/hero' as *;
 @use './layout/footer' as *;
+@use './layout/studioResponsive' as *;
 @use './pages/home' as *;
+@use './pages/homeStudio' as *;
 
 // 4. COMPONENTS
 @use './components/buttons' as *;
 @use './components/offCanvas';
+@use './components/flipPrompt';

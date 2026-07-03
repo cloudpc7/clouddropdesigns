@@ -3,7 +3,9 @@ const CALIFORNIA_TIMEZONE = 'America/Los_Angeles';
 /** Natural California sky tones only — blues, peach, gold, orange. No purple. */
 const SKY_PHASES = [
   { hour: 0, r: 10, g: 25, b: 50, a: 0.45 },
-  { hour: 5, r: 20, g: 45, b: 80, a: 0.4 },
+  { hour: 2, r: 22, g: 44, b: 86, a: 0.56 },
+  { hour: 5, r: 48, g: 72, b: 112, a: 0.44 },
+  { hour: 5.5, r: 115, g: 135, b: 185, a: 0.5 },
   { hour: 6.5, r: 255, g: 180, b: 140, a: 0.45 },
   { hour: 8, r: 255, g: 210, b: 150, a: 0.4 },
   { hour: 10, r: 120, g: 200, b: 255, a: 0.38 },
@@ -23,6 +25,38 @@ const lerp = (start, end, t) => start + (end - start) * t;
 const toRgba = ({ r, g, b, a }) =>
   `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${a.toFixed(2)})`;
 
+const getToneRelativeLuminance = ({ r, g, b }) => {
+  const normalize = (channel) => {
+    const sample = channel / 255;
+    return sample <= 0.03928 ? sample / 12.92 : ((sample + 0.055) / 1.055) ** 2.4;
+  };
+
+  return (
+    0.2126 * normalize(r) +
+    0.7152 * normalize(g) +
+    0.0722 * normalize(b)
+  );
+};
+
+export const getSkyToneReadableTextColor = (tone) =>
+  getToneRelativeLuminance(tone) > 0.5 ? '#141414' : '#f4f2ee';
+
+const toOpaqueRgb = ({ r, g, b }) =>
+  `rgb(${Math.round(clamp(r, 0, 255))}, ${Math.round(clamp(g, 0, 255))}, ${Math.round(clamp(b, 0, 255))})`;
+
+export const getSkyToneSolidColor = (tone) => toOpaqueRgb(tone);
+
+export const getSkyToneSolidBorder = (tone) => {
+  const luminance = getToneRelativeLuminance(tone);
+  const shade = luminance < 0.22 ? 1.12 : 0.8;
+
+  return toOpaqueRgb({
+    r: tone.r * shade,
+    g: tone.g * shade,
+    b: tone.b * shade,
+  });
+};
+
 export const getCaliforniaDecimalHour = (date = new Date()) => {
   const parts = new Intl.DateTimeFormat('en-US', {
     timeZone: CALIFORNIA_TIMEZONE,
@@ -38,14 +72,54 @@ export const getCaliforniaDecimalHour = (date = new Date()) => {
 };
 
 export const SKY_PRESET_PHASES = [
-  { id: 'night', label: 'Night', hour: 2 },
-  { id: 'dawn', label: 'Dawn', hour: 5.5 },
-  { id: 'sunrise', label: 'Sunrise', hour: 7 },
-  { id: 'morning', label: 'Morning', hour: 9 },
-  { id: 'daytime', label: 'Daytime', hour: 13 },
-  { id: 'golden', label: 'Golden hour', hour: 17.5 },
-  { id: 'sunset', label: 'Sunset', hour: 19 },
-  { id: 'dusk', label: 'Dusk', hour: 20.5 },
+  {
+    id: 'night',
+    label: 'Night',
+    hour: 2,
+    tone: { r: 22, g: 44, b: 86, a: 0.56 },
+  },
+  {
+    id: 'dawn',
+    label: 'Dawn',
+    hour: 5.5,
+    tone: { r: 115, g: 135, b: 185, a: 0.5 },
+  },
+  {
+    id: 'sunrise',
+    label: 'Sunrise',
+    hour: 7,
+    tone: { r: 255, g: 188, b: 142, a: 0.46 },
+  },
+  {
+    id: 'morning',
+    label: 'Morning',
+    hour: 9,
+    tone: { r: 198, g: 208, b: 168, a: 0.42 },
+  },
+  {
+    id: 'daytime',
+    label: 'Daytime',
+    hour: 13,
+    tone: { r: 82, g: 178, b: 238, a: 0.38 },
+  },
+  {
+    id: 'golden',
+    label: 'Golden hour',
+    hour: 17.5,
+    tone: { r: 255, g: 178, b: 102, a: 0.46 },
+  },
+  {
+    id: 'sunset',
+    label: 'Sunset',
+    hour: 19,
+    tone: { r: 255, g: 128, b: 82, a: 0.48 },
+  },
+  {
+    id: 'dusk',
+    label: 'Dusk',
+    hour: 20.5,
+    tone: { r: 72, g: 98, b: 142, a: 0.46 },
+  },
 ];
 
 const getCaliforniaSkyShadowTone = (date = new Date(), hourOverride = null) => {
@@ -91,6 +165,16 @@ export const getCaliforniaSkyShadowColorForHour = (decimalHour) =>
 
 export const getSkyPresetById = (presetId) =>
   SKY_PRESET_PHASES.find((phase) => phase.id === presetId) ?? SKY_PRESET_PHASES[0];
+
+export const getSkyPresetTone = (presetId) => {
+  const preset = getSkyPresetById(presetId);
+
+  if (preset.tone) {
+    return { ...preset.tone };
+  }
+
+  return getCaliforniaSkyShadowToneForHour(preset.hour);
+};
 
 const SKY_PHASE_LABELS = [
   { hour: 0, label: 'Night' },
@@ -154,24 +238,31 @@ export const getLivePresetId = (date = new Date()) => {
   }, SKY_PRESET_PHASES[0].id);
 };
 
-export const getCaliforniaCloudShadowLayers = (tone) => ({
-  primary: toRgba({
-    ...tone,
-    a: clamp(tone.a + 0.18, 0.42, 0.72),
-  }),
-  deep: toRgba({
-    r: tone.r * 0.68,
-    g: tone.g * 0.68,
-    b: tone.b * 0.68,
-    a: clamp(tone.a + 0.08, 0.34, 0.58),
-  }),
-  halo: toRgba({
-    r: tone.r,
-    g: tone.g,
-    b: tone.b,
-    a: clamp(tone.a + 0.1, 0.22, 0.42),
-  }),
-});
+export const getCaliforniaCloudShadowLayers = (tone) => {
+  const luminance = getToneRelativeLuminance(tone);
+  const isDarkTone = luminance < 0.12;
+  const primaryAlphaBoost = isDarkTone ? 0.24 : luminance < 0.22 ? 0.2 : 0.18;
+  const deepScale = isDarkTone ? 0.82 : 0.68;
+
+  return {
+    primary: toRgba({
+      ...tone,
+      a: clamp(tone.a + primaryAlphaBoost, 0.42, 0.78),
+    }),
+    deep: toRgba({
+      r: tone.r * deepScale,
+      g: tone.g * deepScale,
+      b: tone.b * deepScale,
+      a: clamp(tone.a + (isDarkTone ? 0.14 : 0.08), 0.34, 0.62),
+    }),
+    halo: toRgba({
+      r: tone.r,
+      g: tone.g,
+      b: tone.b,
+      a: clamp(tone.a + 0.1, 0.22, 0.42),
+    }),
+  };
+};
 
 export const getCaliforniaCloudShadowFilterFromTone = (size = 96, tone) => {
   const { primary, deep } = getCaliforniaCloudShadowLayers(tone);

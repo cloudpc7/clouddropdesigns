@@ -13,7 +13,8 @@ const firebaseConfig = {
   storageBucket: "clouddropdesigns.firebasestorage.app",
   messagingSenderId: "415042850938",
   appId: "1:415042850938:web:610ab9dd8de39ac3fc6bc3",
-  measurementId: "G-76G5WWR53H"
+  measurementId: "G-76G5WWR53H",
+  databaseURL: "https://clouddropdesigns-default-rtdb.firebaseio.com",
 };
 
 // Initialize Firebase

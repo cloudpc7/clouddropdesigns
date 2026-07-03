@@ -1,0 +1,838 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "updatedAt": "2026-07-03T16:57:07.558Z",
+    "source": "database/contentData.mjs"
+  },
+  "siteConfig": {
+    "siteUrl": "https://clouddropdesigns.com",
+    "siteName": "CloudDropDesigns",
+    "slogan": "Drop the Code & Elevate your Web",
+    "tagline": "Crafted web and mobile experiences for businesses that care about quality.",
+    "contact": {
+      "email": "cloud@clouddropdesigns.com",
+      "location": "California, United States"
+    }
+  },
+  "studioNav": {
+    "items": [
+      {
+        "id": "code-drops",
+        "label": "Code Drops",
+        "path": "/studio/code-drops",
+        "title": "Code Drops"
+      },
+      {
+        "id": "drop-and-elevate",
+        "label": "Drop & Elevate",
+        "path": "/studio/drop-and-elevate",
+        "title": "Drop & Elevate"
+      },
+      {
+        "id": "get-professional",
+        "label": "Get Professional",
+        "path": "/studio/get-professional",
+        "title": "Get Professional"
+      },
+      {
+        "id": "skilled-by-design",
+        "label": "Skilled By Design",
+        "path": "/studio/skilled-by-design",
+        "title": "Skilled By Design"
+      }
+    ]
+  },
+  "studioPageMeta": {
+    "home": {
+      "title": "CloudDropDesigns",
+      "subtitle": "We craft digital experiences that feel as considered as print. Polished web and mobile products built for teams who care about clarity, craft, and long-term quality."
+    },
+    "code-drops": {
+      "title": "Code Drops",
+      "subtitle": "Shipped work — web and mobile products built with intention."
+    },
+    "drop-and-elevate": {
+      "title": "Drop & Elevate",
+      "subtitle": "Custom development and design services for teams ready to level up."
+    },
+    "get-professional": {
+      "title": "Get Professional",
+      "subtitle": "Meet the founder and developer behind CloudDropDesigns."
+    },
+    "skilled-by-design": {
+      "title": "Skilled By Design",
+      "subtitle": "The stack, tools, and craft behind every CloudDrop build."
+    },
+    "sitemap": {
+      "title": "Site Map",
+      "subtitle": "Every page, service, product, and resource across CloudDropDesigns."
+    },
+    "siteContact": {
+      "email": "cloud@clouddropdesigns.com",
+      "location": "California, United States"
+    }
+  },
+  "codeDrops": {
+    "projects": [
+      {
+        "id": "vibenmed",
+        "name": "VibeNMED",
+        "tagline": "Healthcare networking for students, preceptors, and educators",
+        "category": "Mobile Application",
+        "image": "assets/vibenmed/loginscreen.png",
+        "thumb": "assets/vibenmed/icon.png",
+        "href": "/vibenmed",
+        "accent": "#2bb8c6"
+      },
+      {
+        "id": "hemetvalleytools",
+        "name": "Hemet Valley Tools",
+        "tagline": "Power tool rentals, repairs, and supply for contractors and DIY",
+        "category": "Web Application",
+        "image": "assets/hemetvalley/logo.png",
+        "thumb": "assets/hemetvalley/logo.png",
+        "mobileImage": "assets/hemetvalley/mobile.png",
+        "href": "https://hemetvalleytools.web.app",
+        "accent": "#f59e0b",
+        "brandPresentation": true
+      },
+      {
+        "id": "entertainment-web-app",
+        "name": "Entertainment Web App",
+        "tagline": "Search, browse, and bookmark movies and TV series",
+        "category": "Web Application",
+        "image": "assets/entertainment/screenshot.png",
+        "thumb": "assets/entertainment/screenshot.png",
+        "href": "https://entertainmentwebapp-444922.web.app",
+        "accent": "#e50914",
+        "screenshotPresentation": true,
+        "imagePosition": "top center",
+        "imageBackdrop": "#10101c"
+      },
+      {
+        "id": "sonoratiresinc",
+        "name": "Sonora Tires Inc",
+        "tagline": "Find, compare, and inquire about tires for your vehicle",
+        "category": "Web Application",
+        "image": "assets/sonoratiresinc/mobile.png",
+        "thumb": "assets/sonoratiresinc/mobile.png",
+        "href": "https://sonoratiresinc.web.app",
+        "accent": "#e8a23a"
+      },
+      {
+        "id": "namerrs",
+        "name": "NAMERRS",
+        "tagline": "Custom graphic design, apparel, and printed products",
+        "category": "In Development",
+        "image": "assets/namerrs/screenshot.png",
+        "thumb": "assets/namerrs/screenshot.png",
+        "href": null,
+        "accent": "#7c3aed",
+        "inProgress": true
+      }
+    ]
+  },
+  "dropElevate": {
+    "services": [
+      {
+        "id": "web-dev",
+        "title": "Website Design & Development",
+        "description": "Custom sites and web apps built with clarity, performance, and long-term maintainability.",
+        "actionLabel": "Start your website inquiry"
+      },
+      {
+        "id": "mobile",
+        "title": "Mobile Applications",
+        "description": "Cross-platform iOS and Android experiences with polished UI and reliable delivery.",
+        "actionLabel": "Start your mobile app inquiry"
+      },
+      {
+        "id": "brand-ui",
+        "title": "UI/UX & Brand Identity",
+        "description": "Visual systems, product interfaces, and brand touchpoints that feel intentional.",
+        "actionLabel": "Start your brand inquiry"
+      },
+      {
+        "id": "seo-analytics",
+        "title": "SEO & Analytics",
+        "description": "Search visibility, Google Analytics setup, and insight into how users find you.",
+        "actionLabel": "Start your SEO inquiry"
+      },
+      {
+        "id": "redesign",
+        "title": "Redesign & Maintenance",
+        "description": "Modernize existing products and keep them secure, fast, and up to date.",
+        "actionLabel": "Start your redesign inquiry"
+      },
+      {
+        "id": "consulting",
+        "title": "Consulting & Accessibility",
+        "description": "Technical guidance, legal page setup, and inclusive design practices.",
+        "actionLabel": "Start your consultation"
+      }
+    ],
+    "toProjectType": {
+      "web-dev": "web",
+      "mobile": "mobile",
+      "brand-ui": "web",
+      "seo-analytics": "web",
+      "redesign": "web",
+      "consulting": "unsure"
+    },
+    "serviceOptions": [
+      {
+        "value": "",
+        "label": "Select a service"
+      },
+      {
+        "value": "web-dev",
+        "label": "Website Design & Development"
+      },
+      {
+        "value": "mobile",
+        "label": "Mobile Applications"
+      },
+      {
+        "value": "brand-ui",
+        "label": "UI/UX & Brand Identity"
+      },
+      {
+        "value": "seo-analytics",
+        "label": "SEO & Analytics"
+      },
+      {
+        "value": "redesign",
+        "label": "Redesign & Maintenance"
+      },
+      {
+        "value": "consulting",
+        "label": "Consulting & Accessibility"
+      },
+      {
+        "value": "other",
+        "label": "Other / Not sure yet"
+      }
+    ]
+  },
+  "getProfessional": {
+    "expertise": [
+      {
+        "id": "web",
+        "label": "Custom web applications",
+        "detail": "React-based products with thoughtful UX, performance, and maintainable architecture."
+      },
+      {
+        "id": "mobile",
+        "label": "Mobile products",
+        "detail": "Cross-platform builds from concept through store-ready deployment."
+      },
+      {
+        "id": "delivery",
+        "label": "End-to-end delivery",
+        "detail": "Design, development, and launch — scoped clearly from first conversation through delivery."
+      }
+    ],
+    "workingPrinciples": [
+      "Understand the business problem before writing the first line of code.",
+      "Ship polished, scalable work — not prototypes that become permanent.",
+      "Stay accessible from first conversation through launch and beyond."
+    ],
+    "inquiryTypes": [
+      {
+        "value": "",
+        "label": "Select project type"
+      },
+      {
+        "value": "web",
+        "label": "Web application"
+      },
+      {
+        "value": "mobile",
+        "label": "Mobile application"
+      },
+      {
+        "value": "both",
+        "label": "Web and mobile"
+      },
+      {
+        "value": "unsure",
+        "label": "Not sure yet"
+      }
+    ],
+    "inquiryTimelines": [
+      {
+        "value": "",
+        "label": "Select timeline"
+      },
+      {
+        "value": "asap",
+        "label": "As soon as possible"
+      },
+      {
+        "value": "1-3",
+        "label": "1–3 months"
+      },
+      {
+        "value": "3-6",
+        "label": "3–6 months"
+      },
+      {
+        "value": "flexible",
+        "label": "Flexible / exploring"
+      }
+    ],
+    "inquiryBudgets": [
+      {
+        "value": "",
+        "label": "Budget range (optional)"
+      },
+      {
+        "value": "under-5k",
+        "label": "Under $5,000"
+      },
+      {
+        "value": "5-15k",
+        "label": "$5,000 – $15,000"
+      },
+      {
+        "value": "15-30k",
+        "label": "$15,000 – $30,000"
+      },
+      {
+        "value": "30k-plus",
+        "label": "$30,000+"
+      },
+      {
+        "value": "discuss",
+        "label": "Prefer to discuss"
+      }
+    ],
+    "profile": {
+      "name": "Paul Cloud",
+      "title": "Developer",
+      "experience": "10+ years experience in information technology",
+      "bio": "I start by understanding how you want your business to show up — then I design and build web and mobile experiences that reflect your vision, not a generic template. With 10+ years in information technology, I've shipped live portfolio work including VibeNMED and business-facing sites such as Hemet Valley Tools and Sonora Tires Inc, taking ideas from concept to production-ready launch. You work directly with me from first conversation through delivery, and I bring the same standards to every client project.",
+      "mobileBio": "I'm Paul, the founder and developer at CloudDropDesigns, specializing in custom web and mobile solutions. Delivering scalable web and mobile solutions for businesses.",
+      "photo": "assets/selfie.webp",
+      "photoAlt": "Paul Cloud, founder and developer at CloudDropDesigns"
+    },
+    "links": [
+      {
+        "id": "github",
+        "label": "GitHub",
+        "handle": "cloudpc7",
+        "href": "https://github.com/cloudpc7",
+        "icon": "assets/skilled-by-design/f974607f747d7a7beef85b0bcf0d23b36168f18b.svg"
+      },
+      {
+        "id": "linkedin",
+        "label": "LinkedIn",
+        "handle": "Paul Cloud",
+        "href": "https://www.linkedin.com/in/paul-cloud-760358338",
+        "icon": "assets/get-professional/linkedin.svg"
+      },
+      {
+        "id": "hackerrank",
+        "label": "HackerRank",
+        "handle": "@cloud8",
+        "href": "https://www.hackerrank.com/profile/cloud8",
+        "icon": "assets/skilled-by-design/2810ac2be86e4d20f03e72196294bead1965ccb9.svg"
+      },
+      {
+        "id": "instagram",
+        "label": "Instagram",
+        "handle": "@dropingcode",
+        "href": "https://www.instagram.com/dropingcode",
+        "icon": "assets/get-professional/instagram.svg"
+      },
+      {
+        "id": "x",
+        "label": "X",
+        "handle": "@Paul211391",
+        "href": "https://x.com/Paul211391",
+        "icon": "assets/get-professional/x.svg"
+      }
+    ]
+  },
+  "skilledByDesign": {
+    "mantra": [
+      "Design",
+      "Develop",
+      "Deploy",
+      "Repeat"
+    ],
+    "toolGroups": [
+      {
+        "id": "stack",
+        "label": "Core stack",
+        "tools": [
+          {
+            "id": "javascript",
+            "label": "JavaScript",
+            "icon": "assets/skilled-by-design/be8661c5e654e9f1d6ffb66ba9319a53733b29be.svg"
+          },
+          {
+            "id": "react",
+            "label": "React",
+            "icon": "assets/skilled-by-design/e76a895b264429b48428021c888b340bdd541f1f.svg"
+          },
+          {
+            "id": "python",
+            "label": "Python",
+            "icon": "assets/skilled-by-design/b6e6833fa213211f096807f274396dce59f9b6e2.svg"
+          },
+          {
+            "id": "node",
+            "label": "Node.js",
+            "icon": "assets/skilled-by-design/d3a8547778d5c8c9596f718ee17418ed72ac1f19.svg"
+          },
+          {
+            "id": "npm",
+            "label": "npm",
+            "icon": "assets/skilled-by-design/9c9c90ff4005cdbc53ec484cd06c768fd4f4efae.svg"
+          }
+        ]
+      },
+      {
+        "id": "interface",
+        "label": "Interface craft",
+        "tools": [
+          {
+            "id": "sass",
+            "label": "Sass",
+            "icon": "assets/skilled-by-design/cb660c002a44ac367f1fe200a7e1f6c4bd1c42df.svg"
+          },
+          {
+            "id": "css",
+            "label": "CSS",
+            "icon": "assets/skilled-by-design/89b6546ed7aa9837e9fcd028425a6b42e7f9dc61.svg"
+          },
+          {
+            "id": "figma",
+            "label": "Figma",
+            "icon": "assets/skilled-by-design/797a0efb75623fda6f6bed4e037fd13a8219ca17.svg"
+          },
+          {
+            "id": "squarespace",
+            "label": "Squarespace",
+            "icon": "assets/skilled-by-design/615e4d5b50b2f921bcdc650de44c7e7a8e829ffc.svg"
+          }
+        ]
+      },
+      {
+        "id": "platforms",
+        "label": "Platforms",
+        "tools": [
+          {
+            "id": "android",
+            "label": "Android",
+            "icon": "assets/skilled-by-design/3c5d54bff099896860a55cb890c8635202086ced.svg"
+          },
+          {
+            "id": "apple",
+            "label": "Apple",
+            "icon": "assets/skilled-by-design/d3800b8e6ab701981792cb002d94f5ba02a5d473.svg"
+          },
+          {
+            "id": "windows",
+            "label": "Windows",
+            "icon": "assets/skilled-by-design/e63fa5c78dbf4b86a7fd6fa00f57c7425203ac08.svg"
+          },
+          {
+            "id": "google",
+            "label": "Google Cloud",
+            "icon": "assets/skilled-by-design/8514b71e59f0214443a951c2f56e883a465c7177.svg"
+          },
+          {
+            "id": "github",
+            "label": "GitHub",
+            "icon": "assets/skilled-by-design/f974607f747d7a7beef85b0bcf0d23b36168f18b.svg"
+          },
+          {
+            "id": "git",
+            "label": "Git",
+            "icon": "assets/skilled-by-design/36da1c0615bc9ff225b0b27cf7760f636320b640.svg"
+          }
+        ]
+      },
+      {
+        "id": "growth",
+        "label": "Continuous craft",
+        "tools": [
+          {
+            "id": "hackerrank",
+            "label": "HackerRank",
+            "icon": "assets/skilled-by-design/2810ac2be86e4d20f03e72196294bead1965ccb9.svg"
+          },
+          {
+            "id": "leetcode",
+            "label": "LeetCode",
+            "icon": "assets/skilled-by-design/0aa9e63b097f9b037eb45d783e01ee2b482a3fce.svg"
+          },
+          {
+            "id": "stackoverflow",
+            "label": "Stack Overflow",
+            "icon": "assets/skilled-by-design/f3f7b193810d890d19fa9dab07f3d3342736034a.svg"
+          },
+          {
+            "id": "freecodecamp",
+            "label": "freeCodeCamp",
+            "icon": "assets/skilled-by-design/44a8e6ece1880c42579fd6a0c663d666ec7806ac.svg"
+          }
+        ]
+      }
+    ]
+  },
+  "siteSeo": {
+    "defaultSeo": {
+      "title": "CloudDropDesigns — Design & Development Studio",
+      "description": "Crafted web and mobile experiences for businesses that care about quality.",
+      "path": "/",
+      "image": "https://clouddropdesigns.com/favicon.png",
+      "type": "website"
+    },
+    "pageSeo": [
+      {
+        "path": "/",
+        "title": "CloudDropDesigns — Design & Development Studio",
+        "description": "CloudDropDesigns builds polished web and mobile products for businesses. Explore our portfolio, services, and studio."
+      },
+      {
+        "path": "/studio/code-drops",
+        "title": "Code Drops — Portfolio | CloudDropDesigns",
+        "description": "Shipped web and mobile work from CloudDropDesigns — VibeNMED, Hemet Valley Tools, Entertainment Web App, and more."
+      },
+      {
+        "path": "/studio/drop-and-elevate",
+        "title": "Drop & Elevate — Services | CloudDropDesigns",
+        "description": "Custom website design, mobile apps, UI/UX, SEO, redesign, and consulting from CloudDropDesigns."
+      },
+      {
+        "path": "/studio/get-professional",
+        "title": "Get Professional — Paul Cloud | CloudDropDesigns",
+        "description": "Meet Paul Cloud, founder and developer at CloudDropDesigns — 10+ years building scalable web and mobile solutions."
+      },
+      {
+        "path": "/studio/skilled-by-design",
+        "title": "Skilled By Design — Toolkit | CloudDropDesigns",
+        "description": "The technologies, tools, and craft behind every CloudDropDesigns build."
+      },
+      {
+        "path": "/sitemap",
+        "title": "Site Map | CloudDropDesigns",
+        "description": "Browse all pages, services, and products on CloudDropDesigns."
+      },
+      {
+        "path": "/vibenmed",
+        "title": "VibeNMED — Healthcare Networking App | CloudDropDesigns",
+        "description": "VibeNMED connects nursing and medical-education students, preceptors, and educators."
+      },
+      {
+        "path": "/vibenmed/privacy",
+        "title": "VibeNMED Privacy Policy | CloudDropDesigns",
+        "description": "Privacy policy for the VibeNMED mobile application."
+      },
+      {
+        "path": "/vibenmed/terms",
+        "title": "VibeNMED Terms of Service | CloudDropDesigns",
+        "description": "Terms of service for the VibeNMED mobile application."
+      }
+    ],
+    "organizationJsonLd": {
+      "context": "https://schema.org",
+      "type": "Organization",
+      "name": "CloudDropDesigns",
+      "url": "https://clouddropdesigns.com",
+      "email": "cloud@clouddropdesigns.com",
+      "address": {
+        "type": "PostalAddress",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://github.com/cloudpc7",
+        "https://www.linkedin.com/in/paul-cloud-760358338",
+        "https://www.instagram.com/dropingcode",
+        "https://x.com/Paul211391"
+      ]
+    }
+  },
+  "siteFooter": {
+    "studioLinks": [
+      {
+        "id": "home",
+        "label": "Home",
+        "path": "/"
+      },
+      {
+        "id": "code-drops",
+        "label": "Code Drops",
+        "path": "/studio/code-drops"
+      },
+      {
+        "id": "drop-and-elevate",
+        "label": "Drop & Elevate",
+        "path": "/studio/drop-and-elevate"
+      },
+      {
+        "id": "get-professional",
+        "label": "Get Professional",
+        "path": "/studio/get-professional"
+      },
+      {
+        "id": "skilled-by-design",
+        "label": "Skilled By Design",
+        "path": "/studio/skilled-by-design"
+      },
+      {
+        "id": "sitemap",
+        "label": "Site Map",
+        "path": "/sitemap"
+      }
+    ],
+    "serviceLinks": [
+      {
+        "id": "web-dev",
+        "label": "Website Design & Development",
+        "path": "/studio/drop-and-elevate#web-dev"
+      },
+      {
+        "id": "mobile",
+        "label": "Mobile Applications",
+        "path": "/studio/drop-and-elevate#mobile"
+      },
+      {
+        "id": "brand-ui",
+        "label": "UI/UX & Brand Identity",
+        "path": "/studio/drop-and-elevate#brand-ui"
+      },
+      {
+        "id": "seo-analytics",
+        "label": "SEO & Analytics",
+        "path": "/studio/drop-and-elevate#seo-analytics"
+      },
+      {
+        "id": "redesign",
+        "label": "Redesign & Maintenance",
+        "path": "/studio/drop-and-elevate#redesign"
+      },
+      {
+        "id": "consulting",
+        "label": "Consulting & Accessibility",
+        "path": "/studio/drop-and-elevate#consulting"
+      }
+    ],
+    "productLinks": [
+      {
+        "id": "vibenmed",
+        "label": "VibeNMED",
+        "path": "/vibenmed",
+        "external": false,
+        "comingSoon": false
+      },
+      {
+        "id": "hemetvalleytools",
+        "label": "Hemet Valley Tools",
+        "path": "https://hemetvalleytools.web.app",
+        "external": true,
+        "comingSoon": false
+      },
+      {
+        "id": "entertainment-web-app",
+        "label": "Entertainment Web App",
+        "path": "https://entertainmentwebapp-444922.web.app",
+        "external": true,
+        "comingSoon": false
+      },
+      {
+        "id": "sonoratiresinc",
+        "label": "Sonora Tires Inc",
+        "path": "https://sonoratiresinc.web.app",
+        "external": true,
+        "comingSoon": false
+      },
+      {
+        "id": "namerrs",
+        "label": "NAMERRS",
+        "path": "/studio/code-drops",
+        "external": false,
+        "comingSoon": true
+      }
+    ],
+    "socialLinks": [
+      {
+        "id": "github",
+        "label": "GitHub",
+        "handle": "cloudpc7",
+        "href": "https://github.com/cloudpc7",
+        "icon": "assets/skilled-by-design/f974607f747d7a7beef85b0bcf0d23b36168f18b.svg"
+      },
+      {
+        "id": "linkedin",
+        "label": "LinkedIn",
+        "handle": "Paul Cloud",
+        "href": "https://www.linkedin.com/in/paul-cloud-760358338",
+        "icon": "assets/get-professional/linkedin.svg"
+      },
+      {
+        "id": "hackerrank",
+        "label": "HackerRank",
+        "handle": "@cloud8",
+        "href": "https://www.hackerrank.com/profile/cloud8",
+        "icon": "assets/skilled-by-design/2810ac2be86e4d20f03e72196294bead1965ccb9.svg"
+      },
+      {
+        "id": "instagram",
+        "label": "Instagram",
+        "handle": "@dropingcode",
+        "href": "https://www.instagram.com/dropingcode",
+        "icon": "assets/get-professional/instagram.svg"
+      },
+      {
+        "id": "x",
+        "label": "X",
+        "handle": "@Paul211391",
+        "href": "https://x.com/Paul211391",
+        "icon": "assets/get-professional/x.svg"
+      }
+    ]
+  },
+  "siteMap": {
+    "sections": [
+      {
+        "id": "pages",
+        "title": "Pages",
+        "links": [
+          {
+            "id": "home",
+            "label": "Home",
+            "path": "/"
+          },
+          {
+            "id": "code-drops",
+            "label": "Code Drops",
+            "path": "/studio/code-drops"
+          },
+          {
+            "id": "drop-and-elevate",
+            "label": "Drop & Elevate",
+            "path": "/studio/drop-and-elevate"
+          },
+          {
+            "id": "get-professional",
+            "label": "Get Professional",
+            "path": "/studio/get-professional"
+          },
+          {
+            "id": "skilled-by-design",
+            "label": "Skilled By Design",
+            "path": "/studio/skilled-by-design"
+          },
+          {
+            "id": "sitemap",
+            "label": "Site Map",
+            "path": "/sitemap"
+          }
+        ]
+      },
+      {
+        "id": "services",
+        "title": "Services",
+        "links": [
+          {
+            "id": "web-dev",
+            "label": "Website Design & Development",
+            "path": "/studio/drop-and-elevate#web-dev"
+          },
+          {
+            "id": "mobile",
+            "label": "Mobile Applications",
+            "path": "/studio/drop-and-elevate#mobile"
+          },
+          {
+            "id": "brand-ui",
+            "label": "UI/UX & Brand Identity",
+            "path": "/studio/drop-and-elevate#brand-ui"
+          },
+          {
+            "id": "seo-analytics",
+            "label": "SEO & Analytics",
+            "path": "/studio/drop-and-elevate#seo-analytics"
+          },
+          {
+            "id": "redesign",
+            "label": "Redesign & Maintenance",
+            "path": "/studio/drop-and-elevate#redesign"
+          },
+          {
+            "id": "consulting",
+            "label": "Consulting & Accessibility",
+            "path": "/studio/drop-and-elevate#consulting"
+          }
+        ]
+      },
+      {
+        "id": "products",
+        "title": "Products",
+        "links": [
+          {
+            "id": "vibenmed",
+            "label": "VibeNMED",
+            "path": "/vibenmed",
+            "external": false,
+            "comingSoon": false
+          },
+          {
+            "id": "hemetvalleytools",
+            "label": "Hemet Valley Tools",
+            "path": "https://hemetvalleytools.web.app",
+            "external": true,
+            "comingSoon": false
+          },
+          {
+            "id": "entertainment-web-app",
+            "label": "Entertainment Web App",
+            "path": "https://entertainmentwebapp-444922.web.app",
+            "external": true,
+            "comingSoon": false
+          },
+          {
+            "id": "sonoratiresinc",
+            "label": "Sonora Tires Inc",
+            "path": "https://sonoratiresinc.web.app",
+            "external": true,
+            "comingSoon": false
+          },
+          {
+            "id": "namerrs",
+            "label": "NAMERRS",
+            "path": "/studio/code-drops",
+            "external": false,
+            "comingSoon": true
+          }
+        ]
+      },
+      {
+        "id": "legal",
+        "title": "Legal",
+        "links": [
+          {
+            "id": "vibenmed-privacy",
+            "label": "VibeNMED Privacy Policy",
+            "path": "/vibenmed/privacy"
+          },
+          {
+            "id": "vibenmed-terms",
+            "label": "VibeNMED Terms of Service",
+            "path": "/vibenmed/terms"
+          }
+        ]
+      }
+    ]
+  },
+  "vibenmedLegal": {
+    "privacyPolicyHtml": "<h1>Privacy Policy</h1>\n<p>Last updated: June 28, 2026</p>\n<p><strong>VibeNMED</strong> is a professional networking and discovery platform for nursing and medical-education roles operated by <strong>CloudDropDesigns LLC</strong> (\"Company,\" \"we,\" \"us,\" or \"our\"). The App helps users discover, match with, and message other users. It is <strong>not</strong> a clinical placement agency, employer, school, credentialing body, background-check provider, or HIPAA-covered medical records system.</p>\n<p>This Privacy Policy describes how we collect, use, disclose, and protect your information when you use the VibeNMED mobile application and related services (collectively, the \"Service\"). By using the Service, you agree to this Privacy Policy.</p>\n\n<h2>Interpretation and Definitions</h2>\n<h3>Definitions</h3>\n<p>For the purposes of this Privacy Policy:</p>\n<ul>\n<li><strong>Account</strong> means a unique account created for you to access the Service.</li>\n<li><strong>Application</strong> or <strong>App</strong> means VibeNMED, the mobile application provided by the Company.</li>\n<li><strong>Calendar Data</strong> means rotation-related events you enter in the App, including titles, dates, and times.</li>\n<li><strong>Company</strong> refers to CloudDropDesigns LLC, California, United States.</li>\n<li><strong>Matched Users</strong> means users who have mutually connected for in-app messaging.</li>\n<li><strong>Personal Data</strong> means any information that relates to an identified or identifiable individual.</li>\n<li><strong>PHI</strong> means protected health information about patients or other individuals, as defined under applicable U.S. health privacy laws. You must not submit PHI through the Service.</li>\n<li><strong>Professional Profile Data</strong> means education, role, NPI number, bio, photos, and other non-patient profile information you provide.</li>\n<li><strong>Service</strong> means the Application and related features we operate.</li>\n<li><strong>Service Provider</strong> means a third party that processes data on our behalf to operate the Service.</li>\n<li><strong>Usage Data</strong> means data collected automatically through use of the Service (for example, device type, IP address, and diagnostic logs).</li>\n<li><strong>Verification Documents</strong> means compliance-related files you upload (such as BLS cards or immunization records relating to you). These are user-provided files, not medical records created by us.</li>\n<li><strong>You</strong> means the individual using the Service, or the entity on whose behalf that individual uses the Service.</li>\n</ul>\n\n<h2>Information We Collect</h2>\n<h3>Information You Provide</h3>\n<ul>\n<li>Email address, phone number, and account identifiers</li>\n<li>Name, profile details, and Professional Profile Data</li>\n<li>Photos and profile images</li>\n<li>Verification Documents you choose to upload</li>\n<li>Messages and content you send through the App</li>\n<li>Safety or abuse reports you submit</li>\n<li>Calendar Data and, if you enable email sync, the email address you provide for that feature</li>\n<li>Approximate location when you grant permission</li>\n</ul>\n\n<h3>Information Collected Automatically</h3>\n<p>We may collect Usage Data such as device type, operating system, IP address, app version, push notification tokens, and diagnostic information needed to operate and secure the Service.</p>\n\n<h3>Information from Third-Party Sources</h3>\n<p>If you use Google Sign-In or Sign in with Apple, we receive account identifiers according to those providers' policies. If you enter an NPI number, we may query the public CMS NPI Registry through our backend to help pre-fill profile fields. We do not endorse your eligibility to practice or precept based on NPI data.</p>\n\n<h3>Device Permissions</h3>\n<p>With your permission, the App may access your camera, photo library, and location. You can change these permissions in your device settings.</p>\n\n<h2>How We Use Your Information</h2>\n<p>We use Personal Data to:</p>\n<ul>\n<li>Provide and maintain the Service, including accounts, matching, profiles, and messaging</li>\n<li>Process Verification Documents and display document status in the App</li>\n<li>Perform administrative completeness review of uploads — <strong>not</strong> clinical clearance, credentialing, or background-check verification</li>\n<li>Send optional calendar email updates and reminders when you enable email sync</li>\n<li>Deliver push notifications about account and app activity</li>\n<li>Respond to support requests and enforce our Terms of Service</li>\n<li>Improve security, prevent abuse, and analyze aggregated usage trends</li>\n</ul>\n<p>The in-app shop is for browsing only; in-app purchases are not enabled at this time. We do not use your data to process in-app product purchases.</p>\n\n<h2>How We Share Your Information</h2>\n<ul>\n<li><strong>With Matched Users:</strong> profile information you choose to display and messages you send through the App</li>\n<li><strong>With Service Providers:</strong> companies that help us operate the Service, including Google Firebase (authentication, database, file storage, and cloud functions), Stream Chat (messaging), Expo (push notifications), and Google/Apple (optional sign-in). Each provider processes data under its own privacy policy.</li>\n<li><strong>With administrators:</strong> authorized Company personnel who review Verification Documents and safety reports</li>\n<li><strong>For legal reasons:</strong> when required by law, court order, or to protect rights, safety, and security</li>\n<li><strong>Business transfers:</strong> in connection with a merger, acquisition, or asset sale, with notice where required</li>\n</ul>\n<p>We do <strong>not</strong> sell your Personal Data. Other users cannot download your raw Verification Document files unless a feature explicitly allows you to share them and you choose to do so.</p>\n\n<h2>Sensitive Information and PHI</h2>\n<p>CloudDropDesigns LLC is <strong>not</strong> a HIPAA-covered entity, and the App is <strong>not</strong> intended as a medical record system or patient chart repository.</p>\n<p>You must <strong>not</strong> submit PHI — including patient names, medical record numbers, diagnoses, treatment notes, or other patient-identifying health information — in profiles, messages, calendar entries, or Verification Document uploads.</p>\n<p>Upload only your own professional and compliance documents. Do not upload another person's personal or health information without their consent.</p>\n\n<h2>Verification Documents</h2>\n<p>If you upload Verification Documents:</p>\n<ul>\n<li>Files are transmitted to our backend and stored using Google Firebase Storage in the United States</li>\n<li>We store metadata such as document type, file name, upload date, and review status</li>\n<li>Authorized administrators may access files for administrative review</li>\n<li>Status labels such as \"Reviewed\" or \"On file\" reflect administrative completeness review only — not clinical clearance or third-party acceptance</li>\n<li>We retain documents while your account is active and as needed to operate the Service, resolve disputes, or comply with law. You may request deletion by deleting your account or contacting us</li>\n</ul>\n\n<h2>Calendar and Email Sync</h2>\n<p>Calendar events are stored in your app session on your device. If you enable email sync, we transmit your Calendar Data and the email address you provide to our cloud functions to send calendar updates and optional reminders.</p>\n<p>Do not enter patient-identifying information in calendar fields. If you use a work email address, your employer may monitor that mailbox under its own policies.</p>\n<p>You can disable email sync in the App at any time.</p>\n\n<h2>Data Retention</h2>\n<p>We retain Personal Data only as long as needed for the purposes described in this Privacy Policy, including operating the Service, meeting legal obligations, resolving disputes, and enforcing our agreements. Usage Data is generally retained for a shorter period unless needed for security or functionality improvements.</p>\n\n<h2>Data Security and Transfer</h2>\n<p>We use commercially reasonable safeguards to protect Personal Data. No method of transmission or storage is completely secure, and we cannot guarantee absolute security.</p>\n<p>Your information may be processed in the United States and other locations where our Service Providers operate. By using the Service, you consent to this processing where permitted by law.</p>\n\n<h2>Your Rights and Choices</h2>\n<p>You may update or delete certain information in account settings. You may delete your account from within the App. You may contact us to request access, correction, or deletion of Personal Data you have provided.</p>\n<p>California residents may have additional rights to know, delete, and correct Personal Data, and to opt out of certain sharing. Contact us at <a href=\"mailto:cloud@clouddropdesigns.com\">cloud@clouddropdesigns.com</a> to exercise these rights.</p>\n<p>We may retain certain information when we have a legal obligation or lawful basis to do so.</p>\n\n<h2>Children's Privacy</h2>\n<p>The Service is intended for users 18 years of age or older. We do not knowingly collect Personal Data from anyone under 18. If you believe a minor has provided us data, contact us and we will take steps to delete it.</p>\n\n<h2>Third-Party Services</h2>\n<p>The App uses the following third-party services. Each processes data according to its own privacy policy:</p>\n<ul>\n<li><strong>Google Firebase</strong> — <a href=\"https://firebase.google.com/support/privacy\" target=\"_blank\">Firebase Privacy</a></li>\n<li><strong>Google Sign-In</strong> — <a href=\"https://policies.google.com/privacy\" target=\"_blank\">Google Privacy Policy</a></li>\n<li><strong>Sign in with Apple</strong> — <a href=\"https://www.apple.com/legal/privacy/\" target=\"_blank\">Apple Privacy Policy</a></li>\n<li><strong>Stream Chat</strong> — <a href=\"https://getstream.io/privacy/\" target=\"_blank\">Stream Privacy Policy</a></li>\n<li><strong>Expo Push Notifications</strong> — <a href=\"https://expo.dev/privacy\" target=\"_blank\">Expo Privacy Policy</a></li>\n</ul>\n\n<h2>Links to Other Websites</h2>\n<p>The Service may contain links to third-party websites. We are not responsible for their content or privacy practices. Review their policies before providing information.</p>\n\n<h2>Changes to This Privacy Policy</h2>\n<p>We may update this Privacy Policy from time to time. We will post the updated version with a revised \"Last updated\" date and, when appropriate, notify you by email or in-app notice before changes take effect.</p>\n\n<h2>Contact Us</h2>\n<p>Questions about this Privacy Policy:</p>\n<ul>\n<li>Email: <a href=\"mailto:cloud@clouddropdesigns.com\">cloud@clouddropdesigns.com</a></li>\n</ul>",
+    "termsOfServiceHtml": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Terms of Service - VibeNMED</title>\n  <style>\n    body { background-color: #f9f9f9; margin: 0; padding: 40px 20px; font-family: Arial, sans-serif; color: #595959; line-height: 1.6; }\n    .container { background: #fff; max-width: 800px; margin: 0 auto; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }\n    [data-custom-class='title'] { font-size: 26px; color: #000; font-weight: bold; margin-bottom: 5px; }\n    [data-custom-class='subtitle'] { font-size: 14px; color: #777; margin-bottom: 25px; }\n    [data-custom-class='heading_1'] { font-size: 19px; color: #000; font-weight: bold; margin-top: 30px; border-bottom: 1px solid #eee; padding-bottom: 10px; }\n    [data-custom-class='body_text'] { font-size: 14px; margin-bottom: 15px; }\n    [data-custom-class='link'] { color: #3030F1; text-decoration: none; font-weight: 500; }\n    ol { padding-left: 20px; }\n    li { margin-bottom: 8px; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div data-custom-class=\"title\">TERMS AND CONDITIONS</div>\n<div data-custom-class=\"subtitle\">Last updated June 28, 2026</div>\n\n<div data-custom-class=\"heading_1\">AGREEMENT TO OUR LEGAL TERMS</div>\n<div data-custom-class=\"body_text\">\n  We are <strong>CloudDropDesigns LLC</strong> (\"Company,\" \"we,\" \"us,\" or \"our\"), a company registered in California, United States. We operate the mobile application <strong>VibeNMED</strong> (the \"App\") and related services that refer to these Terms (collectively, the \"Services\").\n</div>\n<div data-custom-class=\"body_text\">\n  These Terms form a binding agreement between you and the Company. By creating an account, accessing, or using the Services, you agree to these Terms and our Privacy Policy. If you do not agree, do not use the Services.\n</div>\n<div data-custom-class=\"body_text\">\n  Contact: <a href=\"mailto:cloud@clouddropdesigns.com\" data-custom-class=\"link\">cloud@clouddropdesigns.com</a>\n</div>\n\n<div data-custom-class=\"heading_1\">TABLE OF CONTENTS</div>\n<ol>\n  <li><a href=\"#services\" data-custom-class=\"link\">OUR SERVICES</a></li>\n  <li><a href=\"#eligibility\" data-custom-class=\"link\">ELIGIBILITY</a></li>\n  <li><a href=\"#accounts\" data-custom-class=\"link\">USER ACCOUNTS</a></li>\n  <li><a href=\"#acceptable-use\" data-custom-class=\"link\">ACCEPTABLE USE</a></li>\n  <li><a href=\"#verification\" data-custom-class=\"link\">VERIFICATION DOCUMENTS</a></li>\n  <li><a href=\"#messaging\" data-custom-class=\"link\">MESSAGING AND USER CONTENT</a></li>\n  <li><a href=\"#calendar\" data-custom-class=\"link\">CALENDAR AND EMAIL SYNC</a></li>\n  <li><a href=\"#shop\" data-custom-class=\"link\">SHOP AND THIRD-PARTY LINKS</a></li>\n  <li><a href=\"#ip\" data-custom-class=\"link\">INTELLECTUAL PROPERTY</a></li>\n  <li><a href=\"#userreps\" data-custom-class=\"link\">USER REPRESENTATIONS</a></li>\n  <li><a href=\"#warranties\" data-custom-class=\"link\">DISCLAIMER OF WARRANTIES</a></li>\n  <li><a href=\"#liability\" data-custom-class=\"link\">LIMITATION OF LIABILITY</a></li>\n  <li><a href=\"#indemnity\" data-custom-class=\"link\">INDEMNIFICATION</a></li>\n  <li><a href=\"#governing-law\" data-custom-class=\"link\">GOVERNING LAW</a></li>\n  <li><a href=\"#termination\" data-custom-class=\"link\">TERMINATION</a></li>\n  <li><a href=\"#changes\" data-custom-class=\"link\">CHANGES TO THESE TERMS</a></li>\n  <li><a href=\"#contact\" data-custom-class=\"link\">CONTACT US</a></li>\n</ol>\n\n<div id=\"services\" data-custom-class=\"heading_1\">1. OUR SERVICES</div>\n<div data-custom-class=\"body_text\">\n  VibeNMED is a <strong>professional networking and discovery platform</strong> for nursing and medical-education roles. The Services may include profile creation, discovery and matching, in-app messaging between matched users, optional verification document uploads, optional calendar tools, and related features.\n</div>\n<div data-custom-class=\"body_text\">\n  The Services are <strong>not</strong> a clinical placement agency, staffing service, employer, school, credentialing body, background-check provider, or HIPAA-covered medical records system. We do not guarantee clinical placements, rotations, interviews, employment, licensure, or acceptance by any school, clinic, hospital, or regulatory body.\n</div>\n<div data-custom-class=\"body_text\">\n  Any educational, clinical, or employment arrangement is solely between you and other users or third parties. You are responsible for meeting your school, employer, clinic, and legal requirements.\n</div>\n<div data-custom-class=\"body_text\">\n  NPI information displayed in the App is obtained from the public CMS NPI Registry for convenience only and is not an endorsement of your eligibility to practice or precept.\n</div>\n<div data-custom-class=\"body_text\">\n  The Services are not intended for distribution or use where prohibited by law. You are responsible for compliance with local laws.\n</div>\n\n<div id=\"eligibility\" data-custom-class=\"heading_1\">2. ELIGIBILITY</div>\n<div data-custom-class=\"body_text\">\n  You must be at least 18 years old to use the Services. By using the Services, you represent that you meet this requirement and have authority to enter into these Terms.\n</div>\n\n<div id=\"accounts\" data-custom-class=\"heading_1\">3. USER ACCOUNTS</div>\n<div data-custom-class=\"body_text\">\n  You are responsible for maintaining the confidentiality of your login credentials and for all activity under your account. Provide accurate registration information and keep it current. We may suspend or terminate accounts that are inaccurate, inactive, abusive, or in violation of these Terms.\n</div>\n\n<div id=\"acceptable-use\" data-custom-class=\"heading_1\">4. ACCEPTABLE USE</div>\n<div data-custom-class=\"body_text\">You agree not to:</div>\n<ul>\n  <li>Upload, post, or transmit protected health information (PHI) about patients or other individuals</li>\n  <li>Impersonate any person or misrepresent your qualifications, affiliation, or credentials</li>\n  <li>Harass, threaten, discriminate against, or harm other users</li>\n  <li>Use the Services for illegal, fraudulent, or unauthorized purposes</li>\n  <li>Scrape, reverse engineer, or interfere with the App or its infrastructure</li>\n  <li>Upload malware or content you do not have the right to share</li>\n</ul>\n<div data-custom-class=\"body_text\">\n  Meetings or arrangements made with other users outside the App are at your own risk. We are not responsible for offline conduct or outcomes.\n</div>\n\n<div id=\"verification\" data-custom-class=\"heading_1\">5. VERIFICATION DOCUMENTS</div>\n<div data-custom-class=\"body_text\">\n  If you choose to upload verification or compliance documents, you represent that the files are yours (or you have permission to upload them) and that the information is accurate to the best of your knowledge.\n</div>\n<div data-custom-class=\"body_text\">\n  Company review of documents, and any status such as \"Reviewed,\" \"On file,\" or similar, means <strong>administrative completeness review only</strong>. It does not mean we verified clinical competence, immunization status, background-check results, patient safety readiness, or suitability for duty. It does not mean any school, clinic, hospital, or employer accepts those documents.\n</div>\n<div data-custom-class=\"body_text\">\n  Other users must not rely on document status in the App as a substitute for their own due diligence and official credentialing processes. We may remove, reject, or request replacement documents at any time.\n</div>\n\n<div id=\"messaging\" data-custom-class=\"heading_1\">6. MESSAGING AND USER CONTENT</div>\n<div data-custom-class=\"body_text\">\n  You are solely responsible for content you submit, including messages, photos, and profile information. You grant us a non-exclusive, worldwide, royalty-free license to host, store, display, and process your content as needed to operate the Services.\n</div>\n<div data-custom-class=\"body_text\">\n  We are not obligated to monitor all user content but may remove content or suspend users to enforce these Terms or protect safety. Messaging is provided through third-party infrastructure (Stream Chat) subject to its availability and policies.\n</div>\n\n<div id=\"calendar\" data-custom-class=\"heading_1\">7. CALENDAR AND EMAIL SYNC</div>\n<div data-custom-class=\"body_text\">\n  Calendar features are optional. Events are stored in your app session on your device. If you enable email sync, you authorize us to transmit your calendar entries and email address to our servers to send updates and reminders.\n</div>\n<div data-custom-class=\"body_text\">\n  Do not include patient-identifying information in calendar fields. If you use a work email address, you are responsible for your employer's email and IT policies. We are not liable for missed reminders, sync errors, or data loss.\n</div>\n\n<div id=\"shop\" data-custom-class=\"heading_1\">8. SHOP AND THIRD-PARTY LINKS</div>\n<div data-custom-class=\"body_text\">\n  The App may display product browsing or partner links. In-app purchases are not enabled at this time. Any future purchases through third parties will be governed by those parties' terms. We are not responsible for third-party websites, products, or services.\n</div>\n\n<div id=\"ip\" data-custom-class=\"heading_1\">9. INTELLECTUAL PROPERTY</div>\n<div data-custom-class=\"body_text\">\n  The App, branding, design, and Company content are owned by CloudDropDesigns LLC or its licensors and are protected by intellectual property laws. We grant you a limited, personal, non-transferable, revocable license to use the App for its intended purpose. You may not copy, modify, distribute, sell, or lease any part of the Services without our written permission.\n</div>\n\n<div id=\"userreps\" data-custom-class=\"heading_1\">10. USER REPRESENTATIONS</div>\n<div data-custom-class=\"body_text\">\n  You represent and warrant that: (a) you have legal capacity to agree to these Terms; (b) your use of the Services complies with applicable law; (c) your profile and uploaded content are truthful and not misleading; and (d) you will not use the Services in a manner that could harm the Company, other users, or the public.\n</div>\n\n<div id=\"warranties\" data-custom-class=\"heading_1\">11. DISCLAIMER OF WARRANTIES</div>\n<div data-custom-class=\"body_text\">\n  THE SERVICES ARE PROVIDED ON AN \"AS IS\" AND \"AS AVAILABLE\" BASIS. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED, ERROR-FREE, SECURE, OR THAT MATCHES, MESSAGES, OR CONNECTIONS WILL MEET YOUR NEEDS.\n</div>\n\n<div id=\"liability\" data-custom-class=\"heading_1\">12. LIMITATION OF LIABILITY</div>\n<div data-custom-class=\"body_text\">\n  TO THE FULLEST EXTENT PERMITTED BY LAW, CLOUDDROPDESIGNS LLC AND ITS OFFICERS, DIRECTORS, EMPLOYEES, AND AGENTS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, GOODWILL, OR BUSINESS OPPORTUNITY, ARISING FROM OR RELATED TO THE SERVICES OR THESE TERMS.\n</div>\n<div data-custom-class=\"body_text\">\n  OUR TOTAL LIABILITY FOR ANY CLAIM ARISING OUT OF OR RELATING TO THE SERVICES OR THESE TERMS WILL NOT EXCEED THE GREATER OF (A) ONE HUNDRED U.S. DOLLARS (US $100) OR (B) THE AMOUNT YOU PAID US FOR THE SERVICES IN THE TWELVE (12) MONTHS BEFORE THE EVENT GIVING RISE TO THE CLAIM.\n</div>\n<div data-custom-class=\"body_text\">\n  WITHOUT LIMITING THE FOREGOING, WE ARE NOT LIABLE FOR USER CONDUCT, OFFLINE INTERACTIONS, PLACEMENT OR EMPLOYMENT OUTCOMES, RELIANCE ON DOCUMENT STATUS, CALENDAR OR REMINDER FAILURES, THIRD-PARTY SERVICES, OR CONTENT SUBMITTED BY USERS.\n</div>\n\n<div id=\"indemnity\" data-custom-class=\"heading_1\">13. INDEMNIFICATION</div>\n<div data-custom-class=\"body_text\">\n  You agree to defend, indemnify, and hold harmless CloudDropDesigns LLC and its officers, directors, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable legal fees) arising from: (a) your use of the Services; (b) your content or PHI uploads; (c) your violation of these Terms; (d) your interactions with other users; or (e) your violation of any law or third-party rights.\n</div>\n\n<div id=\"governing-law\" data-custom-class=\"heading_1\">14. GOVERNING LAW</div>\n<div data-custom-class=\"body_text\">\n  These Terms are governed by the laws of the State of California, without regard to conflict-of-law principles. You agree that exclusive jurisdiction for disputes relating to these Terms or the Services resides in the state or federal courts located in California, and you consent to personal jurisdiction in those courts.\n</div>\n\n<div id=\"termination\" data-custom-class=\"heading_1\">15. TERMINATION</div>\n<div data-custom-class=\"body_text\">\n  You may stop using the Services at any time and may delete your account in the App. We may suspend or terminate your access immediately for any violation of these Terms or if we reasonably believe your use creates risk or harm. Sections that by their nature should survive termination will survive, including intellectual property, disclaimers, limitation of liability, indemnification, and governing law.\n</div>\n\n<div id=\"changes\" data-custom-class=\"heading_1\">16. CHANGES TO THESE TERMS</div>\n<div data-custom-class=\"body_text\">\n  We may update these Terms from time to time. We will post the updated Terms with a revised \"Last updated\" date and, when appropriate, provide notice through the App or by email. Continued use after changes become effective constitutes acceptance of the updated Terms.\n</div>\n\n<div id=\"contact\" data-custom-class=\"heading_1\">17. CONTACT US</div>\n<div data-custom-class=\"body_text\">\n  Questions or complaints about the Services:\n</div>\n<div data-custom-class=\"body_text\">\n  <strong>CloudDropDesigns LLC</strong><br>\n  Email: <a href=\"mailto:cloud@clouddropdesigns.com\" data-custom-class=\"link\">cloud@clouddropdesigns.com</a>\n</div>\n  </div>\n</body>\n</html>",
+    "termsBodyHtml": "<div data-custom-class=\"title\">TERMS AND CONDITIONS</div>\n<div data-custom-class=\"subtitle\">Last updated June 28, 2026</div>\n\n<div data-custom-class=\"heading_1\">AGREEMENT TO OUR LEGAL TERMS</div>\n<div data-custom-class=\"body_text\">\n  We are <strong>CloudDropDesigns LLC</strong> (\"Company,\" \"we,\" \"us,\" or \"our\"), a company registered in California, United States. We operate the mobile application <strong>VibeNMED</strong> (the \"App\") and related services that refer to these Terms (collectively, the \"Services\").\n</div>\n<div data-custom-class=\"body_text\">\n  These Terms form a binding agreement between you and the Company. By creating an account, accessing, or using the Services, you agree to these Terms and our Privacy Policy. If you do not agree, do not use the Services.\n</div>\n<div data-custom-class=\"body_text\">\n  Contact: <a href=\"mailto:cloud@clouddropdesigns.com\" data-custom-class=\"link\">cloud@clouddropdesigns.com</a>\n</div>\n\n<div data-custom-class=\"heading_1\">TABLE OF CONTENTS</div>\n<ol>\n  <li><a href=\"#services\" data-custom-class=\"link\">OUR SERVICES</a></li>\n  <li><a href=\"#eligibility\" data-custom-class=\"link\">ELIGIBILITY</a></li>\n  <li><a href=\"#accounts\" data-custom-class=\"link\">USER ACCOUNTS</a></li>\n  <li><a href=\"#acceptable-use\" data-custom-class=\"link\">ACCEPTABLE USE</a></li>\n  <li><a href=\"#verification\" data-custom-class=\"link\">VERIFICATION DOCUMENTS</a></li>\n  <li><a href=\"#messaging\" data-custom-class=\"link\">MESSAGING AND USER CONTENT</a></li>\n  <li><a href=\"#calendar\" data-custom-class=\"link\">CALENDAR AND EMAIL SYNC</a></li>\n  <li><a href=\"#shop\" data-custom-class=\"link\">SHOP AND THIRD-PARTY LINKS</a></li>\n  <li><a href=\"#ip\" data-custom-class=\"link\">INTELLECTUAL PROPERTY</a></li>\n  <li><a href=\"#userreps\" data-custom-class=\"link\">USER REPRESENTATIONS</a></li>\n  <li><a href=\"#warranties\" data-custom-class=\"link\">DISCLAIMER OF WARRANTIES</a></li>\n  <li><a href=\"#liability\" data-custom-class=\"link\">LIMITATION OF LIABILITY</a></li>\n  <li><a href=\"#indemnity\" data-custom-class=\"link\">INDEMNIFICATION</a></li>\n  <li><a href=\"#governing-law\" data-custom-class=\"link\">GOVERNING LAW</a></li>\n  <li><a href=\"#termination\" data-custom-class=\"link\">TERMINATION</a></li>\n  <li><a href=\"#changes\" data-custom-class=\"link\">CHANGES TO THESE TERMS</a></li>\n  <li><a href=\"#contact\" data-custom-class=\"link\">CONTACT US</a></li>\n</ol>\n\n<div id=\"services\" data-custom-class=\"heading_1\">1. OUR SERVICES</div>\n<div data-custom-class=\"body_text\">\n  VibeNMED is a <strong>professional networking and discovery platform</strong> for nursing and medical-education roles. The Services may include profile creation, discovery and matching, in-app messaging between matched users, optional verification document uploads, optional calendar tools, and related features.\n</div>\n<div data-custom-class=\"body_text\">\n  The Services are <strong>not</strong> a clinical placement agency, staffing service, employer, school, credentialing body, background-check provider, or HIPAA-covered medical records system. We do not guarantee clinical placements, rotations, interviews, employment, licensure, or acceptance by any school, clinic, hospital, or regulatory body.\n</div>\n<div data-custom-class=\"body_text\">\n  Any educational, clinical, or employment arrangement is solely between you and other users or third parties. You are responsible for meeting your school, employer, clinic, and legal requirements.\n</div>\n<div data-custom-class=\"body_text\">\n  NPI information displayed in the App is obtained from the public CMS NPI Registry for convenience only and is not an endorsement of your eligibility to practice or precept.\n</div>\n<div data-custom-class=\"body_text\">\n  The Services are not intended for distribution or use where prohibited by law. You are responsible for compliance with local laws.\n</div>\n\n<div id=\"eligibility\" data-custom-class=\"heading_1\">2. ELIGIBILITY</div>\n<div data-custom-class=\"body_text\">\n  You must be at least 18 years old to use the Services. By using the Services, you represent that you meet this requirement and have authority to enter into these Terms.\n</div>\n\n<div id=\"accounts\" data-custom-class=\"heading_1\">3. USER ACCOUNTS</div>\n<div data-custom-class=\"body_text\">\n  You are responsible for maintaining the confidentiality of your login credentials and for all activity under your account. Provide accurate registration information and keep it current. We may suspend or terminate accounts that are inaccurate, inactive, abusive, or in violation of these Terms.\n</div>\n\n<div id=\"acceptable-use\" data-custom-class=\"heading_1\">4. ACCEPTABLE USE</div>\n<div data-custom-class=\"body_text\">You agree not to:</div>\n<ul>\n  <li>Upload, post, or transmit protected health information (PHI) about patients or other individuals</li>\n  <li>Impersonate any person or misrepresent your qualifications, affiliation, or credentials</li>\n  <li>Harass, threaten, discriminate against, or harm other users</li>\n  <li>Use the Services for illegal, fraudulent, or unauthorized purposes</li>\n  <li>Scrape, reverse engineer, or interfere with the App or its infrastructure</li>\n  <li>Upload malware or content you do not have the right to share</li>\n</ul>\n<div data-custom-class=\"body_text\">\n  Meetings or arrangements made with other users outside the App are at your own risk. We are not responsible for offline conduct or outcomes.\n</div>\n\n<div id=\"verification\" data-custom-class=\"heading_1\">5. VERIFICATION DOCUMENTS</div>\n<div data-custom-class=\"body_text\">\n  If you choose to upload verification or compliance documents, you represent that the files are yours (or you have permission to upload them) and that the information is accurate to the best of your knowledge.\n</div>\n<div data-custom-class=\"body_text\">\n  Company review of documents, and any status such as \"Reviewed,\" \"On file,\" or similar, means <strong>administrative completeness review only</strong>. It does not mean we verified clinical competence, immunization status, background-check results, patient safety readiness, or suitability for duty. It does not mean any school, clinic, hospital, or employer accepts those documents.\n</div>\n<div data-custom-class=\"body_text\">\n  Other users must not rely on document status in the App as a substitute for their own due diligence and official credentialing processes. We may remove, reject, or request replacement documents at any time.\n</div>\n\n<div id=\"messaging\" data-custom-class=\"heading_1\">6. MESSAGING AND USER CONTENT</div>\n<div data-custom-class=\"body_text\">\n  You are solely responsible for content you submit, including messages, photos, and profile information. You grant us a non-exclusive, worldwide, royalty-free license to host, store, display, and process your content as needed to operate the Services.\n</div>\n<div data-custom-class=\"body_text\">\n  We are not obligated to monitor all user content but may remove content or suspend users to enforce these Terms or protect safety. Messaging is provided through third-party infrastructure (Stream Chat) subject to its availability and policies.\n</div>\n\n<div id=\"calendar\" data-custom-class=\"heading_1\">7. CALENDAR AND EMAIL SYNC</div>\n<div data-custom-class=\"body_text\">\n  Calendar features are optional. Events are stored in your app session on your device. If you enable email sync, you authorize us to transmit your calendar entries and email address to our servers to send updates and reminders.\n</div>\n<div data-custom-class=\"body_text\">\n  Do not include patient-identifying information in calendar fields. If you use a work email address, you are responsible for your employer's email and IT policies. We are not liable for missed reminders, sync errors, or data loss.\n</div>\n\n<div id=\"shop\" data-custom-class=\"heading_1\">8. SHOP AND THIRD-PARTY LINKS</div>\n<div data-custom-class=\"body_text\">\n  The App may display product browsing or partner links. In-app purchases are not enabled at this time. Any future purchases through third parties will be governed by those parties' terms. We are not responsible for third-party websites, products, or services.\n</div>\n\n<div id=\"ip\" data-custom-class=\"heading_1\">9. INTELLECTUAL PROPERTY</div>\n<div data-custom-class=\"body_text\">\n  The App, branding, design, and Company content are owned by CloudDropDesigns LLC or its licensors and are protected by intellectual property laws. We grant you a limited, personal, non-transferable, revocable license to use the App for its intended purpose. You may not copy, modify, distribute, sell, or lease any part of the Services without our written permission.\n</div>\n\n<div id=\"userreps\" data-custom-class=\"heading_1\">10. USER REPRESENTATIONS</div>\n<div data-custom-class=\"body_text\">\n  You represent and warrant that: (a) you have legal capacity to agree to these Terms; (b) your use of the Services complies with applicable law; (c) your profile and uploaded content are truthful and not misleading; and (d) you will not use the Services in a manner that could harm the Company, other users, or the public.\n</div>\n\n<div id=\"warranties\" data-custom-class=\"heading_1\">11. DISCLAIMER OF WARRANTIES</div>\n<div data-custom-class=\"body_text\">\n  THE SERVICES ARE PROVIDED ON AN \"AS IS\" AND \"AS AVAILABLE\" BASIS. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED, ERROR-FREE, SECURE, OR THAT MATCHES, MESSAGES, OR CONNECTIONS WILL MEET YOUR NEEDS.\n</div>\n\n<div id=\"liability\" data-custom-class=\"heading_1\">12. LIMITATION OF LIABILITY</div>\n<div data-custom-class=\"body_text\">\n  TO THE FULLEST EXTENT PERMITTED BY LAW, CLOUDDROPDESIGNS LLC AND ITS OFFICERS, DIRECTORS, EMPLOYEES, AND AGENTS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, GOODWILL, OR BUSINESS OPPORTUNITY, ARISING FROM OR RELATED TO THE SERVICES OR THESE TERMS.\n</div>\n<div data-custom-class=\"body_text\">\n  OUR TOTAL LIABILITY FOR ANY CLAIM ARISING OUT OF OR RELATING TO THE SERVICES OR THESE TERMS WILL NOT EXCEED THE GREATER OF (A) ONE HUNDRED U.S. DOLLARS (US $100) OR (B) THE AMOUNT YOU PAID US FOR THE SERVICES IN THE TWELVE (12) MONTHS BEFORE THE EVENT GIVING RISE TO THE CLAIM.\n</div>\n<div data-custom-class=\"body_text\">\n  WITHOUT LIMITING THE FOREGOING, WE ARE NOT LIABLE FOR USER CONDUCT, OFFLINE INTERACTIONS, PLACEMENT OR EMPLOYMENT OUTCOMES, RELIANCE ON DOCUMENT STATUS, CALENDAR OR REMINDER FAILURES, THIRD-PARTY SERVICES, OR CONTENT SUBMITTED BY USERS.\n</div>\n\n<div id=\"indemnity\" data-custom-class=\"heading_1\">13. INDEMNIFICATION</div>\n<div data-custom-class=\"body_text\">\n  You agree to defend, indemnify, and hold harmless CloudDropDesigns LLC and its officers, directors, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable legal fees) arising from: (a) your use of the Services; (b) your content or PHI uploads; (c) your violation of these Terms; (d) your interactions with other users; or (e) your violation of any law or third-party rights.\n</div>\n\n<div id=\"governing-law\" data-custom-class=\"heading_1\">14. GOVERNING LAW</div>\n<div data-custom-class=\"body_text\">\n  These Terms are governed by the laws of the State of California, without regard to conflict-of-law principles. You agree that exclusive jurisdiction for disputes relating to these Terms or the Services resides in the state or federal courts located in California, and you consent to personal jurisdiction in those courts.\n</div>\n\n<div id=\"termination\" data-custom-class=\"heading_1\">15. TERMINATION</div>\n<div data-custom-class=\"body_text\">\n  You may stop using the Services at any time and may delete your account in the App. We may suspend or terminate your access immediately for any violation of these Terms or if we reasonably believe your use creates risk or harm. Sections that by their nature should survive termination will survive, including intellectual property, disclaimers, limitation of liability, indemnification, and governing law.\n</div>\n\n<div id=\"changes\" data-custom-class=\"heading_1\">16. CHANGES TO THESE TERMS</div>\n<div data-custom-class=\"body_text\">\n  We may update these Terms from time to time. We will post the updated Terms with a revised \"Last updated\" date and, when appropriate, provide notice through the App or by email. Continued use after changes become effective constitutes acceptance of the updated Terms.\n</div>\n\n<div id=\"contact\" data-custom-class=\"heading_1\">17. CONTACT US</div>\n<div data-custom-class=\"body_text\">\n  Questions or complaints about the Services:\n</div>\n<div data-custom-class=\"body_text\">\n  <strong>CloudDropDesigns LLC</strong><br>\n  Email: <a href=\"mailto:cloud@clouddropdesigns.com\" data-custom-class=\"link\">cloud@clouddropdesigns.com</a>\n</div>"
+  }
+}

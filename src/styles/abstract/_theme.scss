@@ -1,0 +1,173 @@
+:root,
+[data-theme='dark'] {
+  --cd-accent: #7eb8d4;
+  --cd-accent-deep: #2a5f78;
+  --cd-accent-deep-hover: #356f8a;
+  --cd-page-bg: #141414;
+  --cd-page-bg-soft: #f7f7f5;
+  --cd-page-text: #141414;
+  --cd-card-bg: #141414;
+  --cd-card-bg-soft: #1c1c1c;
+  --cd-card-text: #f4f2ee;
+  --cd-card-text-muted: rgba(244, 242, 238, 0.72);
+  --cd-card-border: rgba(126, 184, 212, 0.28);
+  --cd-surface-text: #f4f2ee;
+  --cd-surface-text-muted: rgba(244, 242, 238, 0.62);
+  --cd-icon-filter: brightness(0) invert(98%) sepia(1%) saturate(1512%) hue-rotate(320deg)
+    brightness(98%) contrast(96%);
+}
+
+[data-theme='light'] {
+  --cd-page-bg: #ebe8e2;
+  --cd-page-bg-soft: #f5f3ef;
+  --cd-page-text: #141414;
+  --cd-card-bg: #f8f6f2;
+  --cd-card-bg-soft: #ece9e3;
+  --cd-card-text: #121212;
+  --cd-card-text-muted: rgba(18, 18, 18, 0.78);
+  --cd-card-border: rgba(47, 112, 137, 0.45);
+  --cd-accent: #2f7089;
+  --cd-accent-deep: #2f7089;
+  --cd-accent-deep-hover: #3a86a3;
+  --cd-surface-text: #121212;
+  --cd-surface-text-muted: rgba(18, 18, 18, 0.72);
+  --cd-icon-filter: brightness(0);
+}
+
+[data-theme='light'] .home-page {
+  background-color: var(--cd-page-bg);
+  color: var(--cd-page-text);
+}
+
+@media (max-width: 767px) {
+  [data-theme='light'] .home-page {
+    background: var(--cd-page-bg);
+  }
+}
+
+[data-theme='light'] .business-card {
+  background: linear-gradient(168deg, var(--cd-card-bg) 0%, var(--cd-card-bg-soft) 100%);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 18px 40px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='light'] .hero__title,
+[data-theme='light'] .hero__subtitle {
+  color: var(--cd-card-text);
+}
+
+[data-theme='light'] .hero__subtitle {
+  color: var(--cd-card-text-muted);
+}
+
+[data-theme='light'] .hero__subtitle-amp {
+  color: var(--cd-accent);
+}
+
+[data-theme='light'] .home-studio__back-title {
+  color: var(--cd-accent);
+}
+
+[data-theme='light'] .home-studio__nav-link {
+  color: rgba(18, 18, 18, 0.86);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--cd-accent);
+  }
+}
+
+[data-theme='light'] .flip-prompt {
+  border-color: rgba(47, 112, 137, 0.72);
+  background: rgba(47, 112, 137, 0.14);
+  box-shadow:
+    0 0 0 1px rgba(47, 112, 137, 0.1) inset,
+    0 4px 16px rgba(47, 112, 137, 0.16);
+  animation-name: flip-prompt-pulse-light;
+}
+
+[data-theme='light'] .flip-prompt__label {
+  color: #121212;
+}
+
+[data-theme='light'] .flip-prompt__icon {
+  color: var(--cd-accent);
+}
+
+[data-theme='light'] .site-footer__link {
+  color: rgba(18, 18, 18, 0.9);
+
+  &:hover {
+    color: var(--cd-accent);
+  }
+}
+
+[data-theme='light'] .site-footer__location {
+  color: rgba(18, 18, 18, 0.58);
+}
+
+[data-theme='light'] .site-footer__legal {
+  color: rgba(18, 18, 18, 0.48);
+}
+
+[data-theme='light'] .code-drops-page,
+[data-theme='light'] .studio-section-page,
+[data-theme='light'] .drop-elevate-page {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(126, 184, 212, 0.16), transparent 60%),
+    var(--cd-page-bg);
+  color: var(--cd-surface-text);
+}
+
+[data-theme='light'] .code-drops-page__title,
+[data-theme='light'] .studio-section-page__title,
+[data-theme='light'] .project-deck-card__name {
+  color: var(--cd-surface-text);
+}
+
+[data-theme='light'] .code-drops-page__theme-toggle .droplet-theme-toggle__shape {
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.14))
+    drop-shadow(0 4px 10px rgba(47, 112, 137, 0.18));
+}
+
+[data-theme='light'] .project-deck-card__inner {
+  background: var(--cd-card-bg);
+}
+
+[data-theme='light'] .project-deck-card__overlay {
+  background: linear-gradient(
+    to top,
+    rgba(248, 246, 242, 0.97) 0%,
+    rgba(248, 246, 242, 0.88) 38%,
+    rgba(248, 246, 242, 0.4) 68%,
+    transparent 100%
+  );
+}
+
+[data-theme='light'] .project-deck-card__name {
+  color: var(--cd-surface-text);
+}
+
+[data-theme='light'] .project-deck-card__tagline,
+[data-theme='light'] .code-drops-page__hint,
+[data-theme='light'] .studio-section-page__copy {
+  color: var(--cd-surface-text-muted);
+}
+
+@keyframes flip-prompt-pulse-light {
+  0%,
+  100% {
+    border-color: rgba(47, 112, 137, 0.62);
+    box-shadow:
+      0 0 0 1px rgba(47, 112, 137, 0.08) inset,
+      0 4px 14px rgba(47, 112, 137, 0.12);
+  }
+
+  50% {
+    border-color: rgba(47, 112, 137, 0.92);
+    box-shadow:
+      0 0 0 1px rgba(47, 112, 137, 0.14) inset,
+      0 4px 20px rgba(47, 112, 137, 0.22);
+  }
+}

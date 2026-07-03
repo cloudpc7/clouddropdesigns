@@ -1,0 +1,23 @@
+.site-nav {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.125rem 1.35rem 0;
+}
+
+.site-nav__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.site-nav__icon {
+  width: 1.75rem;
+  height: 2rem;
+  display: block;
+}

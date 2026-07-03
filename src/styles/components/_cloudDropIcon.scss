@@ -12,21 +12,21 @@
   justify-content: center;
 }
 
+.business-card .cloud-drop-icon__interactive {
+  align-items: center;
+}
+
 .cloud-drop-icon__stage {
   position: relative;
   cursor: default;
 }
 
-.cloud-drop-icon__cloud-zone {
-  position: relative;
-  cursor: pointer;
-}
-
 .cloud-drop-icon__cloud {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: block;
   transition: transform 0.35s ease;
+  pointer-events: none;
 }
 
 .cloud-drop-icon__interactive:hover .cloud-drop-icon__cloud,
@@ -64,10 +64,21 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    color 0.25s ease;
+    transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+    padding 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+    gap 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+    background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+    color 0.3s ease;
   white-space: nowrap;
+}
+
+// When hovering over the cloud's interactive area, expand the buttons!
+.cloud-drop-icon__interactive:hover {
+  .cloud-drop-icon__phase {
+    padding: 0.52rem 0.95rem; // Expanded padding from 0.42rem 0.72rem
+    gap: 0.18rem;             // Expanded gap
+  }
 }
 
 .cloud-drop-icon__phase-label {
@@ -86,19 +97,36 @@
 
 .cloud-drop-icon__phase:hover,
 .cloud-drop-icon__phase.is-preview {
-  transform: scale(1.06);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: scale(1.18); // Expanded scale from 1.06
+  box-shadow: 
+    0 12px 28px rgba(0, 0, 0, 0.15),
+    0 0 16px rgba(126, 184, 212, 0.45);
 }
 
-.cloud-drop-icon__phase.is-active,
-.cloud-drop-icon__phase.is-live-match {
-  color: #fff;
-  transform: scale(1.08);
+.cloud-drop-icon__phase.is-active {
+  color: var(--phase-text, #f4f2ee);
+  transform: scale(1.2); // Expanded scale from 1.08
+  box-shadow: 
+    0 12px 28px rgba(0, 0, 0, 0.15),
+    0 0 16px rgba(126, 184, 212, 0.45);
 }
 
-.cloud-drop-icon__phase.is-active .cloud-drop-icon__phase-time,
-.cloud-drop-icon__phase.is-live-match .cloud-drop-icon__phase-time {
-  opacity: 0.92;
+.cloud-drop-icon__phase.is-active .cloud-drop-icon__phase-label,
+.cloud-drop-icon__phase.is-active .cloud-drop-icon__phase-time {
+  color: inherit;
+  opacity: 1;
+}
+
+[data-theme='dark'] {
+  .cloud-drop-icon__phase:not(.is-active) {
+    color: #141414;
+    background: rgba(255, 255, 255, 0.97);
+  }
+
+  .cloud-drop-icon__phase:not(.is-active) .cloud-drop-icon__phase-time {
+    color: rgba(20, 20, 20, 0.72);
+    opacity: 1;
+  }
 }
 
 .cloud-drop-icon__live {
@@ -108,30 +136,17 @@
   transform: translate(-50%, 0.55rem);
 }
 
-.cloud-drop-icon__hint {
-  position: absolute;
-  left: 50%;
-  bottom: -0.15rem;
-  transform: translate(-50%, 100%);
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.58rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #7a7a7a;
-  white-space: nowrap;
-  pointer-events: none;
-}
-
 .cloud-drop-icon__caption {
   margin: 1rem 0 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.8rem;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #5a5a5a;
+  color: var(--cd-surface-text-muted);
 }
 
 .cloud-drop-icon__caption strong {
   font-weight: 600;
-  color: #2d2d2d;
+  color: inherit;
 }

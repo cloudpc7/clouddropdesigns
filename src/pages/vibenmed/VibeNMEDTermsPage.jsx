@@ -1,8 +1,10 @@
 import VibeNMEDLegalDocument from '../../components/vibenmed/VibeNMEDLegalDocument';
-import { TERMS_BODY_HTML } from '../../content/vibenmedLegalContent';
+import { useVibenmedLegal } from '../../hooks/useContent';
 
 const VibeNMEDTermsPage = () => {
-  return <VibeNMEDLegalDocument title="Terms of Service" html={TERMS_BODY_HTML} />;
+  const { termsBodyHtml } = useVibenmedLegal();
+
+  return <VibeNMEDLegalDocument title="Terms of Service" html={termsBodyHtml} />;
 };
 
 export default VibeNMEDTermsPage;

@@ -2,7 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#141414" />
+    <meta
+      name="description"
+      content="CloudDropDesigns builds polished web and mobile products for businesses. Explore our portfolio, services, and studio."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="CloudDropDesigns" />
+    <meta
+      property="og:title"
+      content="CloudDropDesigns — Design &amp; Development Studio"
+    />
+    <meta
+      property="og:description"
+      content="CloudDropDesigns builds polished web and mobile products for businesses. Explore our portfolio, services, and studio."
+    />
+    <meta property="og:url" content="https://clouddropdesigns.com/" />
+    <meta property="og:image" content="https://clouddropdesigns.com/favicon.png" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href="https://clouddropdesigns.com/" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,6 +33,12 @@
     <title>CloudDropDesigns</title>
   </head>
   <body>
+    <script>
+      (function () {
+        var theme = localStorage.getItem('clouddrop-theme') === 'light' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

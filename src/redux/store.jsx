@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+import contentReducer from './slices/contentSlice';
 
 export const store = configureStore({
   reducer: {
-    app: (state = {}) => state,
+    content: contentReducer,
   },
 });

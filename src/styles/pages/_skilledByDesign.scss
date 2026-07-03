@@ -1,0 +1,417 @@
+@use '../layout/studioPage' as studio;
+
+$accent: #7eb8d4;
+$card-matte: #141414;
+
+.skilled-page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding:
+    calc(0.5rem + env(safe-area-inset-top, 0px))
+    calc(0.65rem + env(safe-area-inset-right, 0px))
+    calc(0.65rem + env(safe-area-inset-bottom, 0px))
+    calc(0.65rem + env(safe-area-inset-left, 0px));
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -10%, rgba(126, 184, 212, 0.16), transparent 62%),
+    radial-gradient(ellipse 50% 35% at 100% 85%, rgba(126, 184, 212, 0.07), transparent 58%),
+    $card-matte;
+  color: #f4f2ee;
+  overflow: hidden;
+}
+
+.skilled-page__theme-toggle {
+  position: absolute;
+  top: calc(1rem + env(safe-area-inset-top, 0px));
+  right: calc(1rem + env(safe-area-inset-right, 0px));
+  z-index: 20;
+}
+
+.skilled-page__shell {
+  width: 100%;
+  max-width: 24rem;
+  min-height: 0;
+  flex: 1;
+  display: flex;
+
+  @include studio.studio-shell-wide;
+}
+
+.skilled-page__body {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 0.3rem 0.45rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(126, 184, 212, 0.35) transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(126, 184, 212, 0.35);
+    border-radius: 4px;
+  }
+}
+
+.skilled-page__intro {
+  text-align: center;
+  padding: 0 0.5rem 0.75rem;
+}
+
+.skilled-page__eyebrow {
+  margin: 0 0 0.45rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: $accent;
+}
+
+.skilled-page__title {
+  margin: 0 0 0.55rem;
+  font-family: 'Bodoni Moda', Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.55rem, 6.8vw, 1.95rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: #f4f2ee;
+
+  em {
+    font-style: italic;
+    font-weight: 500;
+    color: color-mix(in srgb, $accent 88%, white);
+  }
+}
+
+.skilled-page__lede {
+  margin: 0 auto;
+  max-width: 18.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  text-wrap: pretty;
+  color: color-mix(in srgb, $accent 16%, #b8c5ce);
+}
+
+.skilled-page__mantra-band {
+  margin: 0 0.35rem 0.9rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid rgba(126, 184, 212, 0.2);
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(126, 184, 212, 0.06) 0%,
+    rgba(126, 184, 212, 0.14) 50%,
+    rgba(126, 184, 212, 0.06) 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.skilled-page__mantra {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.2rem;
+}
+
+.skilled-page__mantra-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.54rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 242, 238, 0.88);
+}
+
+.skilled-page__mantra-dot {
+  width: 0.22rem;
+  height: 0.22rem;
+  border-radius: 50%;
+  background: $accent;
+  box-shadow: 0 0 8px rgba(126, 184, 212, 0.55);
+}
+
+.skilled-page__section-head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+  padding: 0 0.1rem;
+}
+
+.skilled-page__section-title {
+  margin: 0;
+  flex: 0 0 auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $accent;
+}
+
+.skilled-page__section-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(126, 184, 212, 0.55) 0%,
+    rgba(126, 184, 212, 0.08) 100%
+  );
+}
+
+.skilled-page__tools {
+  padding: 0 0.4rem 1.1rem;
+}
+
+.skilled-page__tool-panel {
+  width: 100%;
+  margin-inline: 0;
+  padding: 1rem 0.8rem 0.9rem;
+  border: 1px solid color-mix(in srgb, $accent 24%, transparent);
+  border-radius: 12px;
+  background: color-mix(in srgb, $accent 7%, rgba(10, 12, 14, 0.92));
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.skilled-page__tool-group {
+  padding: 0;
+
+  & + & {
+    margin-top: 1.05rem;
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+.skilled-page__tool-group-label {
+  margin: 0 0 0.7rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, $accent 38%, #8fa0ab);
+}
+
+.skilled-page__tool-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem 0.5rem;
+}
+
+.skilled-page__tool-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.42rem;
+  text-align: center;
+}
+
+.skilled-page__tool-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 2.9rem;
+  aspect-ratio: 1.5;
+  max-width: none;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, $accent 20%, transparent);
+  background: color-mix(in srgb, #fff 5%, rgba(255, 255, 255, 0.02));
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.16);
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  .skilled-page__tool-cell:hover &,
+  .skilled-page__tool-cell:focus-within & {
+    border-color: color-mix(in srgb, $accent 48%, transparent);
+    transform: translateY(-2px);
+    box-shadow:
+      0 10px 22px rgba(0, 0, 0, 0.22),
+      0 0 14px color-mix(in srgb, $accent 18%, transparent);
+  }
+}
+
+.skilled-page__tool-icon {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  filter: var(--cd-icon-filter);
+  opacity: 0.96;
+}
+
+.skilled-page__tool-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  color: color-mix(in srgb, #f4f2ee 78%, $accent);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.skilled-page__footer {
+  padding: 0.35rem 0.35rem 0.15rem;
+  text-align: center;
+}
+
+.skilled-page__back {
+  display: inline-flex;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $accent;
+  border-bottom: 1px solid rgba(126, 184, 212, 0.45);
+  padding-bottom: 0.08rem;
+}
+
+.skilled-page {
+  @include studio.studio-page-tablet;
+  @include studio.studio-page-desktop;
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 768px) {
+  .skilled-page__eyebrow {
+    @include studio.studio-hide-mobile-eyebrow;
+  }
+
+  .skilled-page__footer {
+    @include studio.studio-hide-mobile-footer;
+  }
+
+  .skilled-page__body {
+    overflow: visible;
+    padding: 0;
+  }
+
+  .skilled-page__intro {
+    text-align: left;
+    padding: 0 0 1rem;
+  }
+
+  .skilled-page__title {
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+  }
+
+  .skilled-page__lede {
+    max-width: none;
+    font-size: 0.8rem;
+    text-align: left;
+  }
+
+  .skilled-page__tool-panel {
+    width: 100%;
+    margin-inline: 0;
+    padding: 1rem 0.85rem 0.85rem;
+  }
+
+  .skilled-page__tool-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .skilled-page__tool-tile {
+    aspect-ratio: 1.45;
+  }
+}
+
+@media (min-width: 1024px) {
+  .skilled-page__tool-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.55rem;
+  }
+
+  .skilled-page__tool-group-label {
+    font-size: 0.62rem;
+  }
+}
+
+[data-theme='light'] .skilled-page {
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -10%, rgba(47, 112, 137, 0.14), transparent 62%),
+    var(--cd-page-bg);
+  color: var(--cd-surface-text);
+}
+
+[data-theme='light'] .skilled-page__title {
+  color: var(--cd-surface-text);
+
+  em {
+    color: var(--cd-accent);
+  }
+}
+
+[data-theme='light'] .skilled-page__lede {
+  color: color-mix(in srgb, var(--cd-accent) 20%, #4a5963);
+}
+
+[data-theme='light'] .skilled-page__mantra-band {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: var(--cd-card-border);
+}
+
+[data-theme='light'] .skilled-page__tool-panel {
+  background: color-mix(in srgb, var(--cd-accent) 6%, rgba(255, 255, 255, 0.72));
+  border-color: var(--cd-card-border);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='light'] .skilled-page__mantra-item {
+  color: var(--cd-surface-text);
+}
+
+[data-theme='light'] .skilled-page__tool-tile {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: var(--cd-card-border);
+}
+
+[data-theme='light'] .skilled-page__tool-icon {
+  opacity: 0.92;
+}
+
+[data-theme='light'] .skilled-page__tool-group-label {
+  color: color-mix(in srgb, var(--cd-accent) 36%, #5c6b75);
+}
+
+[data-theme='light'] .skilled-page__tool-name {
+  color: color-mix(in srgb, var(--cd-surface-text) 82%, var(--cd-accent));
+}
+

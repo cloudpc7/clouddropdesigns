@@ -1,8 +1,10 @@
 import VibeNMEDLegalDocument from '../../components/vibenmed/VibeNMEDLegalDocument';
-import { PRIVACY_POLICY_HTML } from '../../content/vibenmedLegalContent';
+import { useVibenmedLegal } from '../../hooks/useContent';
 
 const VibeNMEDPrivacyPage = () => {
-  return <VibeNMEDLegalDocument title="Privacy Policy" html={PRIVACY_POLICY_HTML} />;
+  const { privacyPolicyHtml } = useVibenmedLegal();
+
+  return <VibeNMEDLegalDocument title="Privacy Policy" html={privacyPolicyHtml} />;
 };
 
 export default VibeNMEDPrivacyPage;
