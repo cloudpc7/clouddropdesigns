@@ -13,6 +13,8 @@
   --cd-card-border: rgba(126, 184, 212, 0.28);
   --cd-surface-text: #f4f2ee;
   --cd-surface-text-muted: rgba(244, 242, 238, 0.62);
+  --cd-text-muted: color-mix(in srgb, var(--cd-accent) 18%, var(--cd-surface-text));
+  --cd-text-subtle: color-mix(in srgb, var(--cd-accent) 10%, var(--cd-surface-text));
   --cd-icon-filter: brightness(0) invert(98%) sepia(1%) saturate(1512%) hue-rotate(320deg)
     brightness(98%) contrast(96%);
 }
@@ -31,6 +33,8 @@
   --cd-accent-deep-hover: #3a86a3;
   --cd-surface-text: #121212;
   --cd-surface-text-muted: rgba(18, 18, 18, 0.72);
+  --cd-text-muted: color-mix(in srgb, var(--cd-accent) 18%, var(--cd-surface-text));
+  --cd-text-subtle: color-mix(in srgb, var(--cd-accent) 10%, var(--cd-surface-text));
   --cd-icon-filter: brightness(0);
 }
 

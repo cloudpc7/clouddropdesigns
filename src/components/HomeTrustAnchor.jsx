@@ -9,7 +9,7 @@ const HomeTrustAnchor = () => {
   }
 
   return (
-    <section className="home-trust-anchor studio-website__panel" aria-label="About the founder">
+    <section className="home-trust-anchor" aria-label="About the founder">
       <div className="home-trust-anchor__media">
         <img
           src={profile.photo}

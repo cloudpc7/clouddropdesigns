@@ -197,57 +197,69 @@ const DropElevateEmbedContent = ({ services, toProjectType }) => {
   );
 };
 
-const DropElevateWideContent = ({ formProps, services }) => (
-  <div className="de-wide__layout">
-    <section className="de-wide__services-section" aria-labelledby="de-services-heading">
-      <div className="studio-website__section-head">
-        <h2 id="de-services-heading" className="studio-website__section-title">
-          Services offered
-        </h2>
-        <span className="studio-website__section-rule" aria-hidden="true" />
-      </div>
+const DropElevateWideContent = ({ formProps, services }) => {
+  const { setService } = formProps;
 
-      <ul className="de-wide__services">
-        {services.map((item) => (
-          <li key={item.id} id={item.id} className="de-wide__service studio-website__panel">
-            <span className="de-wide__service-mark" aria-hidden="true" />
-            <div>
-              <h3 className="de-wide__service-title">{item.title}</h3>
-              <p className="de-wide__service-copy">{item.description}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
+  const handleServiceSelect = (serviceId) => {
+    setService(serviceId);
+    document.getElementById('de-inquiry')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
-    <section
-      className="de-wide__inquiry de-wide__inquiry--banner studio-website__panel"
-      aria-labelledby="de-inquiry-heading"
-    >
-      <div className="de-wide__inquiry-inner">
-        <div className="de-wide__inquiry-intro">
-          <p className="de-wide__inquiry-eyebrow">Ready when you are</p>
-          <h2 id="de-inquiry-heading" className="de-wide__inquiry-title">
-            Start a project
-          </h2>
-          <p className="de-wide__inquiry-copy">
-            Choose a service and share your email — we will open a pre-filled message so you can
-            reach CloudDropDesigns directly.
-          </p>
-          <ul className="de-wide__inquiry-steps" aria-label="What happens next">
-            <li>Pick the service that fits your goal</li>
-            <li>Send a quick note from your email app</li>
-            <li>Hear back from the studio directly</li>
-          </ul>
+  return (
+    <div className="de-wide__layout">
+      <section className="de-wide__services-section" aria-label="Services offered">
+        <ul className="de-wide__services">
+          {services.map((item) => (
+            <li key={item.id} className="de-wide__service-item">
+              <button
+                type="button"
+                id={item.id}
+                className="de-wide__service studio-website__panel"
+                onClick={() => handleServiceSelect(item.id)}
+                aria-label={`${item.title} — ${item.actionLabel}`}
+              >
+                <span className="de-wide__service-mark" aria-hidden="true" />
+                <div className="de-wide__service-body">
+                  <h3 className="de-wide__service-title">{item.title}</h3>
+                  <p className="de-wide__service-copy">{item.description}</p>
+                  <span className="de-wide__service-cta">{item.actionLabel}</span>
+                </div>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section
+        id="de-inquiry"
+        className="de-wide__inquiry de-wide__inquiry--banner studio-website__panel"
+        aria-labelledby="de-inquiry-heading"
+      >
+        <div className="de-wide__inquiry-inner">
+          <div className="de-wide__inquiry-intro">
+            <p className="de-wide__inquiry-eyebrow">Ready when you are</p>
+            <h2 id="de-inquiry-heading" className="de-wide__inquiry-title">
+              Start a project
+            </h2>
+            <p className="de-wide__inquiry-copy">
+              Choose a service and share your email — we will open a pre-filled message so you can
+              reach CloudDropDesigns directly.
+            </p>
+            <ul className="de-wide__inquiry-steps" aria-label="What happens next">
+              <li>Pick the service that fits your goal</li>
+              <li>Send a quick note from your email app</li>
+              <li>Hear back from the studio directly</li>
+            </ul>
+          </div>
+
+          <div className="de-wide__inquiry-form">
+            <InquiryForm {...formProps} />
+          </div>
         </div>
-
-        <div className="de-wide__inquiry-form">
-          <InquiryForm {...formProps} />
-        </div>
-      </div>
-    </section>
-  </div>
-);
+      </section>
+    </div>
+  );
+};
 
 const DropAndElevatePage = ({ embed = false }) => {
   const { theme } = useTheme();

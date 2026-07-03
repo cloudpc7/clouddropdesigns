@@ -159,14 +159,7 @@ const SkilledByDesignPage = ({ embed = false }) => {
             </ul>
           </section>
 
-          <section className="studio-website__section" aria-labelledby="skilled-toolkit-heading">
-            <div className="studio-website__section-head">
-              <h2 id="skilled-toolkit-heading" className="studio-website__section-title">
-                Developer toolkit
-              </h2>
-              <span className="studio-website__section-rule" aria-hidden="true" />
-            </div>
-
+          <section className="studio-website__section" aria-label="Developer toolkit">
             <div className="skilled-wide__groups">
               {toolGroups.map((group) => (
                 <article key={group.id} className="skilled-wide__group studio-website__panel">

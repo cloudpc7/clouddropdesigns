@@ -64,29 +64,27 @@ const PortalListCard = ({ sections, onSelectOption, activeId }) => {
                 <div
                   key={section.id}
                   className={`portal-list-option ${isActive ? 'is-active' : ''}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onSelectOption(section.id);
-                  }}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      onSelectOption(section.id);
-                    }
-                  }}
-                  aria-label={`Open ${section.label}`}
                 >
                   <div className="portal-list-option__indicator" />
-                  
-                  <div className="portal-list-option__main">
-                    <h4 className="portal-list-option__label">{section.label}</h4>
-                    <p className="portal-list-option__hint">{section.action}</p>
-                  </div>
-                  <span className="portal-list-option__arrow" aria-hidden="true">
-                    &rarr;
-                  </span>
+
+                  <Link to={section.path} className="portal-list-option__link">
+                    <div className="portal-list-option__main">
+                      <h4 className="portal-list-option__label">{section.label}</h4>
+                      <p className="portal-list-option__hint">{section.action}</p>
+                    </div>
+                  </Link>
+
+                  <button
+                    type="button"
+                    className="portal-list-option__preview"
+                    onClick={() => onSelectOption(section.id)}
+                    aria-expanded={isActive}
+                    aria-controls="portal-offcanvas-panel"
+                    aria-label={`Preview ${section.label}`}
+                  >
+                    <span className="portal-list-option__preview-label">Preview</span>
+                    <span className="portal-list-option__preview-chevron" aria-hidden="true" />
+                  </button>
                 </div>
               );
             })}
@@ -288,7 +286,9 @@ const HomePage = () => {
                   <h2 id="home-portal-heading" className="studio-website__section-title">
                     Studio Portal
                   </h2>
-                  <p className="home-wide__section-lead">Tap a section to preview.</p>
+                  <p className="home-wide__section-lead">
+                    Use the menu above to open a page, or select a section to preview.
+                  </p>
                 </div>
                 <span className="studio-website__section-rule" aria-hidden="true" />
               </div>
@@ -307,9 +307,14 @@ const HomePage = () => {
               aria-labelledby="home-portfolio-heading"
             >
               <div className="studio-website__section-head">
-                <h2 id="home-portfolio-heading" className="studio-website__section-title">
-                  Featured Work
-                </h2>
+                <div className="home-wide__section-copy">
+                  <h2 id="home-portfolio-heading" className="studio-website__section-title">
+                    Featured Work
+                  </h2>
+                  <p className="home-wide__section-lead">
+                    A sample of recent builds from the studio.
+                  </p>
+                </div>
                 <span className="studio-website__section-rule" aria-hidden="true" />
               </div>
 
@@ -319,6 +324,12 @@ const HomePage = () => {
                     <ProjectShowcaseTile project={project} />
                   </div>
                 ))}
+              </div>
+
+              <div className="home-portfolio__footer">
+                <Link to="/studio/code-drops" className="home-portfolio__view-all">
+                  View all Code Drops &rarr;
+                </Link>
               </div>
             </section>
 
@@ -344,9 +355,14 @@ const HomePage = () => {
           onClick={() => setActiveDetailId(null)}
         />
         <animated.div
+          id="portal-offcanvas-panel"
           className="portal-offcanvas__panel"
           style={panelSpring}
           data-theme={theme}
+          role="dialog"
+          aria-modal="true"
+          aria-hidden={!activeDetailId}
+          aria-label={currentDetailSection ? `${currentDetailSection.label} preview` : undefined}
         >
           <button
             type="button"

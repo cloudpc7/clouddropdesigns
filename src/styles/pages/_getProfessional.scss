@@ -289,7 +289,7 @@ $card-matte: #141414;
   right: 0.75rem;
   border: 0;
   background: transparent;
-  color: rgba(244, 242, 238, 0.72);
+  color: var(--cd-text-muted);
   font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
@@ -324,7 +324,7 @@ $card-matte: #141414;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.74rem;
   line-height: 1.55;
-  color: rgba(244, 242, 238, 0.68);
+  color: var(--cd-text-muted);
 }
 
 .gp-inquiry-modal__intro,
@@ -333,7 +333,7 @@ $card-matte: #141414;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.78rem;
   line-height: 1.55;
-  color: rgba(244, 242, 238, 0.68);
+  color: var(--cd-text-muted);
 }
 
 .gp-inquiry-modal__form {
@@ -363,7 +363,7 @@ $card-matte: #141414;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(244, 242, 238, 0.58);
+  color: var(--cd-text-subtle);
 }
 
 .gp-inquiry-modal__fieldset .gp-inquiry-modal__label {
@@ -390,7 +390,7 @@ $card-matte: #141414;
   line-height: 1.4;
 
   &::placeholder {
-    color: rgba(244, 242, 238, 0.62);
+    color: var(--cd-text-muted);
     opacity: 1;
   }
 
@@ -478,17 +478,17 @@ $card-matte: #141414;
 }
 
 [data-theme='light'] .gp-inquiry-modal__service-description {
-  color: rgba(20, 20, 20, 0.62);
+  color: var(--cd-text-muted);
 }
 
 [data-theme='light'] .gp-inquiry-modal__intro,
 [data-theme='light'] .gp-inquiry-modal__confirmation-copy {
-  color: rgba(20, 20, 20, 0.68);
+  color: var(--cd-text-muted);
 }
 
 [data-theme='light'] .gp-inquiry-modal__label,
 [data-theme='light'] .gp-inquiry-modal__sublabel {
-  color: rgba(20, 20, 20, 0.52);
+  color: var(--cd-text-subtle);
 }
 
 [data-theme='light'] .gp-inquiry-modal__field input,

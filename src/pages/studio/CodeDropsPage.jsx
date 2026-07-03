@@ -214,14 +214,7 @@ const CodeDropsPage = ({ embed = false }) => {
 
       <div className="studio-wide-only">
         <StudioWebsiteLayout activeId="code-drops" className="cd-wide">
-          <section aria-labelledby="cd-portfolio-heading">
-            <div className="studio-website__section-head">
-              <h2 id="cd-portfolio-heading" className="studio-website__section-title">
-                Portfolio
-              </h2>
-              <span className="studio-website__section-rule" aria-hidden="true" />
-            </div>
-
+          <section aria-label="Portfolio">
             <div className="cd-wide__grid">
               {codeDropsProjects.map((project) => (
                 <ProjectShowcaseTile key={project.id} project={project} />

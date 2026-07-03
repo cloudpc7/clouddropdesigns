@@ -34,6 +34,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install API function dependencies
+        run: npm ci --prefix functions-api
+
       - name: Build site
         run: npm run build
 
@@ -41,6 +44,9 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CLOUDDROPDESIGNS }}
+
+      - name: Setup Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools@14

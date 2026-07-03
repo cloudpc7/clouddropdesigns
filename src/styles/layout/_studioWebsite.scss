@@ -47,18 +47,6 @@ html, body {
   // High-performance blur & glass properties
   -webkit-backdrop-filter: blur(24px) saturate(200%);
   backdrop-filter: blur(24px) saturate(200%);
-  transition: 
-    background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-    border-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-    box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-  &:hover {
-    --header-bg: rgba(20, 20, 20, 0.72);
-    --header-border: rgba(126, 184, 212, 0.38);
-    box-shadow: 
-      0 12px 40px rgba(0, 0, 0, 0.45),
-      0 0 24px rgba(126, 184, 212, 0.3);
-  }
 }
 
 .studio-website__header-inner {
@@ -87,14 +75,6 @@ html, body {
     --header-glow-box: 0 0 16px rgba(47, 112, 137, 0.32);
     --header-glow-text: 0 0 10px rgba(47, 112, 137, 0.75);
     --header-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-
-    &:hover {
-      --header-bg: rgba(244, 242, 238, 0.75);
-      --header-border: rgba(47, 112, 137, 0.25);
-      box-shadow: 
-        0 12px 32px rgba(0, 0, 0, 0.08),
-        0 0 20px rgba(47, 112, 137, 0.22);
-    }
   }
 }
 
@@ -109,7 +89,7 @@ html, body {
   text-decoration: none;
   color: var(--header-brand);
   white-space: nowrap;
-  transition: color 0.3s ease;
+  transition: color 0.18s ease;
 
   &::before {
     content: 'CD';
@@ -124,7 +104,7 @@ html, body {
     font-weight: 700;
     letter-spacing: 0.14em;
     color: $accent;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.18s ease;
   }
 
   &:hover,
@@ -170,19 +150,15 @@ html, body {
   border-radius: 4px;
   border: 1px solid transparent;
   transition:
-    color 0.3s ease,
-    border-color 0.3s ease,
-    background-color 0.3s ease,
-    box-shadow 0.3s ease,
-    text-shadow 0.3s ease;
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
 
   &:hover,
   &:focus-visible {
     color: var(--header-nav-link-hover);
     background: var(--header-nav-link-active-bg);
     border-color: var(--header-nav-link-active-border);
-    box-shadow: var(--header-glow-box);
-    text-shadow: var(--header-glow-text);
     outline: none;
   }
 
@@ -190,8 +166,6 @@ html, body {
     color: var(--header-nav-link-hover);
     background: var(--header-nav-link-active-bg);
     border-color: var(--header-nav-link-active-border);
-    box-shadow: var(--header-glow-box);
-    text-shadow: var(--header-glow-text);
   }
 }
 
@@ -497,4 +471,18 @@ html, body {
 
 [data-theme='dark'] .studio-website__stat-value {
   color: $paper;
+}
+
+@media (min-width: 1024px) {
+  .studio-website__section-rule {
+    display: none;
+  }
+
+  .studio-website__section-head {
+    margin-bottom: 1rem;
+  }
+
+  .studio-website__section + .studio-website__section {
+    margin-top: clamp(2.75rem, 5vw, 3.75rem);
+  }
 }
