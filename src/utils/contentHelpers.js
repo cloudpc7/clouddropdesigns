@@ -1,3 +1,4 @@
+import { GET_PROFESSIONAL_PROFILE } from '../content/getProfessionalContent';
 import { resolveAssetUrl } from './resolveAssetUrl';
 
 const DEFAULT_SITE_URL = 'https://clouddropdesigns.com';
@@ -71,5 +72,6 @@ export const resolveGetProfessionalProfile = (profile) =>
     ? {
         ...profile,
         photo: resolveAssetUrl(profile.photo),
+        trustBio: profile.trustBio ?? GET_PROFESSIONAL_PROFILE.trustBio,
       }
     : null;

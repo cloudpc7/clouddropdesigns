@@ -28,7 +28,7 @@ const HomeTrustAnchor = () => {
         <p className="home-trust-anchor__meta">
           {profile.title} · {profile.experience}
         </p>
-        <p className="home-trust-anchor__bio">{profile.mobileBio}</p>
+        <p className="home-trust-anchor__bio">{profile.trustBio}</p>
       </div>
 
       <div className="home-trust-anchor__action">

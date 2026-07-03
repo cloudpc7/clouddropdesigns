@@ -115,66 +115,6 @@ $accent: #7eb8d4;
   color: var(--cd-text-muted);
 }
 
-.gp-wide__connect-head {
-  max-width: 52rem;
-  margin-inline: auto;
-}
-
-.gp-wide__connect-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
-  gap: clamp(0.75rem, 1.5vw, 1rem);
-  max-width: 52rem;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-}
-
-.gp-wide__connect-link {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  padding: 0.85rem 0.95rem;
-  text-decoration: none;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.72);
-  transition:
-    border-color 0.2s ease,
-    transform 0.2s ease;
-
-  &:hover,
-  &:focus-visible {
-    border-color: rgba(126, 184, 212, 0.45);
-    transform: translateY(-1px);
-    outline: none;
-  }
-}
-
-.gp-wide__connect-icon {
-  width: 1.35rem;
-  height: 1.35rem;
-  object-fit: contain;
-  filter: var(--cd-icon-filter);
-}
-
-.gp-wide__connect-label {
-  display: block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #141414;
-}
-
-.gp-wide__connect-handle {
-  display: block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.72rem;
-  color: var(--cd-text-subtle);
-}
-
 .gp-wide__build-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -777,7 +717,6 @@ $accent: #7eb8d4;
 }
 
 [data-theme='dark'] .gp-wide__name,
-[data-theme='dark'] .gp-wide__connect-label,
 [data-theme='dark'] .gp-wide__expertise-label,
 [data-theme='dark'] .de-wide__service-title,
 [data-theme='dark'] .de-wide__inquiry-title {
@@ -788,10 +727,6 @@ $accent: #7eb8d4;
 [data-theme='dark'] .gp-wide__experience,
 [data-theme='dark'] .gp-wide__expertise-detail {
   color: var(--cd-text-muted);
-}
-
-[data-theme='dark'] .gp-wide__connect-handle {
-  color: var(--cd-text-subtle);
 }
 
 [data-theme='dark'] .gp-wide__principles-text,
@@ -911,7 +846,6 @@ $accent: #7eb8d4;
   }
 }
 
-[data-theme='dark'] .gp-wide__connect-link,
 [data-theme='dark'] .skilled-wide__tool-tile {
   border-color: rgba(126, 184, 212, 0.16);
   background: rgba(255, 255, 255, 0.04);

@@ -15,7 +15,6 @@ const GetProfessionalWideContent = ({
   expertise,
   workingPrinciples,
   profile,
-  links,
 }) => (
   <div className="gp-wide__body">
     <section
@@ -119,43 +118,6 @@ const GetProfessionalWideContent = ({
         </div>
       </div>
     </section>
-
-    <section
-      className="studio-website__section gp-wide__section gp-wide__connect"
-      aria-labelledby="gp-connect-heading"
-    >
-      <div className="studio-website__section-head gp-wide__connect-head">
-        <h2 id="gp-connect-heading" className="studio-website__section-title">
-          Connect
-        </h2>
-        <span className="studio-website__section-rule" aria-hidden="true" />
-      </div>
-
-      <ul className="gp-wide__connect-grid">
-        {links.map((link) => (
-          <li key={link.id}>
-            <a
-              href={link.href}
-              className="gp-wide__connect-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src={link.icon}
-                alt=""
-                className="gp-wide__connect-icon"
-                width={22}
-                height={22}
-              />
-              <span>
-                <span className="gp-wide__connect-label">{link.label}</span>
-                <span className="gp-wide__connect-handle">{link.handle}</span>
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
   </div>
 );
 
@@ -176,7 +138,6 @@ const GetProfessionalPage = ({ embed = false }) => {
           expertise={expertise}
           workingPrinciples={workingPrinciples}
           profile={profile}
-          links={links}
         />
         <ProjectStartInquiryModal open={inquiryOpen} onClose={closeInquiry} />
       </div>
@@ -269,7 +230,6 @@ const GetProfessionalPage = ({ embed = false }) => {
           expertise={expertise}
           workingPrinciples={workingPrinciples}
           profile={profile}
-          links={links}
         />
         </StudioWebsiteLayout>
       </div>

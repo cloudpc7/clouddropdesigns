@@ -59,6 +59,7 @@ export const GET_PROFESSIONAL_PROFILE = {
   title: 'Developer',
   experience: '10+ years experience in information technology',
   bio: 'I start by understanding how you want your business to show up — then I design and build web and mobile experiences that reflect your vision, not a generic template. With 10+ years in information technology, I\'ve shipped live portfolio work including VibeNMED and business-facing sites such as Hemet Valley Tools and Sonora Tires Inc, taking ideas from concept to production-ready launch. You work directly with me from first conversation through delivery, and I bring the same standards to every client project.',
+  trustBio: 'Founder-led studio for custom web and mobile products.',
   mobileBio:
     'I\'m Paul, the founder and developer at CloudDropDesigns, specializing in custom web and mobile solutions. Delivering scalable web and mobile solutions for businesses.',
   photo: portraitPhoto,
