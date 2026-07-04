@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import ContentGate from './components/ContentGate';
+import ScrollToTop from './components/ScrollToTop';
 import { usePageSeo } from './hooks/usePageSeo';
 import HomePage from './pages/HomePage';
 import SitemapPage from './pages/SitemapPage';
@@ -18,6 +19,7 @@ const App = () => {
 
   return (
     <ContentGate>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/sitemap" element={<SitemapPage />} />
