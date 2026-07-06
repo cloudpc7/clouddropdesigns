@@ -13,4 +13,5 @@ app.listen(PORT, () => {
   console.log(`  GET http://localhost:${PORT}/api/content`);
   console.log(`  GET http://localhost:${PORT}/api/content/codeDrops`);
   console.log(`  POST http://localhost:${PORT}/api/inquiry`);
+  console.log(`  GET  http://localhost:${PORT}/api/inquiry/availability?date=YYYY-MM-DD`);
 });

@@ -1,6 +1,10 @@
 const { validateInquiryPayload } = require('./inquiryValidation');
 const { buildInquiryEmailContent, sendInquiryEmail } = require('./inquiryEmail');
-const { createInquiryCalendarEvent } = require('./googleCalendar');
+const {
+  createInquiryCalendarEvent,
+  getInquiryAvailabilityForDate,
+  isInquirySlotBooked,
+} = require('./googleCalendar');
 
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 const RATE_LIMIT_MAX = 5;
@@ -60,7 +64,55 @@ const verifyTurnstile = async (token, ip) => {
   return result.success === true;
 };
 
+const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+
+const isSelectableInquiryDate = (dateString) => {
+  if (!DATE_PATTERN.test(dateString)) {
+    return false;
+  }
+
+  const candidate = new Date(`${dateString}T12:00:00`);
+  candidate.setHours(0, 0, 0, 0);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  if (candidate < today) {
+    return false;
+  }
+
+  const day = candidate.getDay();
+  return day >= 1 && day <= 6;
+};
+
 const registerInquiryRoute = (app) => {
+  app.get('/api/inquiry/availability', async (req, res, next) => {
+    try {
+      const date = typeof req.query.date === 'string' ? req.query.date.trim() : '';
+
+      if (!isSelectableInquiryDate(date)) {
+        res.status(400).json({
+          error: 'A valid future weekday date is required (YYYY-MM-DD).',
+        });
+        return;
+      }
+
+      const availability = await getInquiryAvailabilityForDate(date);
+
+      res.set('Cache-Control', 'public, max-age=30');
+      res.json({
+        ok: availability.ok,
+        dryRun: availability.dryRun,
+        date: availability.date ?? date,
+        timezone: availability.timezone ?? 'America/Los_Angeles',
+        bookedSlots: availability.bookedSlots ?? [],
+        availableSlots: availability.availableSlots ?? [],
+      });
+    } catch (error) {
+      next(error);
+    }
+  });
+
   app.post('/api/inquiry', async (req, res, next) => {
     try {
       const ip = getClientIp(req);
@@ -88,6 +140,16 @@ const registerInquiryRoute = (app) => {
           error: 'Verification failed. Please try again.',
         });
         return;
+      }
+
+      if (payload.preferredDate && payload.preferredTime) {
+        const slotBooked = await isInquirySlotBooked(payload.preferredDate, payload.preferredTime);
+        if (slotBooked) {
+          res.status(409).json({
+            error: 'That time slot is no longer available. Please choose another time.',
+          });
+          return;
+        }
       }
 
       const emailContent = buildInquiryEmailContent(payload);

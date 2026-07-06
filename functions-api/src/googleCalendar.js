@@ -42,6 +42,96 @@ const getCalendarClient = () => {
   return google.calendar({ version: 'v3', auth });
 };
 
+const BOOKABLE_SLOT_TIMES = (() => {
+  const slots = [];
+
+  for (let hour = 7; hour <= 18; hour += 1) {
+    for (const minute of [0, 30]) {
+      if (hour === 18 && minute === 30) {
+        continue;
+      }
+
+      slots.push(`${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`);
+    }
+  }
+
+  return slots;
+})();
+
+const SLOT_DURATION_MINUTES = 30;
+
+const timeToMinutes = (timeValue) => {
+  const [hour, minute] = timeValue.split(':').map((part) => Number(part));
+  return hour * 60 + minute;
+};
+
+const minutesToTime = (totalMinutes) => {
+  const hour = Math.floor(totalMinutes / 60);
+  const minute = totalMinutes % 60;
+  return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+};
+
+const minutesFromDateTime = (dateTime, timezone) => {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: timezone,
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).formatToParts(new Date(dateTime));
+
+  const hour = Number(parts.find((part) => part.type === 'hour')?.value ?? 0);
+  const minute = Number(parts.find((part) => part.type === 'minute')?.value ?? 0);
+  return hour * 60 + minute;
+};
+
+const dateFromDateTime = (dateTime, timezone) => {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: timezone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(new Date(dateTime));
+
+  const year = parts.find((part) => part.type === 'year')?.value;
+  const month = parts.find((part) => part.type === 'month')?.value;
+  const day = parts.find((part) => part.type === 'day')?.value;
+  return `${year}-${month}-${day}`;
+};
+
+const getBookedSlotsFromEvents = (events, dateString, timezone) => {
+  const booked = new Set();
+
+  for (const event of events) {
+    if (event.status === 'cancelled') {
+      continue;
+    }
+
+    const startDateTime = event.start?.dateTime;
+    const endDateTime = event.end?.dateTime;
+    if (!startDateTime || !endDateTime) {
+      continue;
+    }
+
+    if (dateFromDateTime(startDateTime, timezone) !== dateString) {
+      continue;
+    }
+
+    const eventStart = minutesFromDateTime(startDateTime, timezone);
+    const eventEnd = minutesFromDateTime(endDateTime, timezone);
+
+    for (const slot of BOOKABLE_SLOT_TIMES) {
+      const slotStart = timeToMinutes(slot);
+      const slotEnd = slotStart + SLOT_DURATION_MINUTES;
+
+      if (slotStart < eventEnd && slotEnd > eventStart) {
+        booked.add(slot);
+      }
+    }
+  }
+
+  return [...booked].sort();
+};
+
 const addMinutesToTime = (timeValue, minutesToAdd) => {
   const [hour, minute] = timeValue.split(':').map((part) => Number(part));
   const totalMinutes = hour * 60 + minute + minutesToAdd;
@@ -73,6 +163,54 @@ const resolveInquiriesCalendarId = async (calendar) => {
   });
 
   return created.id;
+};
+
+const getInquiryAvailabilityForDate = async (dateString) => {
+  const calendar = getCalendarClient();
+  if (!calendar) {
+    return {
+      ok: false,
+      dryRun: true,
+      reason: 'calendar_not_configured',
+      bookedSlots: [],
+      availableSlots: BOOKABLE_SLOT_TIMES,
+    };
+  }
+
+  const timezone = getTimezone();
+  const calendarId = await resolveInquiriesCalendarId(calendar);
+  const timeMin = `${dateString}T00:00:00-08:00`;
+  const timeMax = `${dateString}T23:59:59-07:00`;
+
+  const { data } = await calendar.events.list({
+    calendarId,
+    timeMin,
+    timeMax,
+    singleEvents: true,
+    orderBy: 'startTime',
+  });
+
+  const bookedSlots = getBookedSlotsFromEvents(data.items || [], dateString, timezone);
+  const bookedSet = new Set(bookedSlots);
+  const availableSlots = BOOKABLE_SLOT_TIMES.filter((slot) => !bookedSet.has(slot));
+
+  return {
+    ok: true,
+    dryRun: false,
+    date: dateString,
+    timezone,
+    bookedSlots,
+    availableSlots,
+  };
+};
+
+const isInquirySlotBooked = async (dateString, timeString) => {
+  const availability = await getInquiryAvailabilityForDate(dateString);
+  if (!availability.ok) {
+    return false;
+  }
+
+  return availability.bookedSlots.includes(timeString);
 };
 
 const createInquiryCalendarEvent = async (payload, emailContent) => {
@@ -146,6 +284,9 @@ const createInquiryCalendarEvent = async (payload, emailContent) => {
 };
 
 module.exports = {
+  BOOKABLE_SLOT_TIMES,
   createInquiryCalendarEvent,
+  getInquiryAvailabilityForDate,
   getServiceAccountCredentials,
+  isInquirySlotBooked,
 };

@@ -370,6 +370,14 @@ $card-matte: #141414;
   margin-bottom: 0.55rem;
 }
 
+.gp-inquiry-modal__availability-note {
+  margin-top: 0.35rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  line-height: 1.4;
+  color: var(--cd-text-muted);
+}
+
 .gp-inquiry-modal__schedule-hint {
   margin: -0.2rem 0 0.65rem;
   font-family: 'Montserrat', sans-serif;

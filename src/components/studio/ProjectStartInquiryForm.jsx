@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { submitProjectInquiry } from '../../api/inquiryApi';
+import { fetchInquiryAvailability, submitProjectInquiry } from '../../api/inquiryApi';
 import { useGetProfessional, useSiteContact } from '../../hooks/useContent';
 import {
   PROJECT_INQUIRY_SCHEDULE_HINT,
@@ -91,6 +91,9 @@ const ProjectStartInquiryForm = ({
   const [submitError, setSubmitError] = useState('');
   const [confirmationMessage, setConfirmationMessage] = useState('');
   const [turnstileToken, setTurnstileToken] = useState('');
+  const [bookedSlots, setBookedSlots] = useState([]);
+  const [availabilityLoading, setAvailabilityLoading] = useState(false);
+  const [availabilityError, setAvailabilityError] = useState('');
 
   useEffect(() => {
     setForm({
@@ -102,7 +105,53 @@ const ProjectStartInquiryForm = ({
     setSubmitError('');
     setConfirmationMessage('');
     setTurnstileToken('');
+    setBookedSlots([]);
+    setAvailabilityLoading(false);
+    setAvailabilityError('');
   }, [initialProjectType, serviceLabel]);
+
+  useEffect(() => {
+    if (!form.preferredDate) {
+      setBookedSlots([]);
+      setAvailabilityLoading(false);
+      setAvailabilityError('');
+      return undefined;
+    }
+
+    let cancelled = false;
+    setAvailabilityLoading(true);
+    setAvailabilityError('');
+
+    fetchInquiryAvailability(form.preferredDate)
+      .then((data) => {
+        if (cancelled) {
+          return;
+        }
+
+        const nextBooked = data.bookedSlots ?? [];
+        setBookedSlots(nextBooked);
+        setForm((current) =>
+          nextBooked.includes(current.preferredTime)
+            ? { ...current, preferredTime: '' }
+            : current,
+        );
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setBookedSlots([]);
+          setAvailabilityError(error.message || 'Unable to load availability.');
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setAvailabilityLoading(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [form.preferredDate]);
 
   const turnstileRequired = Boolean(TURNSTILE_SITE_KEY);
   const canSend = useMemo(
@@ -121,8 +170,30 @@ const ProjectStartInquiryForm = ({
   };
 
   const handlePreferredDateChange = (value) => {
-    setForm((current) => ({ ...current, preferredDate: value }));
+    setForm((current) => ({ ...current, preferredDate: value, preferredTime: '' }));
   };
+
+  const bookedSlotSet = useMemo(() => new Set(bookedSlots), [bookedSlots]);
+
+  const timeSlotOptions = useMemo(
+    () =>
+      PROJECT_INQUIRY_TIME_SLOTS.map((slot) => {
+        if (!slot.value) {
+          return slot;
+        }
+
+        if (bookedSlotSet.has(slot.value)) {
+          return {
+            ...slot,
+            label: `${slot.label} (Booked)`,
+            disabled: true,
+          };
+        }
+
+        return slot;
+      }),
+    [bookedSlotSet],
+  );
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -308,13 +379,32 @@ const ProjectStartInquiryForm = ({
                   value={form.preferredTime}
                   onChange={updateField('preferredTime')}
                   className={form.preferredTime ? '' : 'gp-inquiry-modal__select--placeholder'}
+                  disabled={!form.preferredDate || availabilityLoading}
+                  aria-busy={availabilityLoading}
                 >
-                  {PROJECT_INQUIRY_TIME_SLOTS.map((slot) => (
-                    <option key={slot.value || 'empty'} value={slot.value} disabled={!slot.value}>
+                  {timeSlotOptions.map((slot) => (
+                    <option
+                      key={slot.value || 'empty'}
+                      value={slot.value}
+                      disabled={!slot.value || slot.disabled}
+                    >
                       {slot.label}
                     </option>
                   ))}
                 </select>
+                {form.preferredDate && availabilityLoading ? (
+                  <span className="gp-inquiry-modal__availability-note">Checking availability…</span>
+                ) : null}
+                {availabilityError ? (
+                  <span className="gp-inquiry-modal__field-error" role="alert">
+                    {availabilityError}
+                  </span>
+                ) : null}
+                {form.preferredDate && !availabilityLoading && !availabilityError && bookedSlots.length ? (
+                  <span className="gp-inquiry-modal__availability-note">
+                    Booked times are shown as unavailable.
+                  </span>
+                ) : null}
               </label>
             </div>
             <label className="gp-inquiry-modal__field">

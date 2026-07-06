@@ -1,3 +1,17 @@
+export const fetchInquiryAvailability = async (date) => {
+  const response = await fetch(`/api/inquiry/availability?date=${encodeURIComponent(date)}`, {
+    headers: { Accept: 'application/json' },
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.error || 'Unable to load availability for that date.');
+  }
+
+  return data;
+};
+
 export const submitProjectInquiry = async (payload) => {
   const response = await fetch('/api/inquiry', {
     method: 'POST',
