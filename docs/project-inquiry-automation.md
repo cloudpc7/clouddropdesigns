@@ -70,6 +70,8 @@ Direct Google Calendar API integration so events appear automatically without op
 
 ### 1. Copy SMTP secrets to CloudDropDesigns Firebase
 
+**Step-by-step (GCP Console, VibeNMED project, App Passwords):** see [`smtp-secrets-from-vibenmed.md`](./smtp-secrets-from-vibenmed.md).
+
 If VibeNMED already sends mail, reuse the same SMTP credentials on the `clouddropdesigns` project:
 
 ```bash
