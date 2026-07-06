@@ -68,17 +68,17 @@ Direct Google Calendar API integration so events appear automatically without op
 
 ## Setup checklist
 
-### 1. Copy SMTP secrets to CloudDropDesigns Firebase
+### 1. Set SMTP secrets on CloudDropDesigns Firebase
 
-**Step-by-step (GCP Console, VibeNMED project, App Passwords):** see [`smtp-secrets-from-vibenmed.md`](./smtp-secrets-from-vibenmed.md).
+Firebase-managed secrets **cannot be copied** from VibeNMED (values are not readable after save). Create a new **Google App Password** and set all four secrets fresh.
 
-If VibeNMED already sends mail, reuse the same SMTP credentials on the `clouddropdesigns` project:
+**Full guide:** [`smtp-secrets-from-vibenmed.md`](./smtp-secrets-from-vibenmed.md).
 
 ```bash
-firebase functions:secrets:set SMTP_HOST --project clouddropdesigns
-firebase functions:secrets:set SMTP_PORT --project clouddropdesigns
-firebase functions:secrets:set SMTP_USER --project clouddropdesigns
-firebase functions:secrets:set SMTP_PASS --project clouddropdesigns
+firebase functions:secrets:set SMTP_HOST --project clouddropdesigns   # smtp.gmail.com
+firebase functions:secrets:set SMTP_PORT --project clouddropdesigns   # 587
+firebase functions:secrets:set SMTP_USER --project clouddropdesigns   # cloud@clouddropdesigns.com
+firebase functions:secrets:set SMTP_PASS --project clouddropdesigns   # new App Password from Google Account
 ```
 
 Typical Google Workspace / Gmail SMTP values:
