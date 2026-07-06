@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useGetProfessional, useSiteContact } from '../../hooks/useContent';
+import {
+  PROJECT_INQUIRY_SCHEDULE_HINT,
+  PROJECT_INQUIRY_TIME_SLOTS,
+  inquiryTimeLabel,
+  isValidInquiryWeekday,
+} from '../../utils/projectInquirySchedule';
 import '../../styles/pages/_getProfessional.scss';
 
 const EMPTY_FORM = {
@@ -46,7 +52,7 @@ export const buildProjectInquiryMailtoLink = (
       `Timeline: ${labelFor(timelines, form.timeline)}`,
       form.budget ? `Budget: ${labelFor(budgets, form.budget)}` : null,
       form.preferredDate ? `Preferred date: ${form.preferredDate}` : null,
-      form.preferredTime ? `Preferred time: ${form.preferredTime}` : null,
+      form.preferredTime ? `Preferred time: ${inquiryTimeLabel(form.preferredTime)}` : null,
       form.availabilityNotes.trim()
         ? `Additional availability:\n${form.availabilityNotes.trim()}`
         : null,
@@ -77,6 +83,7 @@ const ProjectStartInquiryForm = ({
     projectType: initialProjectType || '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [preferredDateError, setPreferredDateError] = useState('');
 
   useEffect(() => {
     setForm({
@@ -84,6 +91,7 @@ const ProjectStartInquiryForm = ({
       projectType: initialProjectType || '',
     });
     setSubmitted(false);
+    setPreferredDateError('');
   }, [initialProjectType, serviceLabel]);
 
   const canSend =
@@ -95,6 +103,19 @@ const ProjectStartInquiryForm = ({
 
   const updateField = (field) => (event) => {
     setForm((current) => ({ ...current, [field]: event.target.value }));
+  };
+
+  const handlePreferredDateChange = (event) => {
+    const { value } = event.target;
+
+    if (value && !isValidInquiryWeekday(value)) {
+      setPreferredDateError('Please choose a weekday (Monday through Saturday).');
+      setForm((current) => ({ ...current, preferredDate: '' }));
+      return;
+    }
+
+    setPreferredDateError('');
+    setForm((current) => ({ ...current, preferredDate: value }));
   };
 
   const handleSubmit = (event) => {
@@ -236,6 +257,7 @@ const ProjectStartInquiryForm = ({
 
           <fieldset className="gp-inquiry-modal__fieldset">
             <legend className="gp-inquiry-modal__label">Preferred time to connect</legend>
+            <p className="gp-inquiry-modal__schedule-hint">{PROJECT_INQUIRY_SCHEDULE_HINT}</p>
             <div className="gp-inquiry-modal__row">
               <label className="gp-inquiry-modal__field">
                 <span className="gp-inquiry-modal__sublabel">Date</span>
@@ -243,17 +265,30 @@ const ProjectStartInquiryForm = ({
                   type="date"
                   name="preferredDate"
                   value={form.preferredDate}
-                  onChange={updateField('preferredDate')}
+                  onChange={handlePreferredDateChange}
+                  aria-invalid={preferredDateError ? 'true' : undefined}
+                  aria-describedby={preferredDateError ? 'preferred-date-error' : undefined}
                 />
+                {preferredDateError ? (
+                  <span id="preferred-date-error" className="gp-inquiry-modal__field-error" role="alert">
+                    {preferredDateError}
+                  </span>
+                ) : null}
               </label>
               <label className="gp-inquiry-modal__field">
                 <span className="gp-inquiry-modal__sublabel">Time</span>
-                <input
-                  type="time"
+                <select
                   name="preferredTime"
                   value={form.preferredTime}
                   onChange={updateField('preferredTime')}
-                />
+                  className={form.preferredTime ? '' : 'gp-inquiry-modal__select--placeholder'}
+                >
+                  {PROJECT_INQUIRY_TIME_SLOTS.map((slot) => (
+                    <option key={slot.value || 'empty'} value={slot.value} disabled={!slot.value}>
+                      {slot.label}
+                    </option>
+                  ))}
+                </select>
               </label>
             </div>
             <label className="gp-inquiry-modal__field">

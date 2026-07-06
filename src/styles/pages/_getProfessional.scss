@@ -370,6 +370,22 @@ $card-matte: #141414;
   margin-bottom: 0.55rem;
 }
 
+.gp-inquiry-modal__schedule-hint {
+  margin: -0.2rem 0 0.65rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  line-height: 1.45;
+  color: var(--cd-text-muted);
+}
+
+.gp-inquiry-modal__field-error {
+  margin-top: 0.35rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  line-height: 1.4;
+  color: #e8a4a4;
+}
+
 .gp-inquiry-modal__field {
   display: flex;
   flex-direction: column;
@@ -484,6 +500,14 @@ $card-matte: #141414;
 [data-theme='light'] .gp-inquiry-modal__intro,
 [data-theme='light'] .gp-inquiry-modal__confirmation-copy {
   color: var(--cd-text-muted);
+}
+
+[data-theme='light'] .gp-inquiry-modal__schedule-hint {
+  color: var(--cd-text-muted);
+}
+
+[data-theme='light'] .gp-inquiry-modal__field-error {
+  color: #b54545;
 }
 
 [data-theme='light'] .gp-inquiry-modal__label,
