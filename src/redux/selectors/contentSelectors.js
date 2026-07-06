@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
+import { CODE_DROPS_PROJECTS } from '../../content/codeDropsProjects';
 import {
   SKILLED_MANTRA,
   SKILLED_NARRATIVE,
@@ -47,7 +48,21 @@ export const selectStudioPageMeta = (state) => selectSections(state).studioPageM
 
 export const selectCodeDropsProjects = createSelector(
   [(state) => selectSections(state).codeDrops?.projects],
-  (projects) => (projects ?? []).map(resolveCodeDropProject),
+  (projects) => {
+    const apiById = new Map((projects ?? []).map((project) => [project.id, project]));
+
+    return CODE_DROPS_PROJECTS.map((staticProject) => {
+      const apiProject = apiById.get(staticProject.id) ?? {};
+
+      return resolveCodeDropProject({
+        ...apiProject,
+        ...staticProject,
+        image: staticProject.image,
+        thumb: staticProject.thumb,
+        mobileImage: staticProject.mobileImage ?? apiProject.mobileImage,
+      });
+    });
+  },
 );
 
 export const selectDropElevate = (state) => selectSections(state).dropElevate ?? {};

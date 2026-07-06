@@ -1,4 +1,4 @@
-import namerrsScreen from '../assets/namerrs/screenshot.png';
+import namerrsTablet from '../assets/namerrs/namerrs-tablet.png';
 import entertainmentScreen from '../assets/entertainment/screenshot.png';
 import sonoraTiresMobile from '../assets/sonoratiresinc/mobile.png';
 import hemetvalleyLogo from '../assets/hemetvalley/logo.png';
@@ -56,12 +56,11 @@ export const CODE_DROPS_PROJECTS = [
     id: 'namerrs',
     name: 'NAMERRS',
     tagline: 'Custom graphic design, apparel, and printed products',
-    category: 'In Development',
-    image: namerrsScreen,
-    thumb: namerrsScreen,
-    href: null,
+    category: 'Web Application',
+    image: namerrsTablet,
+    thumb: namerrsTablet,
+    href: 'https://namerrs.web.app',
     accent: '#7c3aed',
-    inProgress: true,
     screenshotPresentation: true,
     imagePosition: 'top center',
   },
