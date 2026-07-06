@@ -1,5 +1,29 @@
 # Google Calendar Auto-Booking (Workspace) — Setup Guide
 
+## Quick setup checklist
+
+1. **Google Cloud** (`clouddropdesigns`) → enable [Google Calendar API](https://console.cloud.google.com/apis/library/calendar-json.googleapis.com?project=clouddropdesigns)
+2. **Create service account** `inquiry-calendar` → download **JSON key** → copy its **Client ID** (numeric)
+3. **Workspace Admin** → [Domain-wide delegation](https://admin.google.com/) → add Client ID + scope:
+   ```
+   https://www.googleapis.com/auth/calendar
+   ```
+4. **Firebase secret** — paste entire JSON file:
+   ```bash
+   firebase functions:secrets:set GOOGLE_SERVICE_ACCOUNT_JSON --project clouddropdesigns
+   ```
+5. **Deploy:**
+   ```bash
+   firebase deploy --only functions:api --project clouddropdesigns
+   ```
+6. **Test** — submit form with date + time → check **Inquiries** calendar + visitor invite email
+
+Until setup is complete, inquiry **email still works**; calendar logs a dry run.
+
+---
+
+## What this does
+
 When a visitor selects a **date and time** on the project inquiry form, the server:
 
 1. Sends the notification email (same as Phase 1)
