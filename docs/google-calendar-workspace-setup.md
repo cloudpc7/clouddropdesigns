@@ -8,10 +8,11 @@
    ```
    https://www.googleapis.com/auth/calendar
    ```
-4. **Firebase secret** — paste entire JSON file:
+4. **Firebase secret** — use `--data-file` (do **not** paste JSON into the terminal; that often corrupts the key on Windows/Git Bash):
    ```bash
-   firebase functions:secrets:set GOOGLE_SERVICE_ACCOUNT_JSON --project clouddropdesigns
+   firebase functions:secrets:set GOOGLE_SERVICE_ACCOUNT_JSON --data-file ./inquiry-calendar-key.json --project clouddropdesigns
    ```
+   Save your downloaded service account JSON as `inquiry-calendar-key.json` in a safe folder **outside** git. Add `*-key.json` to `.gitignore` if you keep it in the repo folder.
 5. **Deploy:**
    ```bash
    firebase deploy --only functions:api --project clouddropdesigns
@@ -89,13 +90,15 @@ This allows the service account to act on behalf of `cloud@clouddropdesigns.com`
 
 ## Step 4 — Store the service account JSON in Firebase
 
-Paste the **entire contents** of the downloaded JSON file as one secret:
+**Use a file — do not paste into the terminal prompt.** Pasting multi-line JSON in Git Bash/PowerShell often truncates or corrupts the `private_key`, which breaks calendar creation.
 
 ```bash
-firebase functions:secrets:set GOOGLE_SERVICE_ACCOUNT_JSON --project clouddropdesigns
+firebase functions:secrets:set GOOGLE_SERVICE_ACCOUNT_JSON --data-file ./inquiry-calendar-key.json --project clouddropdesigns
 ```
 
-When prompted, paste the full JSON (starts with `{ "type": "service_account", ... }`).
+Replace `./inquiry-calendar-key.json` with the path to your downloaded JSON file.
+
+To fix a bad secret, set it again with `--data-file` (creates a new version), then redeploy `functions:api`.
 
 Optional overrides (defaults are fine for most setups):
 
@@ -135,7 +138,8 @@ Or push to `development` and let CI deploy.
 
 | Symptom | Likely cause |
 |---------|----------------|
-| Email sends, no calendar event | `GOOGLE_SERVICE_ACCOUNT_JSON` missing or invalid JSON |
+| Email sends, no calendar event | `GOOGLE_SERVICE_ACCOUNT_JSON` missing, invalid JSON, or corrupted by terminal paste — reset with `--data-file` |
+| `Invalid GOOGLE_SERVICE_ACCOUNT_JSON` in logs | Secret value is not valid JSON; set again with `--data-file` |
 | `unauthorized_client` or `delegation denied` | Domain-wide delegation not set, wrong Client ID, or wrong scope |
 | Event created, visitor not invited | Check visitor email; Google may delay invite delivery |
 | `Calendar usage limits exceeded` | Rare at low volume; retry later |

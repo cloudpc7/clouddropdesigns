@@ -12,9 +12,13 @@ const getServiceAccountCredentials = () => {
   }
 
   try {
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw.trim());
+    if (typeof parsed.private_key === 'string' && parsed.private_key.includes('\\n')) {
+      parsed.private_key = parsed.private_key.replace(/\\n/g, '\n');
+    }
+    return parsed;
   } catch (error) {
-    console.error('[Google Calendar] Invalid GOOGLE_SERVICE_ACCOUNT_JSON', error);
+    console.error('[Google Calendar] Invalid GOOGLE_SERVICE_ACCOUNT_JSON', error.message);
     return null;
   }
 };
