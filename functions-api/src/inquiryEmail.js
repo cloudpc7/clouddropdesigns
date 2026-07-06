@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer');
-const { buildInquiryMeetingIcs } = require('./inquiryIcs');
 
 const PROJECT_TYPE_LABELS = {
   web: 'Web Application',
@@ -151,31 +150,11 @@ const buildInquiryEmailContent = (payload) => {
 const sendInquiryEmail = async (payload) => {
   const { isConfigured, smtpHost, smtpPort, smtpUser, smtpPass } = getSmtpConfig();
   const to = process.env.INQUIRY_TO_EMAIL || 'cloud@clouddropdesigns.com';
-  const timezone = process.env.INQUIRY_TIMEZONE || 'America/Los_Angeles';
   const { address, label, displayFrom } = buildInquiryFromAddress(payload.projectType);
   const { projectTypeLabel, text, html, preferredWhen } = buildInquiryEmailContent(payload);
   const subject = `[${projectTypeLabel} Inquiry] ${payload.name}${
     payload.serviceLabel ? ` — ${payload.serviceLabel}` : ''
   }`;
-
-  const attachments = [];
-  if (payload.preferredDate && payload.preferredTime) {
-    const icsUid = `inquiry-${Date.now()}-${Math.random().toString(36).slice(2, 10)}@clouddropdesigns.com`;
-    const icsContent = buildInquiryMeetingIcs({
-      uid: icsUid,
-      title: `Project inquiry — ${payload.name}`,
-      description: text,
-      preferredDate: payload.preferredDate,
-      preferredTime: payload.preferredTime,
-      timezone,
-    });
-
-    attachments.push({
-      filename: 'project-inquiry-meeting.ics',
-      content: icsContent,
-      contentType: 'text/calendar; charset=utf-8',
-    });
-  }
 
   if (!isConfigured) {
     console.info('[Inquiry Email Dry Run]', {
@@ -184,7 +163,6 @@ const sendInquiryEmail = async (payload) => {
       replyTo: payload.email,
       subject,
       preferredWhen,
-      hasCalendarAttachment: attachments.length > 0,
       preview: text.slice(0, 500),
     });
     return {
@@ -194,7 +172,6 @@ const sendInquiryEmail = async (payload) => {
       from: address,
       fromLabel: label,
       subject,
-      hasCalendarAttachment: attachments.length > 0,
     };
   }
 
@@ -216,7 +193,6 @@ const sendInquiryEmail = async (payload) => {
     subject,
     text,
     html,
-    attachments,
   });
 
   return {
@@ -226,7 +202,6 @@ const sendInquiryEmail = async (payload) => {
     from: address,
     fromLabel: label,
     subject,
-    hasCalendarAttachment: attachments.length > 0,
   };
 };
 

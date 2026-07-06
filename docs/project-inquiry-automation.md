@@ -52,17 +52,18 @@ Subject example: `[Web Application Inquiry] Jane Doe`
 
 SMTP still authenticates with `SMTP_USER` (your Google account). Plus-addressing delivers to the same inbox without creating Workspace aliases.
 
-### Calendar invite (Phase 1)
+### Calendar (Phase 2 — code deployed, Workspace setup required)
 
-When both date and time are selected, the notification email includes `project-inquiry-meeting.ics`.
+When both date and time are selected:
 
-- Times are interpreted as **Pacific Time** (`America/Los_Angeles`)
+- An event is created on your **Inquiries** Google Calendar automatically
+- The **visitor is invited** by email (Google Calendar invite)
+- No `.ics` attachment on the notification email
+
+**Setup guide:** [`google-calendar-workspace-setup.md`](./google-calendar-workspace-setup.md)
+
+- Times use **Pacific Time** (`America/Los_Angeles`)
 - Duration: **30 minutes**
-- Open the attachment in Gmail and choose **Add to calendar**
-
-### Phase 2 (not built yet)
-
-Direct Google Calendar API integration so events appear automatically without opening the `.ics` attachment.
 
 ---
 

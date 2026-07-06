@@ -89,6 +89,7 @@ const ProjectStartInquiryForm = ({
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [confirmationMessage, setConfirmationMessage] = useState('');
   const [turnstileToken, setTurnstileToken] = useState('');
 
   useEffect(() => {
@@ -99,6 +100,7 @@ const ProjectStartInquiryForm = ({
     setSubmitted(false);
     setSubmitting(false);
     setSubmitError('');
+    setConfirmationMessage('');
     setTurnstileToken('');
   }, [initialProjectType, serviceLabel]);
 
@@ -130,7 +132,7 @@ const ProjectStartInquiryForm = ({
     setSubmitError('');
 
     try {
-      await submitProjectInquiry({
+      const result = await submitProjectInquiry({
         name: form.name.trim(),
         email: form.email.trim(),
         company: form.company.trim(),
@@ -145,6 +147,9 @@ const ProjectStartInquiryForm = ({
         serviceLabel: serviceLabel.trim(),
         turnstileToken,
       });
+      setConfirmationMessage(
+        result.message || 'Thanks — your project details were sent to our team.',
+      );
       setSubmitted(true);
       onSubmitted?.();
     } catch (error) {
@@ -174,10 +179,7 @@ const ProjectStartInquiryForm = ({
         <div className="gp-inquiry-modal__confirmation" role="status">
           <p className="gp-inquiry-modal__confirmation-title">Inquiry sent</p>
           <p className="gp-inquiry-modal__confirmation-copy">
-            Thanks — your project details were sent to our team.
-            {form.preferredDate && form.preferredTime ? (
-              <> If you picked a date and time, a calendar invite was included in the notification.</>
-            ) : null}
+            {confirmationMessage || 'Thanks — your project details were sent to our team.'}
             {showEmailFallback ? (
               <>
                 {' '}
