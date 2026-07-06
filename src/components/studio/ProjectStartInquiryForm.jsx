@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { submitProjectInquiry } from '../../api/inquiryApi';
 import { useGetProfessional, useSiteContact } from '../../hooks/useContent';
 import {
   PROJECT_INQUIRY_SCHEDULE_HINT,
@@ -7,7 +8,10 @@ import {
   inquiryTimeLabel,
 } from '../../utils/projectInquirySchedule';
 import InquiryDatePicker from './InquiryDatePicker';
+import InquiryTurnstile from './InquiryTurnstile';
 import '../../styles/pages/_getProfessional.scss';
+
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || '';
 
 const EMPTY_FORM = {
   name: '',
@@ -78,13 +82,14 @@ const ProjectStartInquiryForm = ({
 }) => {
   const siteContact = useSiteContact();
   const { inquiryTypes, inquiryTimelines, inquiryBudgets } = useGetProfessional();
-  const inquiryOptions = { contact: siteContact, inquiryTypes, inquiryTimelines, inquiryBudgets };
   const [form, setForm] = useState({
     ...EMPTY_FORM,
     projectType: initialProjectType || '',
   });
   const [submitted, setSubmitted] = useState(false);
-
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState('');
 
   useEffect(() => {
     setForm({
@@ -92,14 +97,22 @@ const ProjectStartInquiryForm = ({
       projectType: initialProjectType || '',
     });
     setSubmitted(false);
+    setSubmitting(false);
+    setSubmitError('');
+    setTurnstileToken('');
   }, [initialProjectType, serviceLabel]);
 
-  const canSend =
-    form.name.trim() &&
-    isValidEmail(form.email) &&
-    form.projectType &&
-    form.description.trim() &&
-    form.timeline;
+  const turnstileRequired = Boolean(TURNSTILE_SITE_KEY);
+  const canSend = useMemo(
+    () =>
+      form.name.trim() &&
+      isValidEmail(form.email) &&
+      form.projectType &&
+      form.description.trim() &&
+      form.timeline &&
+      (!turnstileRequired || turnstileToken),
+    [form, turnstileRequired, turnstileToken],
+  );
 
   const updateField = (field) => (event) => {
     setForm((current) => ({ ...current, [field]: event.target.value }));
@@ -109,13 +122,36 @@ const ProjectStartInquiryForm = ({
     setForm((current) => ({ ...current, preferredDate: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!canSend) return;
+    if (!canSend || submitting) return;
 
-    window.location.href = buildProjectInquiryMailtoLink(form, serviceLabel, inquiryOptions);
-    setSubmitted(true);
-    onSubmitted?.();
+    setSubmitting(true);
+    setSubmitError('');
+
+    try {
+      await submitProjectInquiry({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        company: form.company.trim(),
+        phone: form.phone.trim(),
+        projectType: form.projectType,
+        description: form.description.trim(),
+        preferredDate: form.preferredDate,
+        preferredTime: form.preferredTime,
+        availabilityNotes: form.availabilityNotes.trim(),
+        timeline: form.timeline,
+        budget: form.budget,
+        serviceLabel: serviceLabel.trim(),
+        turnstileToken,
+      });
+      setSubmitted(true);
+      onSubmitted?.();
+    } catch (error) {
+      setSubmitError(error.message || 'Unable to send your inquiry right now. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -136,13 +172,16 @@ const ProjectStartInquiryForm = ({
 
       {submitted ? (
         <div className="gp-inquiry-modal__confirmation" role="status">
-          <p className="gp-inquiry-modal__confirmation-title">Ready to send</p>
+          <p className="gp-inquiry-modal__confirmation-title">Inquiry sent</p>
           <p className="gp-inquiry-modal__confirmation-copy">
-            Your email app should open with your project details.
+            Thanks — your project details were sent to our team.
+            {form.preferredDate && form.preferredTime ? (
+              <> If you picked a date and time, a calendar invite was included in the notification.</>
+            ) : null}
             {showEmailFallback ? (
               <>
                 {' '}
-                If it did not, reach us at{' '}
+                You can also reach us at{' '}
                 <a href={`mailto:${siteContact.email}`}>{siteContact.email}</a>.
               </>
             ) : null}
@@ -325,8 +364,20 @@ const ProjectStartInquiryForm = ({
             </label>
           </div>
 
-          <button type="submit" className="gp-inquiry-modal__submit" disabled={!canSend}>
-            Send project details
+          {submitError ? (
+            <p className="gp-inquiry-modal__submit-error" role="alert">
+              {submitError}
+            </p>
+          ) : null}
+
+          <InquiryTurnstile siteKey={TURNSTILE_SITE_KEY} onTokenChange={setTurnstileToken} />
+
+          <p className="gp-inquiry-modal__privacy-note">
+            We use your details only to respond to this inquiry.
+          </p>
+
+          <button type="submit" className="gp-inquiry-modal__submit" disabled={!canSend || submitting}>
+            {submitting ? 'Sending…' : 'Send project details'}
           </button>
         </form>
       )}

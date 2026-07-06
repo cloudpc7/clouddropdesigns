@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { DATABASE_URL, readRtdb } = require('./rtdb');
 const { CONTENT_SECTIONS, resolveSectionKey } = require('./contentSections');
+const { registerInquiryRoute } = require('./inquiryRoute');
 
 const createApp = () => {
   const app = express();
@@ -11,6 +12,7 @@ const createApp = () => {
       origin: true,
     }),
   );
+  app.use(express.json({ limit: '32kb' }));
 
   app.get('/api/health', (_req, res) => {
     res.json({
@@ -33,6 +35,8 @@ const createApp = () => {
       next(error);
     }
   });
+
+  registerInquiryRoute(app);
 
   app.get('/api/content/:section', async (req, res, next) => {
     try {

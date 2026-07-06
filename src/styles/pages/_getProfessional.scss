@@ -610,6 +610,26 @@ $card-matte: #141414;
   color: rgba(244, 242, 238, 0.5) !important;
 }
 
+.gp-inquiry-modal__submit-error {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: #e8a4a4;
+}
+
+.gp-inquiry-turnstile {
+  min-height: 0;
+}
+
+.gp-inquiry-modal__privacy-note {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  line-height: 1.45;
+  color: var(--cd-text-muted);
+}
+
 .gp-inquiry-modal__submit {
   margin-top: 0.35rem;
   width: 100%;
@@ -678,6 +698,10 @@ $card-matte: #141414;
 }
 
 [data-theme='light'] .gp-inquiry-modal__field-error {
+  color: #b54545;
+}
+
+[data-theme='light'] .gp-inquiry-modal__submit-error {
   color: #b54545;
 }
 
