@@ -3,9 +3,10 @@ import { useGetProfessional, useSiteContact } from '../../hooks/useContent';
 import {
   PROJECT_INQUIRY_SCHEDULE_HINT,
   PROJECT_INQUIRY_TIME_SLOTS,
+  formatInquiryDateDisplay,
   inquiryTimeLabel,
-  isValidInquiryWeekday,
 } from '../../utils/projectInquirySchedule';
+import InquiryDatePicker from './InquiryDatePicker';
 import '../../styles/pages/_getProfessional.scss';
 
 const EMPTY_FORM = {
@@ -51,7 +52,7 @@ export const buildProjectInquiryMailtoLink = (
       `Project type: ${labelFor(types, form.projectType)}`,
       `Timeline: ${labelFor(timelines, form.timeline)}`,
       form.budget ? `Budget: ${labelFor(budgets, form.budget)}` : null,
-      form.preferredDate ? `Preferred date: ${form.preferredDate}` : null,
+      form.preferredDate ? `Preferred date: ${formatInquiryDateDisplay(form.preferredDate)}` : null,
       form.preferredTime ? `Preferred time: ${inquiryTimeLabel(form.preferredTime)}` : null,
       form.availabilityNotes.trim()
         ? `Additional availability:\n${form.availabilityNotes.trim()}`
@@ -83,7 +84,7 @@ const ProjectStartInquiryForm = ({
     projectType: initialProjectType || '',
   });
   const [submitted, setSubmitted] = useState(false);
-  const [preferredDateError, setPreferredDateError] = useState('');
+
 
   useEffect(() => {
     setForm({
@@ -91,7 +92,6 @@ const ProjectStartInquiryForm = ({
       projectType: initialProjectType || '',
     });
     setSubmitted(false);
-    setPreferredDateError('');
   }, [initialProjectType, serviceLabel]);
 
   const canSend =
@@ -105,16 +105,7 @@ const ProjectStartInquiryForm = ({
     setForm((current) => ({ ...current, [field]: event.target.value }));
   };
 
-  const handlePreferredDateChange = (event) => {
-    const { value } = event.target;
-
-    if (value && !isValidInquiryWeekday(value)) {
-      setPreferredDateError('Please choose a weekday (Monday through Saturday).');
-      setForm((current) => ({ ...current, preferredDate: '' }));
-      return;
-    }
-
-    setPreferredDateError('');
+  const handlePreferredDateChange = (value) => {
     setForm((current) => ({ ...current, preferredDate: value }));
   };
 
@@ -259,22 +250,16 @@ const ProjectStartInquiryForm = ({
             <legend className="gp-inquiry-modal__label">Preferred time to connect</legend>
             <p className="gp-inquiry-modal__schedule-hint">{PROJECT_INQUIRY_SCHEDULE_HINT}</p>
             <div className="gp-inquiry-modal__row">
-              <label className="gp-inquiry-modal__field">
-                <span className="gp-inquiry-modal__sublabel">Date</span>
-                <input
-                  type="date"
-                  name="preferredDate"
+              <div className="gp-inquiry-modal__field">
+                <span className="gp-inquiry-modal__sublabel" id="preferred-date-label">
+                  Date
+                </span>
+                <InquiryDatePicker
+                  id="preferred-date"
                   value={form.preferredDate}
                   onChange={handlePreferredDateChange}
-                  aria-invalid={preferredDateError ? 'true' : undefined}
-                  aria-describedby={preferredDateError ? 'preferred-date-error' : undefined}
                 />
-                {preferredDateError ? (
-                  <span id="preferred-date-error" className="gp-inquiry-modal__field-error" role="alert">
-                    {preferredDateError}
-                  </span>
-                ) : null}
-              </label>
+              </div>
               <label className="gp-inquiry-modal__field">
                 <span className="gp-inquiry-modal__sublabel">Time</span>
                 <select
