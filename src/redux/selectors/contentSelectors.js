@@ -8,6 +8,7 @@ import {
 } from '../../content/skilledByDesignContent';
 import {
   getSeoForPath,
+  mergeCodeDropProject,
   resolveCodeDropProject,
   resolveGetProfessionalProfile,
   resolveSkilledTool,
@@ -51,17 +52,9 @@ export const selectCodeDropsProjects = createSelector(
   (projects) => {
     const apiById = new Map((projects ?? []).map((project) => [project.id, project]));
 
-    return CODE_DROPS_PROJECTS.map((staticProject) => {
-      const apiProject = apiById.get(staticProject.id) ?? {};
-
-      return resolveCodeDropProject({
-        ...apiProject,
-        ...staticProject,
-        image: staticProject.image,
-        thumb: staticProject.thumb,
-        mobileImage: staticProject.mobileImage ?? apiProject.mobileImage,
-      });
-    });
+    return CODE_DROPS_PROJECTS.map((staticProject) =>
+      resolveCodeDropProject(mergeCodeDropProject(staticProject, apiById.get(staticProject.id))),
+    );
   },
 );
 
@@ -131,7 +124,17 @@ export const selectOrganizationJsonLd = createSelector(
 export const selectSiteFooter = (state) => selectSections(state).siteFooter ?? {};
 export const selectFooterStudioLinks = (state) => selectSiteFooter(state).studioLinks ?? [];
 export const selectFooterServiceLinks = (state) => selectSiteFooter(state).serviceLinks ?? [];
-export const selectFooterProductLinks = (state) => selectSiteFooter(state).productLinks ?? [];
+export const selectFooterProductLinks = createSelector(
+  [selectCodeDropsProjects],
+  (projects) =>
+    projects.map((project) => ({
+      id: project.id,
+      label: project.name,
+      path: project.href ?? '/studio/code-drops',
+      external: Boolean(project.href?.startsWith('http')),
+      comingSoon: Boolean(project.inProgress || project.comingSoon),
+    })),
+);
 export const selectFooterSocialLinks = createSelector(
   [(state) => selectSiteFooter(state).socialLinks],
   (links) => (links ?? []).map(resolveSocialLink),

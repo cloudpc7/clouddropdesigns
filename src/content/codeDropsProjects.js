@@ -60,6 +60,7 @@ export const CODE_DROPS_PROJECTS = [
     image: namerrsTablet,
     thumb: namerrsTablet,
     href: 'https://namerrs.web.app',
+    inProgress: false,
     accent: '#7c3aed',
     screenshotPresentation: true,
     imagePosition: 'top center',

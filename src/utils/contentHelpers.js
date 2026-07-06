@@ -55,6 +55,28 @@ export const toOrganizationJsonLd = (organizationJsonLd) => {
   };
 };
 
+export const mergeCodeDropProject = (staticProject, apiProject = {}) => {
+  const href = staticProject.href ?? apiProject.href ?? null;
+  const hasLaunchHref = Boolean(href);
+  const inProgress =
+    staticProject.inProgress ??
+    (hasLaunchHref ? false : apiProject.inProgress ?? false);
+  const comingSoon =
+    staticProject.comingSoon ??
+    (hasLaunchHref ? false : apiProject.comingSoon ?? false);
+
+  return {
+    ...apiProject,
+    ...staticProject,
+    href,
+    inProgress,
+    comingSoon,
+    image: staticProject.image,
+    thumb: staticProject.thumb,
+    mobileImage: staticProject.mobileImage ?? apiProject.mobileImage,
+  };
+};
+
 export const resolveCodeDropProject = (project) => ({
   ...project,
   image: resolveAssetUrl(project.image),
