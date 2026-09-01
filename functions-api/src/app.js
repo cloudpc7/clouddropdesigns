@@ -1,34 +1,29 @@
 const express = require('express');
 const cors = require('cors');
-const { DATABASE_URL, readRtdb } = require('./rtdb');
 const { CONTENT_SECTIONS, resolveSectionKey } = require('./contentSections');
+const { createCorsOptions } = require('./cors');
 const { registerInquiryRoute } = require('./inquiryRoute');
+const { createStore, ensureSiteContent, hasDynamoTables } = require('./store');
 
-const createApp = () => {
+const createApp = (options = {}) => {
   const app = express();
+  const store = options.store ?? createStore(options);
 
-  app.use(
-    cors({
-      origin: true,
-    }),
-  );
+  app.use(cors(createCorsOptions()));
   app.use(express.json({ limit: '32kb' }));
 
   app.get('/api/health', (_req, res) => {
     res.json({
       ok: true,
       service: 'clouddrop-content-api',
-      databaseURL: DATABASE_URL,
+      store: store.kind,
+      dynamoConfigured: hasDynamoTables(),
     });
   });
 
   app.get('/api/content', async (_req, res, next) => {
     try {
-      const data = await readRtdb('content');
-      if (data == null) {
-        res.status(404).json({ error: 'Content not found in Realtime Database' });
-        return;
-      }
+      const data = await ensureSiteContent(store);
       res.set('Cache-Control', 'public, max-age=60');
       res.json(data);
     } catch (error) {
@@ -36,7 +31,7 @@ const createApp = () => {
     }
   });
 
-  registerInquiryRoute(app);
+  registerInquiryRoute(app, { store });
 
   app.get('/api/content/:section', async (req, res, next) => {
     try {
@@ -50,14 +45,15 @@ const createApp = () => {
         return;
       }
 
-      const data = await readRtdb(`content/${section}`);
-      if (data == null) {
+      const data = await ensureSiteContent(store);
+      const sectionData = data?.[section];
+      if (sectionData == null) {
         res.status(404).json({ error: 'Section not found', section });
         return;
       }
 
       res.set('Cache-Control', 'public, max-age=60');
-      res.json(data);
+      res.json(sectionData);
     } catch (error) {
       next(error);
     }

@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "npm test --prefix functions-api",
+    "api": "npm start --prefix functions-api"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.2.0",

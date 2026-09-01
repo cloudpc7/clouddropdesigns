@@ -1,5 +1,7 @@
+import { apiUrl } from './apiBase';
+
 export const fetchInquiryAvailability = async (date) => {
-  const response = await fetch(`/api/inquiry/availability?date=${encodeURIComponent(date)}`, {
+  const response = await fetch(apiUrl(`/api/inquiry/availability?date=${encodeURIComponent(date)}`), {
     headers: { Accept: 'application/json' },
   });
 
@@ -13,7 +15,7 @@ export const fetchInquiryAvailability = async (date) => {
 };
 
 export const submitProjectInquiry = async (payload) => {
-  const response = await fetch('/api/inquiry', {
+  const response = await fetch(apiUrl('/api/inquiry'), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

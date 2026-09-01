@@ -1,3 +1,4 @@
+// Optional Firebase Functions entry. Production API is AWS Lambda (src/lambda.js).
 const { onRequest } = require('firebase-functions/v2/https');
 const { createApp } = require('./src/app');
 

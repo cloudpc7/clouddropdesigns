@@ -1,6 +1,6 @@
 /**
- * Local Express server (not Cloud Functions). Proxied by Vite during `npm run dev`.
- * Reads production RTDB with Application Default Credentials or public rules.
+ * Local Express server (not Lambda). Proxied by Vite during `npm run dev`.
+ * Uses an in-memory store + seeded site content unless DynamoDB table env vars are set.
  */
 const { createApp } = require('./app');
 

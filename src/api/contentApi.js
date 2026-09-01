@@ -1,4 +1,6 @@
-const CONTENT_ENDPOINT = '/api/content';
+import { apiUrl } from './apiBase';
+
+const CONTENT_ENDPOINT = apiUrl('/api/content');
 
 export const fetchAllContent = async () => {
   const response = await fetch(CONTENT_ENDPOINT);

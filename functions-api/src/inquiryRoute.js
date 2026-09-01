@@ -85,7 +85,29 @@ const isSelectableInquiryDate = (dateString) => {
   return day >= 1 && day <= 6;
 };
 
-const registerInquiryRoute = (app) => {
+const toInquiryRecord = (payload, customer) => ({
+  customerId: customer.id,
+  name: payload.name,
+  email: payload.email.toLowerCase(),
+  company: payload.company,
+  phone: payload.phone,
+  projectType: payload.projectType,
+  description: payload.description,
+  preferredDate: payload.preferredDate,
+  preferredTime: payload.preferredTime,
+  availabilityNotes: payload.availabilityNotes,
+  timeline: payload.timeline,
+  budget: payload.budget,
+  serviceLabel: payload.serviceLabel,
+  emailSent: false,
+  calendarEventCreated: false,
+});
+
+const registerInquiryRoute = (app, { store } = {}) => {
+  if (!store) {
+    throw new Error('registerInquiryRoute requires a store');
+  }
+
   app.get('/api/inquiry/availability', async (req, res, next) => {
     try {
       const date = typeof req.query.date === 'string' ? req.query.date.trim() : '';
@@ -152,6 +174,16 @@ const registerInquiryRoute = (app) => {
         }
       }
 
+      const customer = await store.upsertCustomer({
+        email: payload.email,
+        name: payload.name,
+        phone: payload.phone,
+        source: 'inquiry',
+        status: 'active',
+      });
+
+      const inquiry = await store.createInquiry(toInquiryRecord(payload, customer));
+
       const emailContent = buildInquiryEmailContent(payload);
       const emailResult = await sendInquiryEmail(payload);
 
@@ -174,6 +206,11 @@ const registerInquiryRoute = (app) => {
           };
         }
       }
+
+      await store.updateInquiry(inquiry.id, {
+        emailSent: emailResult.sent === true,
+        calendarEventCreated: calendarResult.created === true,
+      });
 
       const hasScheduledTime = Boolean(payload.preferredDate && payload.preferredTime);
       let message = emailResult.sent

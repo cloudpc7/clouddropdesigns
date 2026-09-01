@@ -3,6 +3,99 @@
 
 <h4 align="center">Hello, I'm Paul and welcome to CloudDropdesigns!</h4>
 
+## AWS hosting (replaces Firebase App Hosting)
+
+The public site is a Vite SPA. The API is the Express app in `functions-api/` (same routes as before: `GET /api/content`, `GET /api/inquiry/availability`, `POST /api/inquiry`). Infrastructure lives in `aws/template.yaml` (AWS SAM, region **us-west-2**).
+
+Firebase App Hosting is **not** required to run this stack. `firebase.json` can stay in the repo; do not use it for `/api/content` or production hosting.
+
+### Local development
+
+```bash
+npm ci
+npm ci --prefix functions-api
+npm run api          # Express on http://localhost:3001 (in-memory DynamoDB + seeded content)
+npm run dev          # Vite on http://localhost:5173, proxies /api to the local API
+npm test             # GET /api/content + POST /api/inquiry persistence tests
+```
+
+`VITE_API_BASE` empty means same-origin. Vite proxies `/api` to `VITE_API_PROXY` (default `http://localhost:3001`). If the live content request fails, the SPA keeps the bundled `src/content/*` payload and **does not** show an error banner.
+
+### 1. Deploy the API + tables + CloudFront
+
+Install [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html) and authenticate to the Cloud Drop AWS account (`aws login` / `aws configure`). Then from the repo root:
+
+```bash
+cd functions-api && npm ci && cd ..
+sam build --template-file aws/template.yaml
+sam deploy --template-file aws/template.yaml --config-file aws/samconfig.toml
+```
+
+Confirm the changeset when SAM prompts. First deploy creates:
+
+- HTTP API (API Gateway) + Lambda running `functions-api`
+- DynamoDB: `SiteContent` (seeded from `src/content/*` on first `GET /api/content`), `Customers`, `Inquiries` (empty customer data)
+- Secrets Manager placeholder `clouddropdesigns/app` — **do not put secrets in git**
+- S3 bucket + CloudFront: default behavior → S3 SPA; `api/*` → API Gateway (no cache)
+
+Stack outputs: `ApiUrl`, `CloudFrontUrl`, `FrontendBucketName`, `AppSecretsArn`.
+
+Optional local API (documented alternative to the in-memory store):
+
+```bash
+sam local start-api --template-file aws/template.yaml --port 3001
+```
+
+Requires the stack tables (or mocked env) if you want DynamoDB instead of the in-memory store used by `npm run api`.
+
+### 2. Fill secrets (optional — missing secrets dry-run)
+
+In Secrets Manager, edit `clouddropdesigns/app` (output `AppSecretsArn`):
+
+- `TURNSTILE_SECRET_KEY`
+- `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `INQUIRY_TO_EMAIL`
+- `GOOGLE_SERVICE_ACCOUNT_JSON`, `GOOGLE_CALENDAR_IMPERSONATE_EMAIL`, `GOOGLE_INQUIRIES_CALENDAR_ID`
+
+If those are empty, inquiry **still writes** Customer + Inquiry rows. Email and Google Calendar stay dry-run (HTTP 202), same as today.
+
+### 3. Build and upload the frontend
+
+```bash
+npm ci
+npm run build
+aws s3 sync dist/ s3://FRONTEND_BUCKET_NAME --delete
+aws cloudfront create-invalidation --distribution-id DISTRIBUTION_ID --paths "/*"
+```
+
+Leave `VITE_API_BASE` empty when CloudFront is serving `/api/*` (same-origin). Only set `VITE_API_BASE` to `ApiUrl` if you host the SPA somewhere that cannot proxy `/api`.
+
+Do not put AWS account IDs or keys in client code.
+
+### 4. DNS / ACM cutover (Paul still has to click this)
+
+This environment does **not** have AWS credentials, so production DNS for clouddropdesigns.com was **not** changed. After `sam deploy` succeeds in the Cloud Drop account:
+
+1. In **ACM (us-east-1 only)** — CloudFront requires certificates in N. Virginia — request a public certificate for `clouddropdesigns.com` (and `www` if you use it). Choose DNS validation.
+2. At the **registrar or Route 53**, add the ACM validation CNAME(s) ACM shows. Wait until the cert is **Issued**.
+3. Redeploy the stack with the custom domain:
+
+   ```bash
+   sam deploy --template-file aws/template.yaml --config-file aws/samconfig.toml \
+     --parameter-overrides CustomDomainName=clouddropdesigns.com AcmCertificateArn=arn:aws:acm:us-east-1:ACCOUNT:certificate/ID
+   ```
+
+4. Point DNS at CloudFront (not Firebase / Google Frontend):
+   - **Route 53:** alias A / AAAA to the `CloudFrontDomainName` output.
+   - **Other registrar:** CNAME (or ALIAS if offered) for `@` and `www` to `xxxx.cloudfront.net`. Apex ALIAS is required; a naked CNAME is often not supported.
+5. After DNS TTL, `https://clouddropdesigns.com` should be CloudFront. `GET /api/content` should return **200 JSON** (not Google Frontend 503 HTML).
+6. Leave Firebase App Hosting in place until you confirm the AWS URL; do not delete the Firebase project.
+
+CORS on the API allows `https://clouddropdesigns.com` and `http://localhost:5173`. The stack also adds the CloudFront domain via `CORS_ORIGINS`.
+
+### POST /api/inquiry contract
+
+Same request/response as before. After validation (and Turnstile when configured), the API now upserts a **Customer** by email and writes an **Inquiry** row, then sends email / calendar (or dry-runs).
+
 ### Services Offered
 
 - 💻 Website Design & Development
