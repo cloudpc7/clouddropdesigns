@@ -1,5 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchAllContent as fetchAllContentApi } from '../../api/contentApi';
+import { BUNDLED_SITE_CONTENT } from '../../content/bundledSiteContent';
+
+const { meta: bundledMeta, ...bundledSections } = BUNDLED_SITE_CONTENT;
 
 export const fetchAllContent = createAsyncThunk(
   'content/fetchAll',
@@ -15,7 +18,7 @@ export const fetchAllContent = createAsyncThunk(
 const initialState = {
   status: 'idle',
   error: null,
-  meta: null,
+  meta: bundledMeta ?? null,
   sections: {
     siteConfig: null,
     studioNav: null,
@@ -28,6 +31,7 @@ const initialState = {
     siteFooter: null,
     siteMap: null,
     vibenmedLegal: null,
+    ...bundledSections,
   },
 };
 
@@ -44,6 +48,7 @@ const contentSlice = createSlice({
       .addCase(fetchAllContent.fulfilled, (state, action) => {
         const { meta, ...sections } = action.payload;
         state.status = 'succeeded';
+        state.error = null;
         state.meta = meta ?? null;
         state.sections = {
           ...state.sections,

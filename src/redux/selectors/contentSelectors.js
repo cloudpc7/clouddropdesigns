@@ -20,9 +20,10 @@ const selectContentState = (state) => state.content;
 
 export const selectContentStatus = (state) => selectContentState(state).status;
 export const selectContentError = (state) => selectContentState(state).error;
-export const selectContentReady = (state) => selectContentState(state).status === 'succeeded';
 
 const selectSections = (state) => selectContentState(state).sections;
+
+export const selectContentReady = (state) => Boolean(selectSections(state).siteConfig);
 
 export const selectSiteConfig = (state) => selectSections(state).siteConfig;
 export const selectSiteName = (state) => selectSiteConfig(state)?.siteName ?? 'CloudDropDesigns';

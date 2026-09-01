@@ -6,8 +6,13 @@ dist-ssr
 # Environment
 .env
 .env.*
+!.env.example
 *.local
 env
+
+# AWS SAM build output
+.aws-sam/
+aws/.aws-sam/
 
 # Logs
 logs
@@ -42,6 +47,7 @@ apphosting.yaml
 
 # Tooling scripts (local only)
 scripts/
+!functions-api/scripts/
 
 # AI / agent tooling (local only)
 agent-tools/
