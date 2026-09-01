@@ -1,5 +1,7 @@
 const { describe, it, beforeEach } = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 const request = require('supertest');
 const { createApp } = require('../src/app');
 const { createMemoryStore } = require('../src/store');
@@ -88,3 +90,20 @@ describe('CloudDrop content API', () => {
     assert.equal(inquiries[1].customerId, customers[0].id);
   });
 });
+
+describe('ContentGate chrome', () => {
+  it('always returns children and has no live-content error banner', () => {
+    const source = fs.readFileSync(
+      path.join(__dirname, '../../src/components/ContentGate.jsx'),
+      'utf8',
+    );
+
+    assert.match(source, /dispatch\(fetchAllContent\(\)\)/);
+    assert.match(source, /return children/);
+    assert.doesNotMatch(source, /content-gate--error/);
+    assert.doesNotMatch(source, /Live content is unavailable/);
+    assert.doesNotMatch(source, /Retry live content/);
+    assert.doesNotMatch(source, /Unable to load site content/);
+  });
+});
+
