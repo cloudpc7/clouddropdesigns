@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { Suspense, useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSpring, useTransition, animated, easings } from '@react-spring/web';
 import BusinessCardShell from '../components/BusinessCardShell';
@@ -14,10 +14,7 @@ import HeroCloudAddition from '../components/HeroCloudAddition';
 import { useCodeDropsProjects } from '../hooks/useContent';
 import { useTheme } from '../context/ThemeContext';
 import '../styles/pages/_home.scss';
-import CodeDropsPage from './studio/CodeDropsPage';
-import DropAndElevatePage from './studio/DropAndElevatePage';
-import GetProfessionalPage from './studio/GetProfessionalPage';
-import SkilledByDesignPage from './studio/SkilledByDesignPage';
+import { loadStudioPage } from './studio/studioPageLoaders';
 
 const PORTAL_SECTIONS = [
   {
@@ -102,7 +99,26 @@ const HomePage = () => {
   const codeDropsProjects = useCodeDropsProjects();
   const [isFlipped, setIsFlipped] = useState(false);
   const [activeDetailId, setActiveDetailId] = useState(null);
+  const [PreviewPage, setPreviewPage] = useState(null);
   const [isTabletOffcanvas, setIsTabletOffcanvas] = useState(false);
+
+  useEffect(() => {
+    if (!activeDetailId) {
+      setPreviewPage(null);
+      return undefined;
+    }
+
+    let cancelled = false;
+    loadStudioPage(activeDetailId).then((module) => {
+      if (!cancelled && module) {
+        setPreviewPage(() => module.default);
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activeDetailId]);
   const { theme } = useTheme();
 
   useEffect(() => {
@@ -377,17 +393,6 @@ const HomePage = () => {
             {cardTransitions((style, item) => {
               if (!item) return null;
 
-              let PageContent = null;
-              if (item.id === 'code-drops') {
-                PageContent = <CodeDropsPage embed={true} />;
-              } else if (item.id === 'drop-and-elevate') {
-                PageContent = <DropAndElevatePage embed={true} />;
-              } else if (item.id === 'get-professional') {
-                PageContent = <GetProfessionalPage embed={true} />;
-              } else if (item.id === 'skilled-by-design') {
-                PageContent = <SkilledByDesignPage embed={true} />;
-              }
-
               return (
                 <animated.div style={style} className="portal-offcanvas__transition-wrap">
                   <div className="portal-offcanvas__glass-screen">
@@ -405,7 +410,11 @@ const HomePage = () => {
                     </header>
 
                     <div className="portal-offcanvas__scroll-area">
-                      {PageContent}
+                      {PreviewPage && item.id === activeDetailId ? (
+                        <Suspense fallback={<p className="portal-offcanvas__loading">Loading preview…</p>}>
+                          <PreviewPage embed />
+                        </Suspense>
+                      ) : null}
                     </div>
                   </div>
                 </animated.div>

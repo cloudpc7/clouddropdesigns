@@ -4,8 +4,11 @@ import { useGetProfessional, useSiteContact } from '../../hooks/useContent';
 import {
   PROJECT_INQUIRY_SCHEDULE_HINT,
   PROJECT_INQUIRY_TIME_SLOTS,
+  PROJECT_INQUIRY_TIMEZONES,
   formatInquiryDateDisplay,
+  getDefaultInquiryTimezone,
   inquiryTimeLabel,
+  inquiryTimezoneLabel,
 } from '../../utils/projectInquirySchedule';
 import InquiryDatePicker from './InquiryDatePicker';
 import InquiryTurnstile from './InquiryTurnstile';
@@ -22,6 +25,7 @@ const EMPTY_FORM = {
   description: '',
   preferredDate: '',
   preferredTime: '',
+  preferredTimezone: '',
   availabilityNotes: '',
   timeline: '',
   budget: '',
@@ -57,7 +61,9 @@ export const buildProjectInquiryMailtoLink = (
       `Timeline: ${labelFor(timelines, form.timeline)}`,
       form.budget ? `Budget: ${labelFor(budgets, form.budget)}` : null,
       form.preferredDate ? `Preferred date: ${formatInquiryDateDisplay(form.preferredDate)}` : null,
-      form.preferredTime ? `Preferred time: ${inquiryTimeLabel(form.preferredTime)}` : null,
+      form.preferredTime
+        ? `Preferred time: ${inquiryTimeLabel(form.preferredTime)} (${inquiryTimezoneLabel(form.preferredTimezone)})`
+        : null,
       form.availabilityNotes.trim()
         ? `Additional availability:\n${form.availabilityNotes.trim()}`
         : null,
@@ -85,6 +91,7 @@ const ProjectStartInquiryForm = ({
   const [form, setForm] = useState({
     ...EMPTY_FORM,
     projectType: initialProjectType || '',
+    preferredTimezone: getDefaultInquiryTimezone(),
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -99,6 +106,7 @@ const ProjectStartInquiryForm = ({
     setForm({
       ...EMPTY_FORM,
       projectType: initialProjectType || '',
+      preferredTimezone: getDefaultInquiryTimezone(),
     });
     setSubmitted(false);
     setSubmitting(false);
@@ -122,7 +130,7 @@ const ProjectStartInquiryForm = ({
     setAvailabilityLoading(true);
     setAvailabilityError('');
 
-    fetchInquiryAvailability(form.preferredDate)
+    fetchInquiryAvailability(form.preferredDate, form.preferredTimezone)
       .then((data) => {
         if (cancelled) {
           return;
@@ -151,7 +159,7 @@ const ProjectStartInquiryForm = ({
     return () => {
       cancelled = true;
     };
-  }, [form.preferredDate]);
+  }, [form.preferredDate, form.preferredTimezone]);
 
   const turnstileRequired = Boolean(TURNSTILE_SITE_KEY);
   const canSend = useMemo(
@@ -212,6 +220,7 @@ const ProjectStartInquiryForm = ({
         description: form.description.trim(),
         preferredDate: form.preferredDate,
         preferredTime: form.preferredTime,
+        preferredTimezone: form.preferredTimezone,
         availabilityNotes: form.availabilityNotes.trim(),
         timeline: form.timeline,
         budget: form.budget,
@@ -267,6 +276,7 @@ const ProjectStartInquiryForm = ({
               setForm({
                 ...EMPTY_FORM,
                 projectType: initialProjectType || '',
+                preferredTimezone: getDefaultInquiryTimezone(),
               });
             }}
           >
@@ -361,64 +371,80 @@ const ProjectStartInquiryForm = ({
           <fieldset className="gp-inquiry-modal__fieldset">
             <legend className="gp-inquiry-modal__label">Preferred time to connect</legend>
             <p className="gp-inquiry-modal__schedule-hint">{PROJECT_INQUIRY_SCHEDULE_HINT}</p>
-            <div className="gp-inquiry-modal__row">
-              <div className="gp-inquiry-modal__field">
-                <span className="gp-inquiry-modal__sublabel" id="preferred-date-label">
-                  Date
-                </span>
-                <InquiryDatePicker
-                  id="preferred-date"
-                  value={form.preferredDate}
-                  onChange={handlePreferredDateChange}
-                />
+            <div className="gp-inquiry-modal__fieldset-body">
+              <div className="gp-inquiry-modal__row">
+                <div className="gp-inquiry-modal__field">
+                  <span className="gp-inquiry-modal__sublabel" id="preferred-date-label">
+                    Date
+                  </span>
+                  <InquiryDatePicker
+                    id="preferred-date"
+                    value={form.preferredDate}
+                    onChange={handlePreferredDateChange}
+                  />
+                </div>
+                <label className="gp-inquiry-modal__field">
+                  <span className="gp-inquiry-modal__sublabel">Time</span>
+                  <select
+                    name="preferredTime"
+                    value={form.preferredTime}
+                    onChange={updateField('preferredTime')}
+                    className={form.preferredTime ? '' : 'gp-inquiry-modal__select--placeholder'}
+                    disabled={!form.preferredDate || availabilityLoading}
+                    aria-busy={availabilityLoading}
+                  >
+                    {timeSlotOptions.map((slot) => (
+                      <option
+                        key={slot.value || 'empty'}
+                        value={slot.value}
+                        disabled={!slot.value || slot.disabled}
+                      >
+                        {slot.label}
+                      </option>
+                    ))}
+                  </select>
+                  {form.preferredDate && availabilityLoading ? (
+                    <span className="gp-inquiry-modal__availability-note">Checking availability…</span>
+                  ) : null}
+                  {availabilityError ? (
+                    <span className="gp-inquiry-modal__field-error" role="alert">
+                      {availabilityError}
+                    </span>
+                  ) : null}
+                  {form.preferredDate && !availabilityLoading && !availabilityError && bookedSlots.length ? (
+                    <span className="gp-inquiry-modal__availability-note">
+                      Booked times are shown as unavailable.
+                    </span>
+                  ) : null}
+                </label>
               </div>
+
               <label className="gp-inquiry-modal__field">
-                <span className="gp-inquiry-modal__sublabel">Time</span>
+                <span className="gp-inquiry-modal__sublabel">Timezone</span>
                 <select
-                  name="preferredTime"
-                  value={form.preferredTime}
-                  onChange={updateField('preferredTime')}
-                  className={form.preferredTime ? '' : 'gp-inquiry-modal__select--placeholder'}
-                  disabled={!form.preferredDate || availabilityLoading}
-                  aria-busy={availabilityLoading}
+                  name="preferredTimezone"
+                  value={form.preferredTimezone}
+                  onChange={updateField('preferredTimezone')}
                 >
-                  {timeSlotOptions.map((slot) => (
-                    <option
-                      key={slot.value || 'empty'}
-                      value={slot.value}
-                      disabled={!slot.value || slot.disabled}
-                    >
-                      {slot.label}
+                  {PROJECT_INQUIRY_TIMEZONES.map((zone) => (
+                    <option key={zone.value} value={zone.value}>
+                      {zone.label}
                     </option>
                   ))}
                 </select>
-                {form.preferredDate && availabilityLoading ? (
-                  <span className="gp-inquiry-modal__availability-note">Checking availability…</span>
-                ) : null}
-                {availabilityError ? (
-                  <span className="gp-inquiry-modal__field-error" role="alert">
-                    {availabilityError}
-                  </span>
-                ) : null}
-                {form.preferredDate && !availabilityLoading && !availabilityError && bookedSlots.length ? (
-                  <span className="gp-inquiry-modal__availability-note">
-                    Booked times are shown as unavailable.
-                  </span>
-                ) : null}
+              </label>
+
+              <label className="gp-inquiry-modal__field">
+                <span className="gp-inquiry-modal__sublabel">Other times that work</span>
+                <textarea
+                  name="availabilityNotes"
+                  value={form.availabilityNotes}
+                  onChange={updateField('availabilityNotes')}
+                  rows={2}
+                  placeholder="e.g. Weekday mornings, or alternate dates"
+                />
               </label>
             </div>
-            <label className="gp-inquiry-modal__field">
-              <span className="gp-inquiry-modal__sublabel">
-                Other times that work (include timezone)
-              </span>
-              <textarea
-                name="availabilityNotes"
-                value={form.availabilityNotes}
-                onChange={updateField('availabilityNotes')}
-                rows={2}
-                placeholder="e.g. Weekday mornings PT, or alternate dates"
-              />
-            </label>
           </fieldset>
 
           <div className="gp-inquiry-modal__row">

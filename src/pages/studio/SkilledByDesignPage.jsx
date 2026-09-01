@@ -5,6 +5,7 @@ import StudioWebsiteLayout from '../../components/studio/StudioWebsiteLayout';
 import { useSkilledByDesign } from '../../hooks/useContent';
 import { useStudioPageScroll } from '../../hooks/useStudioPageScroll';
 import { useTheme } from '../../context/ThemeContext';
+import { useWideStudio } from '../../hooks/useWideStudio';
 import '../../styles/pages/_skilledByDesign.scss';
 import '../../styles/pages/_studioWideContent.scss';
 
@@ -158,6 +159,7 @@ const SkilledWideBody = ({ mantra, narrative, toolGroups, proofCta }) => (
 );
 
 const SkilledByDesignPage = ({ embed = false }) => {
+  const isWide = useWideStudio();
   const { mantra, narrative, toolGroups, proofCta } = useSkilledByDesign();
   const { theme } = useTheme();
   useStudioPageScroll(theme, embed);
@@ -173,51 +175,51 @@ const SkilledByDesignPage = ({ embed = false }) => {
     );
   }
 
+  if (isWide) {
+    return (
+      <StudioWebsiteLayout activeId="skilled-by-design">
+        <SkilledWideBody
+          mantra={mantra}
+          narrative={narrative}
+          toolGroups={toolGroups}
+          proofCta={proofCta}
+        />
+      </StudioWebsiteLayout>
+    );
+  }
+
   return (
-    <>
-      <div className="studio-mobile-only skilled-page skilled-page--mobile">
-        <DropletThemeToggle className="skilled-page__theme-toggle" compact />
+    <div className="skilled-page skilled-page--mobile">
+      <DropletThemeToggle className="skilled-page__theme-toggle" compact />
 
-        <div className="skilled-page__shell">
-          <BusinessCardShell>
-            <div className="skilled-page__body">
-              <header className="skilled-page__intro">
-                <p className="skilled-page__eyebrow">Design &amp; Development Studio</p>
-                <h1 className="skilled-page__title">
-                  Skilled <em>By</em> Design
-                </h1>
-                <p className="skilled-page__lede">
-                  Precision-built digital work — from interface craft to deployment, every layer is
-                  intentional.
-                </p>
-              </header>
+      <div className="skilled-page__shell">
+        <BusinessCardShell>
+          <div className="skilled-page__body">
+            <header className="skilled-page__intro">
+              <p className="skilled-page__eyebrow">Design &amp; Development Studio</p>
+              <h1 className="skilled-page__title">
+                Skilled <em>By</em> Design
+              </h1>
+              <p className="skilled-page__lede">
+                Precision-built digital work — from interface craft to deployment, every layer is
+                intentional.
+              </p>
+            </header>
 
-              <SkilledMantra mantra={mantra} variant="mobile" />
-              <SkilledNarrative narrative={narrative} variant="mobile" />
-              <SkilledToolkit toolGroups={toolGroups} variant="mobile" showHeading />
-              <SkilledProofCta proofCta={proofCta} variant="mobile" />
+            <SkilledMantra mantra={mantra} variant="mobile" />
+            <SkilledNarrative narrative={narrative} variant="mobile" />
+            <SkilledToolkit toolGroups={toolGroups} variant="mobile" showHeading />
+            <SkilledProofCta proofCta={proofCta} variant="mobile" />
 
-              <footer className="skilled-page__footer">
-                <Link className="skilled-page__back" to="/">
-                  Return to card
-                </Link>
-              </footer>
-            </div>
-          </BusinessCardShell>
-        </div>
+            <footer className="skilled-page__footer">
+              <Link className="skilled-page__back" to="/">
+                Return to card
+              </Link>
+            </footer>
+          </div>
+        </BusinessCardShell>
       </div>
-
-      <div className="studio-wide-only">
-        <StudioWebsiteLayout activeId="skilled-by-design">
-          <SkilledWideBody
-            mantra={mantra}
-            narrative={narrative}
-            toolGroups={toolGroups}
-            proofCta={proofCta}
-          />
-        </StudioWebsiteLayout>
-      </div>
-    </>
+    </div>
   );
 };
 

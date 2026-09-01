@@ -163,7 +163,7 @@ const ProjectDeckCard = ({ project, index, total, activeIndex, onActivate, onCyc
               <img
                 ref={imageRef}
                 src={deckImage}
-                alt=""
+                alt={`${project.name} — ${project.tagline}`}
                 loading={isActive ? 'eager' : 'lazy'}
                 fetchPriority={isActive ? 'high' : 'low'}
                 decoding="async"

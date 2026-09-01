@@ -1,5 +1,10 @@
-export const fetchInquiryAvailability = async (date) => {
-  const response = await fetch(`/api/inquiry/availability?date=${encodeURIComponent(date)}`, {
+export const fetchInquiryAvailability = async (date, timezone) => {
+  const params = new URLSearchParams({ date });
+  if (timezone) {
+    params.set('timezone', timezone);
+  }
+
+  const response = await fetch(`/api/inquiry/availability?${params.toString()}`, {
     headers: { Accept: 'application/json' },
   });
 

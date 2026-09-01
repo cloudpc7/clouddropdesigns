@@ -1,0 +1,44 @@
+.content-gate {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 40;
+  max-width: 18rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(126, 184, 212, 0.28);
+  border-radius: 8px;
+  background: rgba(10, 12, 16, 0.92);
+  color: #f4f2ee;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+
+  p {
+    margin: 0 0 0.5rem;
+  }
+
+  button {
+    border: 0;
+    border-radius: 999px;
+    padding: 0.45rem 0.8rem;
+    background: rgba(126, 184, 212, 0.24);
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+}
+
+.content-gate__detail {
+  color: var(--cd-text-muted);
+}
+
+.route-fallback {
+  display: grid;
+  place-items: center;
+  min-height: 40vh;
+  padding: 2rem 1rem;
+  color: var(--cd-text-muted);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+}

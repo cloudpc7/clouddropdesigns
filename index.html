@@ -20,8 +20,17 @@
       content="CloudDropDesigns builds polished web and mobile products for businesses. Explore our portfolio, services, and studio."
     />
     <meta property="og:url" content="https://clouddropdesigns.com/" />
-    <meta property="og:image" content="https://clouddropdesigns.com/favicon.png" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://clouddropdesigns.com/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="CloudDropDesigns — Design &amp; Development Studio"
+    />
+    <meta
+      name="twitter:description"
+      content="CloudDropDesigns builds polished web and mobile products for businesses. Explore our portfolio, services, and studio."
+    />
+    <meta name="twitter:image" content="https://clouddropdesigns.com/og-image.png" />
     <link rel="canonical" href="https://clouddropdesigns.com/" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -30,7 +39,20 @@
       href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Libre+Franklin:wght@500;600;700&family=Montserrat:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <title>CloudDropDesigns</title>
+    <title>CloudDropDesigns — Design &amp; Development Studio</title>
+    <script>
+      (function () {
+        var host = window.location.hostname;
+        if (host === 'clouddropdesigns.web.app' || host.endsWith('.web.app')) {
+          window.location.replace(
+            'https://clouddropdesigns.com' +
+              window.location.pathname +
+              window.location.search +
+              window.location.hash,
+          );
+        }
+      })();
+    </script>
   </head>
   <body>
     <script>
@@ -40,6 +62,23 @@
       })();
     </script>
     <div id="root"></div>
+    <noscript>
+      <main style="max-width:42rem;margin:2rem auto;padding:0 1rem;font-family:system-ui,sans-serif;line-height:1.5;">
+        <h1>CloudDropDesigns — Design &amp; Development Studio</h1>
+        <p>
+          CloudDropDesigns builds polished web and mobile products for businesses. Explore our
+          portfolio, services, and studio.
+        </p>
+        <ul>
+          <li><a href="/studio/code-drops">Code Drops — Portfolio</a></li>
+          <li><a href="/studio/drop-and-elevate">Drop &amp; Elevate — Services</a></li>
+          <li><a href="/studio/get-professional">Get Professional</a></li>
+          <li><a href="/studio/skilled-by-design">Skilled By Design</a></li>
+          <li><a href="/vibenmed">VibeNMED</a></li>
+          <li><a href="/sitemap">Site Map</a></li>
+        </ul>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

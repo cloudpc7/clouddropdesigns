@@ -8,6 +8,7 @@ import StudioWebsiteLayout from '../../components/studio/StudioWebsiteLayout';
 import { useCodeDropsProjects } from '../../hooks/useContent';
 import { useStudioPageScroll } from '../../hooks/useStudioPageScroll';
 import { useTheme } from '../../context/ThemeContext';
+import { useWideStudio } from '../../hooks/useWideStudio';
 import {
   preloadCodeDropsImages,
   preloadCodeDropsNeighbors,
@@ -19,6 +20,7 @@ const SWIPE_THRESHOLD = 40;
 const MOBILE_QUERY = '(max-width: 767px)';
 
 const CodeDropsPage = ({ embed = false }) => {
+  const isWide = useWideStudio();
   const codeDropsProjects = useCodeDropsProjects();
   const [activeIndex, setActiveIndex] = useState(0);
   const { theme } = useTheme();
@@ -173,57 +175,57 @@ const CodeDropsPage = ({ embed = false }) => {
     );
   }
 
-  return (
-    <>
-      <div className="studio-mobile-only code-drops-page code-drops-page--mobile">
-        <DropletThemeToggle className="code-drops-page__theme-toggle" compact />
-
-        <header className="code-drops-page__header">
-          <p className="code-drops-page__eyebrow">Design &amp; Development Studio</p>
-          <h1 className="code-drops-page__title">Code Drops</h1>
-        </header>
-
-        <div className="code-drops-page__stage">
-          <div
-            className="code-drops-page__deck"
-            aria-label="Project portfolio deck"
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
-            {codeDropsProjects.map((project, index) => (
-              <ProjectDeckCard
-                key={project.id}
-                project={project}
-                index={index}
-                total={total}
-                activeIndex={activeIndex}
-                onActivate={() => selectCard(index)}
-                onCycle={cycleDeck}
-              />
+  if (isWide) {
+    return (
+      <StudioWebsiteLayout activeId="code-drops" className="cd-wide">
+        <section aria-label="Portfolio">
+          <div className="cd-wide__grid">
+            {codeDropsProjects.map((project) => (
+              <ProjectShowcaseTile key={project.id} project={project} />
             ))}
           </div>
+        </section>
+      </StudioWebsiteLayout>
+    );
+  }
+
+  return (
+    <div className="code-drops-page code-drops-page--mobile">
+      <DropletThemeToggle className="code-drops-page__theme-toggle" compact />
+
+      <header className="code-drops-page__header">
+        <p className="code-drops-page__eyebrow">Design &amp; Development Studio</p>
+        <h1 className="code-drops-page__title">Code Drops</h1>
+      </header>
+
+      <div className="code-drops-page__stage">
+        <div
+          className="code-drops-page__deck"
+          aria-label="Project portfolio deck"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          {codeDropsProjects.map((project, index) => (
+            <ProjectDeckCard
+              key={project.id}
+              project={project}
+              index={index}
+              total={total}
+              activeIndex={activeIndex}
+              onActivate={() => selectCard(index)}
+              onCycle={cycleDeck}
+            />
+          ))}
         </div>
-
-        <footer className="code-drops-page__footer">
-          <p className="code-drops-page__hint">Swipe or tap the card to browse</p>
-          <Link className="code-drops-page__back" to="/">
-            Return to card
-          </Link>
-        </footer>
       </div>
 
-      <div className="studio-wide-only">
-        <StudioWebsiteLayout activeId="code-drops" className="cd-wide">
-          <section aria-label="Portfolio">
-            <div className="cd-wide__grid">
-              {codeDropsProjects.map((project) => (
-                <ProjectShowcaseTile key={project.id} project={project} />
-              ))}
-            </div>
-          </section>
-        </StudioWebsiteLayout>
-      </div>
-    </>
+      <footer className="code-drops-page__footer">
+        <p className="code-drops-page__hint">Swipe or tap the card to browse</p>
+        <Link className="code-drops-page__back" to="/">
+          Return to card
+        </Link>
+      </footer>
+    </div>
   );
 };
 

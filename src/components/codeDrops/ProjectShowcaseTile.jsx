@@ -10,7 +10,12 @@ const ProjectShowcaseTile = ({ project }) => {
   const content = (
     <>
       <div className="project-showcase-tile__media">
-        <img src={showcaseImage} alt="" loading="lazy" decoding="async" />
+        <img
+          src={showcaseImage}
+          alt={`${project.name} — ${project.tagline}`}
+          loading="lazy"
+          decoding="async"
+        />
         <span
           className="project-showcase-tile__accent"
           style={{ '--project-accent': project.accent }}

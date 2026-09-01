@@ -11,7 +11,7 @@ const DEFAULT_SITE_NAME = 'CloudDropDesigns';
 
 export const getSeoForPath = (pathname, siteSeo, siteConfig) => {
   const siteUrl = siteConfig?.siteUrl ?? DEFAULT_SITE_URL;
-  const defaultImage = `${siteUrl}/favicon.png`;
+  const defaultImage = `${siteUrl}/og-image.png`;
   const defaultSeo = {
     ...(siteSeo?.defaultSeo ?? {}),
     title: siteSeo?.defaultSeo?.title ?? `${DEFAULT_SITE_NAME} — Design & Development Studio`,
@@ -100,11 +100,13 @@ export const resolveSkilledTool = (tool) => {
   };
 };
 
-export const resolveGetProfessionalProfile = (profile) =>
-  profile
-    ? {
-        ...profile,
-        photo: resolveAssetUrl(profile.photo),
-        trustBio: profile.trustBio ?? GET_PROFESSIONAL_PROFILE.trustBio,
-      }
-    : null;
+export const resolveGetProfessionalProfile = (profile) => {
+  const source = profile ?? GET_PROFESSIONAL_PROFILE;
+
+  return {
+    ...GET_PROFESSIONAL_PROFILE,
+    ...source,
+    photo: resolveAssetUrl(source.photo ?? GET_PROFESSIONAL_PROFILE.photo),
+    trustBio: source.trustBio ?? GET_PROFESSIONAL_PROFILE.trustBio,
+  };
+};

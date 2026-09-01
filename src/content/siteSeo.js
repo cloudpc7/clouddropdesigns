@@ -1,6 +1,6 @@
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from './siteConfig';
 
-const DEFAULT_IMAGE = `${SITE_URL}/favicon.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
 
 export const DEFAULT_SEO = {
   title: `${SITE_NAME} — Design & Development Studio`,
@@ -61,6 +61,12 @@ export const PAGE_SEO = {
     title: `VibeNMED Terms of Service | ${SITE_NAME}`,
     description: 'Terms of service for the VibeNMED mobile application.',
     path: '/vibenmed/terms',
+  },
+  '*': {
+    title: `Page Not Found | ${SITE_NAME}`,
+    description: 'The page you requested could not be found on CloudDropDesigns.',
+    path: '*',
+    type: 'website',
   },
 };
 

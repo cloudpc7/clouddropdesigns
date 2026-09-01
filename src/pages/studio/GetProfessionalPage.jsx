@@ -7,6 +7,7 @@ import StudioWebsiteLayout from '../../components/studio/StudioWebsiteLayout';
 import { useGetProfessional } from '../../hooks/useContent';
 import { useStudioPageScroll } from '../../hooks/useStudioPageScroll';
 import { useTheme } from '../../context/ThemeContext';
+import { useWideStudio } from '../../hooks/useWideStudio';
 import '../../styles/pages/_getProfessional.scss';
 import '../../styles/pages/_studioWideContent.scss';
 
@@ -122,6 +123,7 @@ const GetProfessionalWideContent = ({
 );
 
 const GetProfessionalPage = ({ embed = false }) => {
+  const isWide = useWideStudio();
   const { theme } = useTheme();
   const { expertise, workingPrinciples, profile, links } = useGetProfessional();
   const [inquiryOpen, setInquiryOpen] = useState(false);
@@ -144,9 +146,25 @@ const GetProfessionalPage = ({ embed = false }) => {
     );
   }
 
+  if (isWide) {
+    return (
+      <>
+        <StudioWebsiteLayout activeId="get-professional" className="get-professional-wide">
+          <GetProfessionalWideContent
+            onStartProject={openInquiry}
+            expertise={expertise}
+            workingPrinciples={workingPrinciples}
+            profile={profile}
+          />
+        </StudioWebsiteLayout>
+        <ProjectStartInquiryModal open={inquiryOpen} onClose={closeInquiry} />
+      </>
+    );
+  }
+
   return (
     <>
-      <div className="studio-mobile-only get-professional-page get-professional-page--mobile">
+      <div className="get-professional-page get-professional-page--mobile">
         <DropletThemeToggle className="get-professional-page__theme-toggle" compact />
 
         <div className="get-professional-page__shell">
@@ -175,9 +193,7 @@ const GetProfessionalPage = ({ embed = false }) => {
                 </div>
 
                 <div className="get-professional-page__bio">
-                  <p className="get-professional-page__bio-copy">
-                    {profile.mobileBio}
-                  </p>
+                  <p className="get-professional-page__bio-copy">{profile.mobileBio}</p>
                 </div>
               </section>
 
@@ -221,17 +237,6 @@ const GetProfessionalPage = ({ embed = false }) => {
             </div>
           </BusinessCardShell>
         </div>
-      </div>
-
-      <div className="studio-wide-only">
-        <StudioWebsiteLayout activeId="get-professional" className="get-professional-wide">
-          <GetProfessionalWideContent
-          onStartProject={openInquiry}
-          expertise={expertise}
-          workingPrinciples={workingPrinciples}
-          profile={profile}
-        />
-        </StudioWebsiteLayout>
       </div>
 
       <ProjectStartInquiryModal open={inquiryOpen} onClose={closeInquiry} />

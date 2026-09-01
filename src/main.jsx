@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { store } from './redux/store.jsx';
 import { ThemeProvider } from './context/ThemeContext';
 import App from './App.jsx'
+import './firebaseConfig.js'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

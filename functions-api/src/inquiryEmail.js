@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const { inquiryTimezoneLabel } = require('./inquiryTimezones');
 
 const PROJECT_TYPE_LABELS = {
   web: 'Web Application',
@@ -80,9 +81,10 @@ const buildInquiryEmailContent = (payload) => {
   const projectTypeLabel = PROJECT_TYPE_LABELS[payload.projectType] || payload.projectType;
   const timelineLabel = TIMELINE_LABELS[payload.timeline] || payload.timeline;
   const budgetLabel = payload.budget ? BUDGET_LABELS[payload.budget] || payload.budget : null;
+  const timezoneLabel = inquiryTimezoneLabel(payload.preferredTimezone);
   const preferredWhen =
     payload.preferredDate && payload.preferredTime
-      ? `${formatDateLabel(payload.preferredDate)} at ${formatTimeLabel(payload.preferredTime)} PT`
+      ? `${formatDateLabel(payload.preferredDate)} at ${formatTimeLabel(payload.preferredTime)} (${timezoneLabel})`
       : null;
 
   const textLines = [

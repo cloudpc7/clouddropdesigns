@@ -3,7 +3,10 @@ const { google } = require('googleapis');
 const INQUIRIES_CALENDAR_NAME = 'Inquiries';
 const CALENDAR_SCOPE = 'https://www.googleapis.com/auth/calendar';
 
-const getTimezone = () => process.env.INQUIRY_TIMEZONE || 'America/Los_Angeles';
+const { DEFAULT_INQUIRY_TIMEZONE, normalizeInquiryTimezone } = require('./inquiryTimezones');
+
+const getTimezone = (preferredTimezone) =>
+  normalizeInquiryTimezone(preferredTimezone || process.env.INQUIRY_TIMEZONE || DEFAULT_INQUIRY_TIMEZONE);
 
 const getServiceAccountCredentials = () => {
   const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
@@ -165,7 +168,7 @@ const resolveInquiriesCalendarId = async (calendar) => {
   return created.id;
 };
 
-const getInquiryAvailabilityForDate = async (dateString) => {
+const getInquiryAvailabilityForDate = async (dateString, preferredTimezone) => {
   const calendar = getCalendarClient();
   if (!calendar) {
     return {
@@ -177,10 +180,11 @@ const getInquiryAvailabilityForDate = async (dateString) => {
     };
   }
 
-  const timezone = getTimezone();
+  const timezone = getTimezone(preferredTimezone);
   const calendarId = await resolveInquiriesCalendarId(calendar);
-  const timeMin = `${dateString}T00:00:00-08:00`;
-  const timeMax = `${dateString}T23:59:59-07:00`;
+  const noonUtc = new Date(`${dateString}T12:00:00.000Z`);
+  const timeMin = new Date(noonUtc.getTime() - 14 * 60 * 60 * 1000).toISOString();
+  const timeMax = new Date(noonUtc.getTime() + 14 * 60 * 60 * 1000).toISOString();
 
   const { data } = await calendar.events.list({
     calendarId,
@@ -204,8 +208,8 @@ const getInquiryAvailabilityForDate = async (dateString) => {
   };
 };
 
-const isInquirySlotBooked = async (dateString, timeString) => {
-  const availability = await getInquiryAvailabilityForDate(dateString);
+const isInquirySlotBooked = async (dateString, timeString, preferredTimezone) => {
+  const availability = await getInquiryAvailabilityForDate(dateString, preferredTimezone);
   if (!availability.ok) {
     return false;
   }
@@ -232,7 +236,7 @@ const createInquiryCalendarEvent = async (payload, emailContent) => {
     };
   }
 
-  const timezone = getTimezone();
+  const timezone = getTimezone(payload.preferredTimezone);
   const calendarId = await resolveInquiriesCalendarId(calendar);
   const endTime = addMinutesToTime(payload.preferredTime, 30);
   const summary = `Project inquiry — ${payload.name}`;

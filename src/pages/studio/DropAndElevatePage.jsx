@@ -7,6 +7,7 @@ import { useStudioPageScroll } from '../../hooks/useStudioPageScroll';
 import ProjectStartInquiryForm from '../../components/studio/ProjectStartInquiryForm';
 import { useDropElevate, useSiteContact } from '../../hooks/useContent';
 import { useTheme } from '../../context/ThemeContext';
+import { useWideStudio } from '../../hooks/useWideStudio';
 import '../../styles/pages/_dropAndElevate.scss';
 import '../../styles/pages/_studioWideContent.scss';
 
@@ -262,6 +263,7 @@ const DropElevateWideContent = ({ formProps, services }) => {
 };
 
 const DropAndElevatePage = ({ embed = false }) => {
+  const isWide = useWideStudio();
   const { theme } = useTheme();
   const { services, serviceOptions, toProjectType } = useDropElevate();
   const { email: contactEmail } = useSiteContact();
@@ -298,66 +300,66 @@ const DropAndElevatePage = ({ embed = false }) => {
     return <DropElevateEmbedContent services={services} toProjectType={toProjectType} />;
   }
 
+  if (isWide) {
+    return (
+      <StudioWebsiteLayout activeId="drop-and-elevate" className="de-wide">
+        <DropElevateWideContent formProps={formProps} services={services} />
+      </StudioWebsiteLayout>
+    );
+  }
+
   return (
-    <>
-      <div className="studio-mobile-only drop-elevate-page drop-elevate-page--mobile">
-        <DropletThemeToggle className="drop-elevate-page__theme-toggle" compact />
+    <div className="drop-elevate-page drop-elevate-page--mobile">
+      <DropletThemeToggle className="drop-elevate-page__theme-toggle" compact />
 
-        <div className="drop-elevate-page__shell">
-          <BusinessCardShell>
-            <div className="drop-elevate-page__body">
-              <header className="drop-elevate-page__intro">
-                <p className="drop-elevate-page__eyebrow">Design &amp; Development Studio</p>
-                <h1 className="drop-elevate-page__title">Drop &amp; Elevate</h1>
-              </header>
+      <div className="drop-elevate-page__shell">
+        <BusinessCardShell>
+          <div className="drop-elevate-page__body">
+            <header className="drop-elevate-page__intro">
+              <p className="drop-elevate-page__eyebrow">Design &amp; Development Studio</p>
+              <h1 className="drop-elevate-page__title">Drop &amp; Elevate</h1>
+            </header>
 
-              <section className="drop-elevate-page__services" aria-labelledby="services-heading">
-                <div className="drop-elevate-page__section-head">
-                  <h2 id="services-heading" className="drop-elevate-page__section-title">
-                    Services offered
-                  </h2>
-                  <span className="drop-elevate-page__section-rule" aria-hidden="true" />
-                </div>
+            <section className="drop-elevate-page__services" aria-labelledby="services-heading">
+              <div className="drop-elevate-page__section-head">
+                <h2 id="services-heading" className="drop-elevate-page__section-title">
+                  Services offered
+                </h2>
+                <span className="drop-elevate-page__section-rule" aria-hidden="true" />
+              </div>
 
-                <ul className="drop-elevate-page__service-list">
-                  {services.map((item) => (
-                    <li key={item.id} id={item.id} className="drop-elevate-page__service-item">
-                      <span className="drop-elevate-page__service-mark" aria-hidden="true" />
-                      <div>
-                        <h3 className="drop-elevate-page__service-title">{item.title}</h3>
-                        <p className="drop-elevate-page__service-copy">{item.description}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </section>
+              <ul className="drop-elevate-page__service-list">
+                {services.map((item) => (
+                  <li key={item.id} id={item.id} className="drop-elevate-page__service-item">
+                    <span className="drop-elevate-page__service-mark" aria-hidden="true" />
+                    <div>
+                      <h3 className="drop-elevate-page__service-title">{item.title}</h3>
+                      <p className="drop-elevate-page__service-copy">{item.description}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
 
-              <section className="drop-elevate-page__inquiry" aria-labelledby="inquiry-heading">
-                <div className="drop-elevate-page__section-head">
-                  <h2 id="inquiry-heading" className="drop-elevate-page__section-title">
-                    Send a message
-                  </h2>
-                  <span className="drop-elevate-page__section-rule" aria-hidden="true" />
-                </div>
-                <InquiryForm {...formProps} />
-              </section>
+            <section className="drop-elevate-page__inquiry" aria-labelledby="inquiry-heading">
+              <div className="drop-elevate-page__section-head">
+                <h2 id="inquiry-heading" className="drop-elevate-page__section-title">
+                  Send a message
+                </h2>
+                <span className="drop-elevate-page__section-rule" aria-hidden="true" />
+              </div>
+              <InquiryForm {...formProps} />
+            </section>
 
-              <footer className="drop-elevate-page__footer">
-                <Link className="drop-elevate-page__back" to="/">
-                  Return to card
-                </Link>
-              </footer>
-            </div>
-          </BusinessCardShell>
-        </div>
+            <footer className="drop-elevate-page__footer">
+              <Link className="drop-elevate-page__back" to="/">
+                Return to card
+              </Link>
+            </footer>
+          </div>
+        </BusinessCardShell>
       </div>
-
-      <div className="studio-wide-only">
-        <StudioWebsiteLayout activeId="drop-and-elevate" className="de-wide">
-          <DropElevateWideContent formProps={formProps} services={services} />
-        </StudioWebsiteLayout>
-      </div>
-    </>
+    </div>
   );
 };
 

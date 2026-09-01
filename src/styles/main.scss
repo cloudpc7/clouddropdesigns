@@ -13,8 +13,10 @@
 @use './layout/studioResponsive' as *;
 @use './pages/home' as *;
 @use './pages/homeStudio' as *;
+@use './pages/notFound';
 
 // 4. COMPONENTS
 @use './components/buttons' as *;
 @use './components/offCanvas';
 @use './components/flipPrompt';
+@use './components/contentGate';

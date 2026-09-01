@@ -23,8 +23,37 @@ export const PROJECT_INQUIRY_TIME_SLOTS = (() => {
   return slots;
 })();
 
+export const DEFAULT_INQUIRY_TIMEZONE = 'America/Los_Angeles';
+
+export const PROJECT_INQUIRY_TIMEZONES = [
+  { value: 'America/Los_Angeles', label: 'Pacific Time (PT)' },
+  { value: 'America/Denver', label: 'Mountain Time (MT)' },
+  { value: 'America/Chicago', label: 'Central Time (CT)' },
+  { value: 'America/New_York', label: 'Eastern Time (ET)' },
+  { value: 'America/Phoenix', label: 'Arizona (no DST)' },
+  { value: 'America/Anchorage', label: 'Alaska Time (AKT)' },
+  { value: 'Pacific/Honolulu', label: 'Hawaii Time (HT)' },
+  { value: 'UTC', label: 'UTC' },
+];
+
+export const getDefaultInquiryTimezone = () => {
+  try {
+    const detected = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (PROJECT_INQUIRY_TIMEZONES.some((zone) => zone.value === detected)) {
+      return detected;
+    }
+  } catch {
+    // Fall back to studio default below.
+  }
+
+  return DEFAULT_INQUIRY_TIMEZONE;
+};
+
+export const inquiryTimezoneLabel = (value) =>
+  PROJECT_INQUIRY_TIMEZONES.find((zone) => zone.value === value)?.label ?? value;
+
 export const PROJECT_INQUIRY_SCHEDULE_HINT =
-  'Monday–Saturday, 7:00 AM–6:00 PM (30-minute slots).';
+  'Monday–Saturday, 7:00 AM–6:00 PM in your selected timezone (30-minute slots).';
 
 export const INQUIRY_WEEKDAY_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 

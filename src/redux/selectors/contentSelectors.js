@@ -6,6 +6,30 @@ import {
   SKILLED_PROOF_CTA,
   SKILLED_TOOL_GROUPS,
 } from '../../content/skilledByDesignContent';
+import { ORGANIZATION_JSON_LD } from '../../content/siteSeo';
+import { STUDIO_NAV_ITEMS } from '../../content/studioNav';
+import { STUDIO_PAGE_META } from '../../content/studioPageMeta';
+import {
+  FOOTER_SERVICE_LINKS,
+  FOOTER_SOCIAL_LINKS,
+  FOOTER_STUDIO_LINKS,
+} from '../../content/siteFooterLinks';
+import { SITE_MAP_SECTIONS } from '../../content/siteMapSections';
+import {
+  DROP_ELEVATE_SERVICE_OPTIONS,
+  DROP_ELEVATE_SERVICES,
+  DROP_ELEVATE_TO_PROJECT_TYPE,
+} from '../../content/dropElevateServices';
+import {
+  GET_PROFESSIONAL_EXPERTISE,
+  GET_PROFESSIONAL_LINKS,
+  GET_PROFESSIONAL_PROFILE,
+  GET_PROFESSIONAL_WORKING_PRINCIPLES,
+  PROJECT_INQUIRY_BUDGETS,
+  PROJECT_INQUIRY_TIMELINES,
+  PROJECT_INQUIRY_TYPES,
+} from '../../content/getProfessionalContent';
+import { PRIVACY_POLICY_HTML, TERMS_BODY_HTML } from '../../content/vibenmedLegalContent';
 import {
   getSeoForPath,
   mergeCodeDropProject,
@@ -38,14 +62,15 @@ export const selectSiteContact = (state) =>
   };
 
 export const selectStudioNav = (state) => selectSections(state).studioNav;
-export const selectStudioNavItems = (state) => selectStudioNav(state)?.items ?? [];
+export const selectStudioNavItems = (state) => selectStudioNav(state)?.items ?? STUDIO_NAV_ITEMS;
 
 export const selectStudioNavItemById = (id) => (state) => {
   const items = selectStudioNavItems(state);
   return items.find((item) => item.id === id) ?? items[0] ?? null;
 };
 
-export const selectStudioPageMeta = (state) => selectSections(state).studioPageMeta ?? {};
+export const selectStudioPageMeta = (state) =>
+  selectSections(state).studioPageMeta ?? STUDIO_PAGE_META;
 
 export const selectCodeDropsProjects = createSelector(
   [(state) => selectSections(state).codeDrops?.projects],
@@ -59,23 +84,24 @@ export const selectCodeDropsProjects = createSelector(
 );
 
 export const selectDropElevate = (state) => selectSections(state).dropElevate ?? {};
-export const selectDropElevateServices = (state) => selectDropElevate(state).services ?? [];
+export const selectDropElevateServices = (state) =>
+  selectDropElevate(state).services ?? DROP_ELEVATE_SERVICES;
 export const selectDropElevateServiceOptions = (state) =>
-  selectDropElevate(state).serviceOptions ?? [];
+  selectDropElevate(state).serviceOptions ?? DROP_ELEVATE_SERVICE_OPTIONS;
 export const selectDropElevateToProjectType = (state) =>
-  selectDropElevate(state).toProjectType ?? {};
+  selectDropElevate(state).toProjectType ?? DROP_ELEVATE_TO_PROJECT_TYPE;
 
 export const selectGetProfessional = (state) => selectSections(state).getProfessional ?? {};
 export const selectGetProfessionalExpertise = (state) =>
-  selectGetProfessional(state).expertise ?? [];
+  selectGetProfessional(state).expertise ?? GET_PROFESSIONAL_EXPERTISE;
 export const selectGetProfessionalWorkingPrinciples = (state) =>
-  selectGetProfessional(state).workingPrinciples ?? [];
+  selectGetProfessional(state).workingPrinciples ?? GET_PROFESSIONAL_WORKING_PRINCIPLES;
 export const selectGetProfessionalInquiryTypes = (state) =>
-  selectGetProfessional(state).inquiryTypes ?? [];
+  selectGetProfessional(state).inquiryTypes ?? PROJECT_INQUIRY_TYPES;
 export const selectGetProfessionalInquiryTimelines = (state) =>
-  selectGetProfessional(state).inquiryTimelines ?? [];
+  selectGetProfessional(state).inquiryTimelines ?? PROJECT_INQUIRY_TIMELINES;
 export const selectGetProfessionalInquiryBudgets = (state) =>
-  selectGetProfessional(state).inquiryBudgets ?? [];
+  selectGetProfessional(state).inquiryBudgets ?? PROJECT_INQUIRY_BUDGETS;
 export const selectGetProfessionalProfile = createSelector(
   [(state) => selectGetProfessional(state).profile],
   resolveGetProfessionalProfile,
@@ -118,12 +144,14 @@ export const selectSeoForPath = (pathname) => (state) =>
   getSeoForPath(pathname, selectSiteSeo(state), selectSiteConfig(state));
 export const selectOrganizationJsonLd = createSelector(
   [(state) => selectSiteSeo(state)?.organizationJsonLd],
-  toOrganizationJsonLd,
+  (organizationJsonLd) => toOrganizationJsonLd(organizationJsonLd) ?? ORGANIZATION_JSON_LD,
 );
 
 export const selectSiteFooter = (state) => selectSections(state).siteFooter ?? {};
-export const selectFooterStudioLinks = (state) => selectSiteFooter(state).studioLinks ?? [];
-export const selectFooterServiceLinks = (state) => selectSiteFooter(state).serviceLinks ?? [];
+export const selectFooterStudioLinks = (state) =>
+  selectSiteFooter(state).studioLinks ?? FOOTER_STUDIO_LINKS;
+export const selectFooterServiceLinks = (state) =>
+  selectSiteFooter(state).serviceLinks ?? FOOTER_SERVICE_LINKS;
 export const selectFooterProductLinks = createSelector(
   [selectCodeDropsProjects],
   (projects) =>
@@ -137,12 +165,14 @@ export const selectFooterProductLinks = createSelector(
 );
 export const selectFooterSocialLinks = createSelector(
   [(state) => selectSiteFooter(state).socialLinks],
-  (links) => (links ?? []).map(resolveSocialLink),
+  (links) => (links ?? FOOTER_SOCIAL_LINKS).map(resolveSocialLink),
 );
 
-export const selectSiteMapSections = (state) => selectSections(state).siteMap?.sections ?? [];
+export const selectSiteMapSections = (state) =>
+  selectSections(state).siteMap?.sections ?? SITE_MAP_SECTIONS;
 
 export const selectVibenmedLegal = (state) => selectSections(state).vibenmedLegal ?? {};
 export const selectPrivacyPolicyHtml = (state) =>
-  selectVibenmedLegal(state).privacyPolicyHtml ?? '';
-export const selectTermsBodyHtml = (state) => selectVibenmedLegal(state).termsBodyHtml ?? '';
+  selectVibenmedLegal(state).privacyPolicyHtml ?? PRIVACY_POLICY_HTML;
+export const selectTermsBodyHtml = (state) =>
+  selectVibenmedLegal(state).termsBodyHtml ?? TERMS_BODY_HTML;

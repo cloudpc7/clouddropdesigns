@@ -5,6 +5,7 @@ const {
   getInquiryAvailabilityForDate,
   isInquirySlotBooked,
 } = require('./googleCalendar');
+const { normalizeInquiryTimezone } = require('./inquiryTimezones');
 
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 const RATE_LIMIT_MAX = 5;
@@ -89,6 +90,9 @@ const registerInquiryRoute = (app) => {
   app.get('/api/inquiry/availability', async (req, res, next) => {
     try {
       const date = typeof req.query.date === 'string' ? req.query.date.trim() : '';
+      const timezone = normalizeInquiryTimezone(
+        typeof req.query.timezone === 'string' ? req.query.timezone : '',
+      );
 
       if (!isSelectableInquiryDate(date)) {
         res.status(400).json({
@@ -97,14 +101,14 @@ const registerInquiryRoute = (app) => {
         return;
       }
 
-      const availability = await getInquiryAvailabilityForDate(date);
+      const availability = await getInquiryAvailabilityForDate(date, timezone);
 
       res.set('Cache-Control', 'public, max-age=30');
       res.json({
         ok: availability.ok,
         dryRun: availability.dryRun,
         date: availability.date ?? date,
-        timezone: availability.timezone ?? 'America/Los_Angeles',
+        timezone: availability.timezone ?? timezone,
         bookedSlots: availability.bookedSlots ?? [],
         availableSlots: availability.availableSlots ?? [],
       });
@@ -143,7 +147,11 @@ const registerInquiryRoute = (app) => {
       }
 
       if (payload.preferredDate && payload.preferredTime) {
-        const slotBooked = await isInquirySlotBooked(payload.preferredDate, payload.preferredTime);
+        const slotBooked = await isInquirySlotBooked(
+          payload.preferredDate,
+          payload.preferredTime,
+          payload.preferredTimezone,
+        );
         if (slotBooked) {
           res.status(409).json({
             error: 'That time slot is no longer available. Please choose another time.',

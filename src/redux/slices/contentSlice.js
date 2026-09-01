@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchAllContent as fetchAllContentApi } from '../../api/contentApi';
+import { STATIC_BOOTSTRAP_SECTIONS } from '../../content/staticBootstrap';
 
 export const fetchAllContent = createAsyncThunk(
   'content/fetchAll',
@@ -13,21 +14,11 @@ export const fetchAllContent = createAsyncThunk(
 );
 
 const initialState = {
-  status: 'idle',
+  status: 'succeeded',
   error: null,
-  meta: null,
+  meta: { source: 'static-bootstrap' },
   sections: {
-    siteConfig: null,
-    studioNav: null,
-    studioPageMeta: null,
-    codeDrops: null,
-    dropElevate: null,
-    getProfessional: null,
-    skilledByDesign: null,
-    siteSeo: null,
-    siteFooter: null,
-    siteMap: null,
-    vibenmedLegal: null,
+    ...STATIC_BOOTSTRAP_SECTIONS,
   },
 };
 

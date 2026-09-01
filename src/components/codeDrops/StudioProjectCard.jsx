@@ -38,7 +38,12 @@ const StudioProjectCard = ({ project, onNavigate }) => {
       {...wrapperProps}
     >
       <div className="studio-project-card__thumb">
-        <img src={showcaseImage} alt="" loading="lazy" decoding="async" />
+        <img
+          src={showcaseImage}
+          alt={`${project.name} — ${project.tagline}`}
+          loading="lazy"
+          decoding="async"
+        />
       </div>
       <div className="studio-project-card__body">
         <p className="studio-project-card__category">{project.category}</p>

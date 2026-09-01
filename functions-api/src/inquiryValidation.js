@@ -1,3 +1,5 @@
+const { ALLOWED_TIMEZONE_VALUES, normalizeInquiryTimezone } = require('./inquiryTimezones');
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_PATTERN = /^(0[7-9]|1[0-8]):(00|30)$/;
@@ -46,6 +48,7 @@ const sanitizePayload = (body = {}) => ({
   description: trimString(body.description),
   preferredDate: trimString(body.preferredDate),
   preferredTime: trimString(body.preferredTime),
+  preferredTimezone: normalizeInquiryTimezone(trimString(body.preferredTimezone)),
   availabilityNotes: trimString(body.availabilityNotes),
   timeline: trimString(body.timeline),
   budget: trimString(body.budget),
@@ -115,6 +118,10 @@ const validateInquiryPayload = (body) => {
     if (!TIME_PATTERN.test(payload.preferredTime)) {
       errors.push('Preferred time must be a valid 30-minute slot between 7:00 AM and 6:00 PM.');
     }
+  }
+
+  if (body.preferredTimezone && !ALLOWED_TIMEZONE_VALUES.has(trimString(body.preferredTimezone))) {
+    errors.push('Timezone is invalid.');
   }
 
   if ((payload.preferredDate && !payload.preferredTime) || (!payload.preferredDate && payload.preferredTime)) {
