@@ -1,0 +1,342 @@
+CloudDropDesigns — Desktop View Review & Refactoring UI Plan
+================================================================
+Date: July 3, 2026
+Scope: studio-wide layout at 1024px+ (true desktop). Tablet (768–1023px) shares
+       much of the same code via .studio-wide-only; several fixes benefit both.
+
+Reference: Refactoring UI (Adam Wathan & Steve Schoger)
+  - Hierarchy through size/weight/spacing, not decoration
+  - Hue-matched muted text (color-mix with brand), not grey rgba opacity
+  - Whitespace over borders and divider lines
+  - Limit font sizes; every size should earn its place
+  - De-emphasize labels without making them unreadable
+  - Start with too much space, then tighten
+  - One clear job per screen region
+
+
+================================================================
+EXECUTIVE SUMMARY
+================================================================
+
+Desktop looks premium and on-brand, but it still reads as a "designed portal"
+more than a clear studio homepage. Refactoring UI would simplify surfaces,
+strengthen type hierarchy, and make navigation obvious without removing the
+CloudDrop identity.
+
+Biggest wins: simplify portal chrome, fix interaction affordances, unify
+muted text to hue-matched tokens, and give desktop a distinct layout rhythm
+at 1024px+ (not just a wider tablet).
+
+
+================================================================
+WHAT IS STRONG (KEEP)
+================================================================
+
+1. Brand system
+   - Bodoni + Montserrat pairing, accent blue, corner motif — distinctive.
+   - Hero cloud icon is a real differentiator; keep it, reduce competing effects.
+
+2. Information architecture (recent improvements)
+   - Trust anchor above portal (human credibility before navigation).
+   - Portal rows trimmed to label + hint (less redundant copy).
+   - Hero subtitle removed on home (slogan carries the message).
+   - Featured Work = three real projects (good proof density).
+
+3. Technical foundation
+   - RTDB-driven content, shared StudioWebsiteLayout, theme toggle on wide layout.
+   - Off-canvas respects user theme (data-theme from context).
+
+4. Featured Work tiles
+   - ProjectShowcaseTile already uses color-mix for hover accents — closest to
+     Refactoring UI done right on desktop.
+
+
+================================================================
+WHAT IS WEAK — REFACTORING UI LENS
+================================================================
+
+P1 — INTERACTION & CLARITY (highest impact)
+-------------------------------------------
+
+A. Studio Portal rows are opaque to new visitors
+   - Rows are <div role="button">, not links — no open-in-new-tab, weak SEO.
+   - Hint says "Tap a section to preview" (mobile language on desktop).
+   - No "Preview" / chevron affordance that reads as drawer behavior on desktop.
+   - Desktop off-canvas is a 72rem side panel — heavy for a "preview"; feels like
+     a second app shell behind the homepage.
+
+   Refactoring UI fix: Make the primary action obvious — row label = destination,
+   secondary affordance = preview. Use real <Link> with progressive enhancement.
+
+B. Two navigation systems compete
+   - Sticky header nav (Code Drops, Drop & Elevate, etc.) duplicates portal list.
+   - User can reach the same places two ways with different interaction models.
+
+   Fix: Header = go to page. Portal = quick preview OR demote portal on desktop
+   in favor of a simpler "Explore the studio" link grid.
+
+C. Featured Work dead-ends
+   - No "View all work →" to Code Drops.
+   - Three tiles with no section lead line — section title alone is thin context.
+
+P2 — HIERARCHY & TYPOGRAPHY
+---------------------------
+
+A. Flat section labeling
+   - All sections use identical .studio-website__section-title (0.72rem uppercase).
+   - Trust anchor name, portal labels, and project names fight for attention
+     without a clear type scale.
+
+   Refactoring UI fix: Define 4 desktop type roles only:
+     - Display (hero title)
+     - Section (one size up from current eyebrow)
+     - Card title
+     - Body / meta (hue-matched, not grey-faded)
+
+B. Hero type stack on desktop (1024px+)
+   - Eyebrow + large Bodoni title + italic slogan + CTA — four layers in one column.
+   - Slogan max-width removed at desktop (.studio-website__slogan { max-width: none })
+     so it can run too wide on large monitors.
+
+   Fix: Constrain slogan to ~22–28ch on desktop; let CTA breathe with margin-top
+   from spacing scale, not extra borders/glow.
+
+C. Trust anchor copy tier
+   - Uses mobileBio in a desktop strip — one block, no lead/detail split.
+   - "Built by" eyebrow + name + meta + bio + button = five lines before portal.
+
+   Fix: Desktop strip = photo + name + one-line proof + link. Full bio stays on
+   Get Professional page.
+
+P3 — COLOR & SURFACE (grey opacity problem)
+-------------------------------------------
+
+Refactoring UI rule: Muted text should be a saturated, hue-matched tone — not
+rgba(20,20,20,0.55) or rgba(244,242,238,0.62).
+
+Offenders on desktop:
+  - .home-wide__section-lead
+  - .portal-list-option__hint
+  - .home-trust-anchor__meta / __bio
+  - .studio-website__nav-link (0.64rem + low contrast)
+  - Portal list row backgrounds (rgba white/black at 0.01–0.08)
+  - Header nav hover glow + text-shadow (decorative, not hierarchical)
+
+Fix: Introduce SCSS tokens in _theme.scss or _colors.scss:
+  --cd-text-muted: color-mix(in srgb, var(--cd-accent) 18%, var(--cd-surface-text));
+  --cd-text-subtle: color-mix(in srgb, var(--cd-accent) 10%, var(--cd-surface-text));
+  Replace grey-opacity pairs across _home.scss, _studioWebsite.scss.
+
+P4 — BORDERS, TEXTURE, AND DECORATION (too many boxes)
+------------------------------------------------------
+
+Refactoring UI: Separate groups with spacing and background shifts, not nested
+frames.
+
+Current desktop chrome stacking:
+  - Hero: 3px accent bottom border + dark gradient
+  - portal-list-card: texture + frame + four corners + inner row borders
+  - studio-website__panel on trust anchor
+  - studio-website__section-rule (gradient line) on every section head
+  - portal-list-option: left indicator bar + border + hover glow + translateX
+
+Each layer is individually tasteful; together they create "box in box in box."
+
+Fix priority:
+  1. Remove portal-list-card texture/corners on desktop (keep on marketing hero only).
+  2. Replace section-rule lines with margin-top spacing between sections.
+  3. Portal rows: background shift on hover only, no border + glow + slide.
+  4. Trust anchor: flat surface or single border, not full panel shadow stack.
+
+P5 — LAYOUT & ONE JOB PER REGION (desktop 1024px+)
+--------------------------------------------------
+
+| Region        | Current job              | Problem                          | Target job              |
+|---------------|--------------------------|----------------------------------|-------------------------|
+| Header        | Nav + brand + theme      | Nav duplicates portal            | Global wayfinding only  |
+| Hero          | Brand + CTA + cloud      | Centered→split jump at 1024px    | Hook + one CTA          |
+| Trust anchor  | Founder credibility      | Too much bio text                | Who + why trust (1 line)|
+| Studio Portal | Preview studio sections  | Unclear; heavy off-canvas        | Quick preview OR remove |
+| Featured Work | Social proof             | No deeper link                   | Proof + link to work    |
+| Footer CTA    | Conversion               | Hidden on desktop (hero CTA only)| Optional; don't duplicate|
+
+Desktop-specific layout opportunity (not yet implemented):
+  - At 1024px+, use a 12-column grid for hub content:
+      Hero: full width
+      Trust: 8 cols content / 4 cols action (or inline row)
+      Portal + Featured: side-by-side (7/5 or 6/6) instead of stacked scroll
+  - Reduces vertical scroll cost and makes desktop feel intentional vs "tall tablet."
+
+P6 — MOTION & HOVER
+-------------------
+
+- Header:hover changes entire glass header (background, border, shadow) — distracting.
+- Portal row translateX(4px) + box-shadow on every hover — feels game-ui, not editorial.
+- Multiple 0.4–0.6s cubic-bezier transitions stacked on one page.
+
+Refactoring UI: Motion should confirm interaction, not decorate idle state.
+  - Shorten to 150–200ms for hovers.
+  - Remove header:hover global state; hover individual nav links only.
+  - Portal row: background tint only.
+
+P7 — INNER STUDIO PAGES ON DESKTOP (consistency)
+------------------------------------------------
+
+Same wide shell (StudioWebsiteLayout) powers inner pages. Issues carry over:
+  - Hero subtitle still shown on inner pages (fine) but same heavy hero treatment.
+  - studio-website__panel / stat grids use borders for separation (Skilled By Design,
+    Get Professional) — candidate for same whitespace pass as home.
+
+Not in scope for Phase 1 but note for Phase 4.
+
+
+================================================================
+REFACTORING UI PLAN — PHASED
+================================================================
+
+PHASE 1 — Tokens & type scale (foundation, low risk)
+----------------------------------------------------
+Goal: One source of truth for muted text and desktop font sizes.
+
+Tasks:
+  1. Add CSS custom properties for muted/subtle text using color-mix + accent.
+  2. Add desktop type scale variables (--text-display, --text-section, etc.).
+  3. Replace grey rgba in:
+       - src/styles/pages/_home.scss (section-lead, portal hints, trust anchor)
+       - src/styles/layout/_studioWebsite.scss (nav, footer tagline)
+  4. Bump section titles slightly (e.g. 0.72rem → 0.78rem) and increase spacing
+     below section heads instead of using gradient rules.
+
+Files: _theme.scss, _colors.scss, _home.scss, _studioWebsite.scss
+Effort: ~2–3 hours
+Verify: Light + dark mode, 1024px and 1440px widths
+
+
+PHASE 2 — Portal clarity & navigation (highest UX ROI)
+------------------------------------------------------
+Goal: Desktop user knows what happens when they click a row.
+
+Tasks:
+  1. Change hint copy on desktop: "Select a section to preview" (not "Tap").
+  2. Add visible affordance on each row: "Preview →" or chevron + aria-expanded.
+  3. Convert portal rows to <Link to={path}> with onClick preventDefault optional
+     preview, OR split: title link navigates, preview button opens off-canvas.
+  4. Reduce off-canvas width on desktop (e.g. min(48rem, 50vw)) — preview, not takeover.
+  5. Add Featured Work footer link: "View all Code Drops →" to /studio/code-drops.
+
+Files: HomePage.jsx, _home.scss
+Effort: ~4–6 hours
+Verify: Keyboard nav, screen reader, click vs right-click open
+
+
+PHASE 3 — Surface simplification (Refactoring UI declutter)
+-----------------------------------------------------------
+Goal: Fewer boxes; spacing carries structure.
+
+Tasks:
+  1. Desktop-only SCSS block @media (min-width: 1024px):
+       - Hide .portal-list-card__texture, __corner, __frame decorative layers
+       - Simplify .portal-list-option: remove left indicator bar; use background only
+       - Hide .studio-website__section-rule; increase .studio-website__section margin
+  2. Simplify .home-trust-anchor: remove studio-website__panel shadow stack; flat row
+     with border-bottom separator into portal section.
+  3. Trim trust anchor to: photo | name + meta + 1-line bio | link
+  4. Tone down header:hover — remove box-shadow bloom on entire header bar.
+
+Files: _home.scss, HomeTrustAnchor.jsx, _studioWebsite.scss
+Effort: ~3–4 hours
+Verify: Visual pass at 1280px; ensure portal still readable in light mode
+
+
+PHASE 4 — Desktop layout grid (make 1024px+ intentional)
+--------------------------------------------------------
+Goal: Desktop layout not just "wider tablet."
+
+Tasks:
+  1. At 1024px+, .home-wide__hub grid:
+       grid-template-columns: 1fr 1fr;
+       grid-template-areas:
+         "trust trust"
+         "portal portfolio";
+     OR single column if portal off-canvas stays primary (test both).
+  2. Hero: enforce slogan max-width; align CTA to baseline grid.
+  3. Optional: reduce hero cloud size slightly on ultra-wide so copy leads.
+
+Files: _home.scss
+Effort: ~4 hours
+Verify: 1024, 1280, 1920px; no horizontal scroll
+
+
+PHASE 5 — Inner studio pages parity
+------------------------------------
+Goal: Drop & Elevate, Get Professional, Code Drops wide pages match home tokens.
+
+Tasks:
+  1. Apply --cd-text-muted tokens to _studioWideContent.scss, _getProfessional.scss,
+     _dropAndElevate.scss, _codeDrops.scss
+  2. Reduce duplicate section heads (page hero already names the section).
+  3. Service cards on Drop & Elevate wide page: make clickable → scroll to inquiry
+     (parity with embed tiles).
+
+Files: studio page SCSS + DropAndElevatePage.jsx
+Effort: ~6–8 hours
+Verify: All four studio routes at 1024px+
+
+
+================================================================
+PRIORITY ORDER (if doing incrementally)
+================================================================
+
+  1. Phase 2 — Portal clarity (users can't use what they don't understand)
+  2. Phase 1 — Tokens (everything after is faster and consistent)
+  3. Phase 3 — Surface simplification (visual Refactoring UI pass)
+  4. Phase 4 — Desktop grid (differentiation from tablet)
+  5. Phase 5 — Inner pages parity
+
+
+================================================================
+QUICK WINS (< 1 hour each)
+================================================================
+
+  - Change "Tap a section" → "Select a section to preview" in HomePage.jsx
+  - Add "View all work" link under Featured Work grid
+  - Constrain .studio-website__slogan max-width at 1024px (28ch)
+  - Remove header:hover shadow bloom (keep link-level hover only)
+  - Shorten portal row transition from 0.4s → 0.2s
+
+
+================================================================
+SUCCESS CRITERIA
+================================================================
+
+Desktop (1024px+) feels:
+  [ ] Obvious — user knows header nav vs portal preview without instruction
+  [ ] Calm — fewer borders/textures; spacing defines sections
+  [ ] Readable — muted text is hue-matched, not washed-out grey
+  [ ] Human — trust strip is compact; proof (Featured Work) links deeper
+  [ ] Intentional — layout uses horizontal space, not only vertical stack
+  [ ] On-brand — CloudDrop accent and typography remain; less decoration
+
+
+================================================================
+FILES REFERENCE
+================================================================
+
+Home desktop shell:
+  src/pages/HomePage.jsx
+  src/components/studio/StudioWebsiteLayout.jsx
+  src/components/HomeTrustAnchor.jsx
+  src/components/HeroCloudAddition.jsx
+  src/styles/pages/_home.scss
+  src/styles/layout/_studioWebsite.scss
+  src/styles/layout/_studioResponsive.scss
+
+Shared tokens (create/extend):
+  src/styles/abstract/_theme.scss
+  src/styles/abstract/_colors.scss
+
+Inner studio wide pages:
+  src/styles/pages/_studioWideContent.scss
+  src/styles/pages/_getProfessional.scss
+  src/styles/pages/_dropAndElevate.scss
+  src/styles/pages/_codeDrops.scss

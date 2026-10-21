@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1155.0",
+    "@aws-sdk/client-secrets-manager": "^3.1155.0",
+    "@aws-sdk/lib-dynamodb": "^3.1155.0",
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-brands-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",

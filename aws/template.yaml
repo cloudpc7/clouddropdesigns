@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+﻿AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: CloudDropDesigns HTTP API, DynamoDB, and CloudFront/S3 static hosting
 
@@ -121,7 +121,7 @@ Resources:
           CUSTOMERS_TABLE: !Ref CustomersTable
           INQUIRIES_TABLE: !Ref InquiriesTable
           APP_SECRETS_ARN: !Ref AppSecrets
-          CORS_ORIGINS: !Sub 'https://${Cdn.DomainName}'
+          CORS_ORIGINS: 'https://clouddropdesigns.com,http://localhost:5173'
       Policies:
         - Statement:
             - Effect: Allow
@@ -256,7 +256,7 @@ Resources:
               - PATCH
               - DELETE
             CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
-            OriginRequestPolicyId: b689b0a8-53d0-40ab-b8c3-57b79f0781cb
+            OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac
         CustomErrorResponses:
           - ErrorCode: 403
             ResponseCode: 200
@@ -291,3 +291,4 @@ Outputs:
     Value: !Ref AppSecrets
   StackRegion:
     Value: !Ref AWS::Region
+

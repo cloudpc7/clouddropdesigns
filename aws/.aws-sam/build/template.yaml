@@ -1,0 +1,325 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: CloudDropDesigns HTTP API, DynamoDB, and CloudFront/S3 static hosting
+Parameters:
+  CustomDomainName:
+    Type: String
+    Default: ''
+    Description: Optional custom domain (e.g. clouddropdesigns.com). Leave empty until
+      ACM cert exists.
+  AcmCertificateArn:
+    Type: String
+    Default: ''
+    Description: Optional ACM certificate ARN in us-east-1 for CloudFront. Leave empty
+      for the default *.cloudfront.net cert.
+Conditions:
+  HasCustomDomain:
+    Fn::And:
+    - Fn::Not:
+      - Fn::Equals:
+        - Ref: CustomDomainName
+        - ''
+    - Fn::Not:
+      - Fn::Equals:
+        - Ref: AcmCertificateArn
+        - ''
+Globals:
+  Function:
+    Runtime: nodejs22.x
+    Architectures:
+    - arm64
+    Timeout: 20
+    MemorySize: 512
+    Environment:
+      Variables:
+        AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+Resources:
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins:
+        - https://clouddropdesigns.com
+        - http://localhost:5173
+        AllowHeaders:
+        - Content-Type
+        - Accept
+        - Authorization
+        AllowMethods:
+        - GET
+        - POST
+        - OPTIONS
+        MaxAge: 86400
+  AppSecrets:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name:
+        Fn::Sub: ${AWS::StackName}/app
+      Description: CloudDropDesigns API secrets. Fill values in Secrets Manager; do
+        not commit them.
+      SecretString: "{\n  \"TURNSTILE_SECRET_KEY\": \"\",\n  \"SMTP_HOST\": \"\",\n\
+        \  \"SMTP_PORT\": \"587\",\n  \"SMTP_USER\": \"\",\n  \"SMTP_PASS\": \"\"\
+        ,\n  \"INQUIRY_TO_EMAIL\": \"cloud@clouddropdesigns.com\",\n  \"INQUIRY_EMAIL_MAILBOX\"\
+        : \"cloud\",\n  \"INQUIRY_EMAIL_DOMAIN\": \"clouddropdesigns.com\",\n  \"\
+        GOOGLE_SERVICE_ACCOUNT_JSON\": \"\",\n  \"GOOGLE_CALENDAR_IMPERSONATE_EMAIL\"\
+        : \"cloud@clouddropdesigns.com\",\n  \"GOOGLE_INQUIRIES_CALENDAR_ID\": \"\"\
+        ,\n  \"GOOGLE_INQUIRIES_CALENDAR_NAME\": \"Inquiries\"\n}\n"
+  SiteContentTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+      - AttributeName: pk
+        AttributeType: S
+      KeySchema:
+      - AttributeName: pk
+        KeyType: HASH
+  CustomersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      - AttributeName: email
+        AttributeType: S
+      KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      GlobalSecondaryIndexes:
+      - IndexName: EmailIndex
+        KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+        Projection:
+          ProjectionType: ALL
+  InquiriesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ApiFunction
+      Handler: src/lambda.handler
+      Description: CloudDropDesigns Express content and inquiry API
+      Environment:
+        Variables:
+          SITE_CONTENT_TABLE:
+            Ref: SiteContentTable
+          CUSTOMERS_TABLE:
+            Ref: CustomersTable
+          INQUIRIES_TABLE:
+            Ref: InquiriesTable
+          APP_SECRETS_ARN:
+            Ref: AppSecrets
+          CORS_ORIGINS: https://clouddropdesigns.com,http://localhost:5173
+      Policies:
+      - Statement:
+        - Effect: Allow
+          Action:
+          - dynamodb:GetItem
+          - dynamodb:PutItem
+          - dynamodb:UpdateItem
+          Resource:
+          - Fn::GetAtt:
+            - SiteContentTable
+            - Arn
+          - Fn::GetAtt:
+            - InquiriesTable
+            - Arn
+        - Effect: Allow
+          Action:
+          - dynamodb:GetItem
+          - dynamodb:PutItem
+          - dynamodb:UpdateItem
+          - dynamodb:Query
+          Resource:
+          - Fn::GetAtt:
+            - CustomersTable
+            - Arn
+          - Fn::Sub: ${CustomersTable.Arn}/index/EmailIndex
+        - Effect: Allow
+          Action:
+          - secretsmanager:GetSecretValue
+          Resource:
+            Ref: AppSecrets
+      Events:
+        Proxy:
+          Type: HttpApi
+          Properties:
+            ApiId:
+              Ref: HttpApi
+            Path: /{proxy+}
+            Method: ANY
+        Root:
+          Type: HttpApi
+          Properties:
+            ApiId:
+              Ref: HttpApi
+            Path: /
+            Method: ANY
+    Metadata:
+      SamResourceId: ApiFunction
+  FrontendBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+        - ServerSideEncryptionByDefault:
+            SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+  FrontendBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: FrontendBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: AllowCloudFrontRead
+          Effect: Allow
+          Principal:
+            Service: cloudfront.amazonaws.com
+          Action: s3:GetObject
+          Resource:
+            Fn::Sub: ${FrontendBucket.Arn}/*
+          Condition:
+            StringEquals:
+              AWS:SourceArn:
+                Fn::Sub: arn:aws:cloudfront::${AWS::AccountId}:distribution/${Cdn}
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name:
+          Fn::Sub: ${AWS::StackName}-oac
+        Description: CloudDropDesigns SPA origin access
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+  Cdn:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: CloudDropDesigns SPA + /api/* to API Gateway
+        HttpVersion: http2and3
+        PriceClass: PriceClass_100
+        DefaultRootObject: index.html
+        Aliases:
+          Fn::If:
+          - HasCustomDomain
+          - - Ref: CustomDomainName
+          - Ref: AWS::NoValue
+        ViewerCertificate:
+          Fn::If:
+          - HasCustomDomain
+          - AcmCertificateArn:
+              Ref: AcmCertificateArn
+            SslSupportMethod: sni-only
+            MinimumProtocolVersion: TLSv1.2_2021
+          - CloudFrontDefaultCertificate: true
+        Origins:
+        - Id: spa
+          DomainName:
+            Fn::GetAtt:
+            - FrontendBucket
+            - RegionalDomainName
+          OriginAccessControlId:
+            Fn::GetAtt:
+            - OriginAccessControl
+            - Id
+          S3OriginConfig:
+            OriginAccessIdentity: ''
+        - Id: api
+          DomainName:
+            Fn::Sub: ${HttpApi}.execute-api.${AWS::Region}.amazonaws.com
+          CustomOriginConfig:
+            HTTPSPort: 443
+            OriginProtocolPolicy: https-only
+            OriginSSLProtocols:
+            - TLSv1.2
+        DefaultCacheBehavior:
+          TargetOriginId: spa
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods:
+          - GET
+          - HEAD
+          - OPTIONS
+          CachedMethods:
+          - GET
+          - HEAD
+          Compress: true
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+        CacheBehaviors:
+        - PathPattern: api/*
+          TargetOriginId: api
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods:
+          - GET
+          - HEAD
+          - OPTIONS
+          - PUT
+          - POST
+          - PATCH
+          - DELETE
+          CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
+          OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac
+        CustomErrorResponses:
+        - ErrorCode: 403
+          ResponseCode: 200
+          ResponsePagePath: /index.html
+          ErrorCachingMinTTL: 0
+        - ErrorCode: 404
+          ResponseCode: 200
+          ResponsePagePath: /index.html
+          ErrorCachingMinTTL: 0
+Outputs:
+  ApiUrl:
+    Description: API Gateway HTTP API URL. Use as VITE_API_BASE if CloudFront /api/*
+      is not used.
+    Value:
+      Fn::Sub: https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com
+  CloudFrontUrl:
+    Description: CloudFront distribution URL for the SPA. Same-origin /api/* is already
+      wired.
+    Value:
+      Fn::Sub: https://${Cdn.DomainName}
+  CloudFrontDomainName:
+    Description: CloudFront hostname for DNS ALIAS / CNAME.
+    Value:
+      Fn::GetAtt:
+      - Cdn
+      - DomainName
+  FrontendBucketName:
+    Description: S3 bucket for the Vite dist/ upload.
+    Value:
+      Ref: FrontendBucket
+  SiteContentTableName:
+    Value:
+      Ref: SiteContentTable
+  CustomersTableName:
+    Value:
+      Ref: CustomersTable
+  InquiriesTableName:
+    Value:
+      Ref: InquiriesTable
+  AppSecretsArn:
+    Description: Secrets Manager ARN. Put Turnstile, SMTP, and Google Calendar values
+      here.
+    Value:
+      Ref: AppSecrets
+  StackRegion:
+    Value:
+      Ref: AWS::Region
