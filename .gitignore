@@ -41,7 +41,6 @@ database.rules.json
 apphosting.yaml
 
 # Tooling scripts (local only)
-scripts/
 
 # AI / agent tooling (local only)
 agent-tools/
