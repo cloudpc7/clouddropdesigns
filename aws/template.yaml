@@ -227,6 +227,7 @@ Resources:
         Aliases: !If
           - HasCustomDomain
           - - !Ref CustomDomainName
+            - !Sub 'www.${CustomDomainName}'
           - !Ref AWS::NoValue
         ViewerCertificate: !If
           - HasCustomDomain
