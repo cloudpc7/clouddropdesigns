@@ -28,6 +28,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
 
       - name: Setup AWS SAM CLI
         uses: aws-actions/setup-sam@v2
@@ -48,3 +55,14 @@ jobs:
       - name: SAM deploy
         working-directory: aws
         run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
+
+      - name: Upload site to CloudFront bucket
+        run: |
+          BUCKET=$(aws cloudformation describe-stacks --stack-name clouddropdesigns --query "Stacks[0].Outputs[?OutputKey=='FrontendBucketName'].OutputValue" --output text)
+          aws s3 sync dist "s3://$BUCKET" --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          DOMAIN=$(aws cloudformation describe-stacks --stack-name clouddropdesigns --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDomainName'].OutputValue" --output text)
+          DIST_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[?DomainName=='$DOMAIN'].Id" --output text)
+          aws cloudfront create-invalidation --distribution-id "$DIST_ID" --paths "/*"
