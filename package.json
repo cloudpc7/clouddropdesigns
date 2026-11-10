@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/generate-seo-shells.mjs && vite build --ssr src/entry-server.jsx --outDir functions-api/ssr && node -e \"const fs=require('fs');fs.cpSync('dist','functions-api/ssr/pages',{recursive:true,filter:(s)=>fs.statSync(s).isDirectory()||s.endsWith('index.html')})\"",
+    "build": "vite build && node scripts/generate-seo-shells.mjs && vite build --ssr src/entry-server.jsx --outDir functions-api/ssr && node -e \"const fs=require('fs');fs.cpSync('dist','functions-api/ssr/pages',{recursive:true,filter:(s)=>fs.statSync(s).isDirectory()||s.endsWith('index.html')});fs.writeFileSync('functions-api/ssr/package.json','{\\\"type\\\":\\\"module\\\"}')\"",
     "lint": "eslint .",
     "preview": "vite preview"
   },
