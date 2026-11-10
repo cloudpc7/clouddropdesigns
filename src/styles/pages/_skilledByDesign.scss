@@ -273,6 +273,10 @@ $card-matte: #141414;
   gap: 0.7rem 0.5rem;
 }
 
+.skilled-page__tool-grid:has(> :nth-child(6):last-child) {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .skilled-page__tool-cell {
   display: flex;
   flex-direction: column;
@@ -418,6 +422,10 @@ $card-matte: #141414;
   .skilled-page__tool-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 0.55rem;
+  }
+
+  .skilled-page__tool-grid:has(> :nth-child(6):last-child) {
+    grid-template-columns: repeat(3, calc((100% - 4 * 0.55rem) / 5));
   }
 
   .skilled-page__tool-group-label {
