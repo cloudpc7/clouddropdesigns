@@ -269,12 +269,13 @@ $card-matte: #141414;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, calc((100% - 3 * 0.5rem) / 4 - 0.5px));
+  justify-content: center;
   gap: 0.7rem 0.5rem;
 }
 
 .skilled-page__tool-grid:has(> :nth-child(6):last-child) {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, calc((100% - 3 * 0.5rem) / 4 - 0.5px));
 }
 
 .skilled-page__tool-cell {
@@ -398,7 +399,7 @@ $card-matte: #141414;
   }
 
   .skilled-page__tool-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, calc((100% - 3 * 0.5rem) / 4 - 0.5px));
     gap: 0.5rem;
   }
 
@@ -420,7 +421,7 @@ $card-matte: #141414;
 
 @media (min-width: 1024px) {
   .skilled-page__tool-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, calc((100% - 4 * 0.55rem) / 5 - 0.5px));
     gap: 0.55rem;
   }
 
