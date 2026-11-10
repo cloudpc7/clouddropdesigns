@@ -426,6 +426,7 @@ $card-matte: #141414;
 
   .skilled-page__tool-grid:has(> :nth-child(6):last-child) {
     grid-template-columns: repeat(3, calc((100% - 4 * 0.55rem) / 5));
+    justify-content: center;
   }
 
   .skilled-page__tool-group-label {

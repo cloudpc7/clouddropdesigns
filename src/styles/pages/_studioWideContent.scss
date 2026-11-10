@@ -725,6 +725,7 @@ $accent: #7eb8d4;
 
   .skilled-wide__tool-grid:has(> :nth-child(6):last-child) {
     grid-template-columns: repeat(3, calc((100% - 4 * 0.75rem) / 5));
+    justify-content: center;
   }
 
   .cd-wide__grid {
