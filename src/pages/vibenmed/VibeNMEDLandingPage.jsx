@@ -9,12 +9,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import VibeNMEDLayout from '../../components/vibenmed/VibeNMEDLayout';
 import StoreDownloadBadges from '../../components/vibenmed/StoreDownloadBadges';
-import icon from '../../assets/vibenmed/play_store_512.png';
-import loginScreen from '../../assets/vibenmed/loginscreen.png';
-import matchingProfile from '../../assets/vibenmed/matching-profile.png';
-import extendedProfile from '../../assets/vibenmed/extended-profile.png';
-import messaging from '../../assets/vibenmed/messaging.png';
-import calendar from '../../assets/vibenmed/calendar.png';
+import icon from '../../assets/vibenmed/play_store_512.webp';
+import loginScreen from '../../assets/vibenmed/loginscreen.webp';
+import matchingProfile from '../../assets/vibenmed/matching-profile.webp';
+import extendedProfile from '../../assets/vibenmed/extended-profile.webp';
+import messaging from '../../assets/vibenmed/messaging.webp';
+import calendar from '../../assets/vibenmed/calendar.webp';
 import '../../styles/pages/_vibenmed.scss';
 
 const features = [
@@ -88,10 +88,10 @@ const VibeNMEDLandingPage = () => {
           <div className="vibenmed-hero__device">
             <div className="vibenmed-phone">
               <div className="vibenmed-phone__shell">
-                <img src={loginScreen} alt="VibeNMED app login screen" />
+                <img src={loginScreen} alt="VibeNMED app login screen" width={720} height={1560} fetchPriority="high" />
               </div>
               <div className="vibenmed-phone__badge">
-                <img src={icon} alt="" />
+                <img src={icon} alt="" width={192} height={192} decoding="async" />
                 <span>Available on iOS &amp; Android</span>
               </div>
             </div>
@@ -150,7 +150,7 @@ const VibeNMEDLandingPage = () => {
             {showcase.map((item) => (
               <figure key={item.label} className="vibenmed-showcase__item">
                 <div className="vibenmed-showcase__frame">
-                  <img src={item.src} alt={`VibeNMED ${item.label}`} />
+                  <img src={item.src} alt={`VibeNMED ${item.label}`} width={720} height={1560} loading="lazy" decoding="async" />
                 </div>
                 <figcaption>{item.label}</figcaption>
               </figure>
@@ -177,7 +177,7 @@ const VibeNMEDLandingPage = () => {
 
       <section className="vibenmed-download">
         <div className="vibenmed-download__inner">
-          <img src={icon} alt="" className="vibenmed-download__icon" />
+          <img src={icon} alt="" className="vibenmed-download__icon" width={192} height={192} loading="lazy" decoding="async" />
           <div>
             <h2>Ready to join the community?</h2>
             <p>Download VibeNMED on your device or reach out for partnership and support inquiries.</p>

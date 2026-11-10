@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { hydrateRoot } from 'react-dom/client'
 import './styles/main.scss'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom';
@@ -8,7 +8,8 @@ import { ThemeProvider } from './context/ThemeContext';
 import App from './App.jsx'
 import './firebaseConfig.js'
 
-createRoot(document.getElementById('root')).render(
+hydrateRoot(
+  document.getElementById('root'),
   <StrictMode>
     <Provider store={store}>
       <ThemeProvider>

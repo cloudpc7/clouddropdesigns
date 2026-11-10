@@ -17,7 +17,7 @@ const NavBar = () => {
           aria-expanded={isOpen}
           onClick={() => setIsOpen(true)}
         >
-          <img src={menuBars} alt="" className="site-nav__icon" />
+          <img src={menuBars} alt="" className="site-nav__icon" width={28} height={32} />
         </button>
       </header>
 

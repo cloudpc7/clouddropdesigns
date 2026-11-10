@@ -1,10 +1,10 @@
-import namerrsTablet from '../assets/namerrs/namerrs-tablet.png';
-import entertainmentScreen from '../assets/entertainment/screenshot.png';
-import sonoraTiresMobile from '../assets/sonoratiresinc/mobile.png';
-import hemetvalleyLogo from '../assets/hemetvalley/logo.png';
-import hemetvalleyMobile from '../assets/hemetvalley/mobile.png';
-import vibenmedScreen from '../assets/vibenmed/loginscreen.png';
-import vibenmedIcon from '../assets/vibenmed/icon.png';
+import namerrsTablet from '../assets/namerrs/namerrs-tablet.webp';
+import entertainmentScreen from '../assets/entertainment/screenshot.webp';
+import sonoraTiresMobile from '../assets/sonoratiresinc/mobile.webp';
+import hemetvalleyLogo from '../assets/hemetvalley/logo.webp';
+import hemetvalleyMobile from '../assets/hemetvalley/mobile.webp';
+import vibenmedScreen from '../assets/vibenmed/loginscreen.webp';
+import vibenmedIcon from '../assets/vibenmed/icon.webp';
 
 export const CODE_DROPS_PROJECTS = [
   {

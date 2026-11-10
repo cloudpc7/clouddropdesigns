@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import cloudWatermark from '../assets/cloud-icon.png';
+import { useSelector } from 'react-redux';
 import { useSiteSlogan } from '../hooks/useContent';
+import { selectDeviceType } from '../redux/slices/deviceSlice';
 import { getCardHeroCloudSize } from '../utils/getCloudSize';
 import CloudDropIcon from './CloudDropIcon';
 import '../styles/layout/_hero.scss';
@@ -12,11 +14,13 @@ const stopFlip = (event) => {
 const Hero = () => {
   const siteSlogan = useSiteSlogan();
   const [sloganTop, sloganBottom] = siteSlogan.split(' & ');
-  const [cloudSize, setCloudSize] = useState(getCardHeroCloudSize);
+  const deviceType = useSelector(selectDeviceType);
+  const [cloudSize, setCloudSize] = useState(deviceType === 'desktop' ? 240 : 228);
   const isCompact = cloudSize < 228;
 
   useEffect(() => {
     const handleResize = () => setCloudSize(getCardHeroCloudSize());
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);

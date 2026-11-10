@@ -10,6 +10,9 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
+    ssr: {
+      noExternal: true,
+    },
     build: {
       rollupOptions: {
         output: {

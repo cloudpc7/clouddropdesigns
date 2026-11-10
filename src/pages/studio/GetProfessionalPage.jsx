@@ -31,6 +31,7 @@ const GetProfessionalWideContent = ({
           height={350}
           loading="eager"
           decoding="sync"
+          fetchPriority="high"
         />
       </div>
 
@@ -184,6 +185,7 @@ const GetProfessionalPage = ({ embed = false }) => {
                   height={400}
                   loading="eager"
                   decoding="sync"
+                  fetchPriority="high"
                 />
 
                 <div className="get-professional-page__identity">

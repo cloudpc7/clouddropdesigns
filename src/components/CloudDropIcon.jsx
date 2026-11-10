@@ -31,6 +31,7 @@ const CloudDropIcon = ({
   compact = false,
 }) => {
   const [now, setNow] = useState(() => new Date());
+  const [isHydrated, setIsHydrated] = useState(false);
   const [mode, setMode] = useState(defaultMode);
   const [activePresetId, setActivePresetId] = useState('dusk');
   const [previewPresetId, setPreviewPresetId] = useState(null);
@@ -38,6 +39,7 @@ const CloudDropIcon = ({
   const isOrbitOpenRef = useRef(false);
 
   useEffect(() => {
+    setIsHydrated(true);
     const timer = window.setInterval(() => setNow(new Date()), SHADOW_REFRESH_MS);
     return () => window.clearInterval(timer);
   }, []);
@@ -261,7 +263,7 @@ const CloudDropIcon = ({
                 }}
               >
                 <span className="cloud-drop-icon__phase-label">Live · California</span>
-                <span className="cloud-drop-icon__phase-time">{liveTimeLabel} PT</span>
+                <span key={isHydrated ? 'live' : 'ssr'} className="cloud-drop-icon__phase-time" suppressHydrationWarning>{liveTimeLabel} PT</span>
               </button>
             </div>
           </animated.div>
@@ -270,8 +272,8 @@ const CloudDropIcon = ({
       </div>
 
       {showSkyCaption && (
-        <p className="cloud-drop-icon__caption">
-          <strong>{caption.time}</strong> · {caption.phase} · {caption.status}
+        <p key={isHydrated ? 'live' : 'ssr'} className="cloud-drop-icon__caption" suppressHydrationWarning>
+          <strong suppressHydrationWarning>{caption.time}</strong> · {caption.phase} · {caption.status}
         </p>
       )}
     </div>

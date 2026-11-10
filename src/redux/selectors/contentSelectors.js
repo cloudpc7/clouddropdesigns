@@ -173,6 +173,6 @@ export const selectSiteMapSections = (state) =>
 
 export const selectVibenmedLegal = (state) => selectSections(state).vibenmedLegal ?? {};
 export const selectPrivacyPolicyHtml = (state) =>
-  selectVibenmedLegal(state).privacyPolicyHtml ?? PRIVACY_POLICY_HTML;
+  selectVibenmedLegal(state).privacyPolicyHtml || PRIVACY_POLICY_HTML;
 export const selectTermsBodyHtml = (state) =>
-  selectVibenmedLegal(state).termsBodyHtml ?? TERMS_BODY_HTML;
+  selectVibenmedLegal(state).termsBodyHtml || TERMS_BODY_HTML;

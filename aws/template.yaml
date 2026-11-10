@@ -199,31 +199,36 @@ Resources:
         SigningBehavior: always
         SigningProtocol: sigv4
 
-  IndexRewriteFunction:
-    Type: AWS::CloudFront::Function
+  PageCachePolicy:
+    Type: AWS::CloudFront::CachePolicy
     Properties:
-      Name: !Sub '${AWS::StackName}-index-rewrite'
-      AutoPublish: true
-      FunctionConfig:
-        Comment: Map /route and /route/ to /route/index.html
-        Runtime: cloudfront-js-2.0
-      FunctionCode: |
-        function handler(event) {
-          var r = event.request;
-          if (r.uri.endsWith('/')) { r.uri += 'index.html'; }
-          else if (r.uri.split('/').pop().indexOf('.') === -1) { r.uri += '/index.html'; }
-          return r;
-        }
+      CachePolicyConfig:
+        Name: !Sub '${AWS::StackName}-ssr-pages'
+        Comment: SSR pages cached per device type (mobile / tablet / desktop)
+        DefaultTTL: 60
+        MinTTL: 0
+        MaxTTL: 86400
+        ParametersInCacheKeyAndForwardedToOrigin:
+          EnableAcceptEncodingGzip: true
+          EnableAcceptEncodingBrotli: true
+          CookiesConfig:
+            CookieBehavior: none
+          QueryStringsConfig:
+            QueryStringBehavior: none
+          HeadersConfig:
+            HeaderBehavior: whitelist
+            Headers:
+              - CloudFront-Is-Mobile-Viewer
+              - CloudFront-Is-Tablet-Viewer
 
   Cdn:
     Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig:
         Enabled: true
-        Comment: CloudDropDesigns SPA + /api/* to API Gateway
+        Comment: CloudDropDesigns pages via Express SSR, static files from S3, /api/* to API Gateway
         HttpVersion: http2and3
         PriceClass: PriceClass_100
-        DefaultRootObject: index.html
         Aliases: !If
           - HasCustomDomain
           - - !Ref CustomDomainName
@@ -249,7 +254,7 @@ Resources:
               OriginSSLProtocols:
                 - TLSv1.2
         DefaultCacheBehavior:
-          TargetOriginId: spa
+          TargetOriginId: api
           ViewerProtocolPolicy: redirect-to-https
           AllowedMethods:
             - GET
@@ -259,10 +264,7 @@ Resources:
             - GET
             - HEAD
           Compress: true
-          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
-          FunctionAssociations:
-            - EventType: viewer-request
-              FunctionARN: !GetAtt IndexRewriteFunction.FunctionMetadata.FunctionARN
+          CachePolicyId: !Ref PageCachePolicy
         CacheBehaviors:
           - PathPattern: api/*
             TargetOriginId: api
@@ -277,15 +279,61 @@ Resources:
               - DELETE
             CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad
             OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac
-        CustomErrorResponses:
-          - ErrorCode: 403
-            ResponseCode: 404
-            ResponsePagePath: /index.html
-            ErrorCachingMinTTL: 0
-          - ErrorCode: 404
-            ResponseCode: 404
-            ResponsePagePath: /index.html
-            ErrorCachingMinTTL: 0
+          - PathPattern: 'assets/*'
+            TargetOriginId: spa
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          - PathPattern: '.well-known/*'
+            TargetOriginId: spa
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          - PathPattern: '*.png'
+            TargetOriginId: spa
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          - PathPattern: '*.webp'
+            TargetOriginId: spa
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          - PathPattern: '*.jpg'
+            TargetOriginId: spa
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          - PathPattern: '*.jpeg'
+            TargetOriginId: spa
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          - PathPattern: '*.svg'
+            TargetOriginId: spa
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          - PathPattern: '*.ico'
+            TargetOriginId: spa
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          - PathPattern: '*.xml'
+            TargetOriginId: spa
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          - PathPattern: '*.txt'
+            TargetOriginId: spa
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          - PathPattern: '404.html'
+            TargetOriginId: spa
+            ViewerProtocolPolicy: redirect-to-https
+            Compress: true
+            CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
 
 Outputs:
   ApiUrl:

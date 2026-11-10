@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/generate-seo-shells.mjs",
+    "build": "vite build && node scripts/generate-seo-shells.mjs && vite build --ssr src/entry-server.jsx --outDir functions-api/ssr && node -e \"const fs=require('fs');fs.cpSync('dist','functions-api/ssr/pages',{recursive:true,filter:(s)=>fs.statSync(s).isDirectory()||s.endsWith('index.html')})\"",
     "lint": "eslint .",
     "preview": "vite preview"
   },

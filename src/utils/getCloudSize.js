@@ -1,5 +1,6 @@
 /** Business card hero — mobile / card flip layout */
 export const getCardHeroCloudSize = () => {
+  if (typeof window === 'undefined') return 240;
   const width = window.innerWidth;
   const height = window.innerHeight;
   const isCompactViewport = width < 1024;

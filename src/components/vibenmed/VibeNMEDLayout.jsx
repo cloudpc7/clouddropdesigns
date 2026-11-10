@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import icon from '../../assets/vibenmed/play_store_512.png';
+import icon from '../../assets/vibenmed/play_store_512.webp';
 import '../../styles/components/_vibenmedLayout.scss';
 
 const VibeNMEDLayout = ({ children }) => {
@@ -8,7 +8,7 @@ const VibeNMEDLayout = ({ children }) => {
       <header className="vibenmed-header">
         <div className="vibenmed-header__inner">
           <Link to="/vibenmed" className="vibenmed-brand">
-            <img src={icon} alt="" className="vibenmed-brand__icon" />
+            <img src={icon} alt="" className="vibenmed-brand__icon" width={192} height={192} decoding="async" />
             <span className="vibenmed-brand__name">VibeNMED</span>
           </Link>
 
@@ -26,7 +26,7 @@ const VibeNMEDLayout = ({ children }) => {
       <footer className="vibenmed-footer">
         <div className="vibenmed-footer__inner">
           <div className="vibenmed-footer__brand">
-            <img src={icon} alt="" />
+            <img src={icon} alt="" width={192} height={192} loading="lazy" decoding="async" />
             <div>
               <strong>VibeNMED</strong>
               <p>Healthcare networking, built for trust.</p>

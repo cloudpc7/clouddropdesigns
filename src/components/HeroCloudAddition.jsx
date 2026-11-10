@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import cloudWatermark from '../assets/cloud-icon.png';
+import { useSelector } from 'react-redux';
+import { selectDeviceType } from '../redux/slices/deviceSlice';
 import { getWideHeroCloudSize } from '../utils/getCloudSize';
 import CloudDropIcon from './CloudDropIcon';
 
@@ -17,10 +19,16 @@ const getHeroCloudState = () => {
 };
 
 const HeroCloudAddition = () => {
-  const [heroCloud, setHeroCloud] = useState(getHeroCloudState);
+  const isDesktopDevice = useSelector(selectDeviceType) === 'desktop';
+  const [heroCloud, setHeroCloud] = useState({
+    isDesktop: isDesktopDevice,
+    cloudSize: isDesktopDevice ? DESKTOP_CLOUD_SIZE : 228,
+    isCompact: false,
+  });
 
   useEffect(() => {
     const handleResize = () => setHeroCloud(getHeroCloudState());
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
